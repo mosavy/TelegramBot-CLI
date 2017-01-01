@@ -1,2 +1,2 @@
 # Leader-Bot
-Thank to @blackhatChannel
+Thanks @blackhatChannel
