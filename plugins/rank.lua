@@ -30,7 +30,7 @@ pm = 'کاربر '..msg.from_id..' از مدیریت عزل شد.'
          tg.sendMessage(msg.chat_id_, 0, 1,pm, 1, 'html')
 		 redis:del('demote'..msg.chat_id_ ,true)
     end
-	if matches[1] == 'setowner' and is_owner(msg) then
+	if matches[1] == 'setowner' and is_owner(msg) or is_sudo(msg) then
 	if msg.reply_to_message_id_ ~= 0 then
 		tg.getMessage(msg.chat_id_,msg.reply_to_message_id_)
 		redis:set('setowner'..msg.chat_id_,msg.from_id)
@@ -41,7 +41,7 @@ pm = 'کاربر '..msg.from_id..' از مدیریت عزل شد.'
          tg.sendMessage(msg.chat_id, 0, 0,  'کاربر مدیر اصلی گروه  شد.', 0)
 	end
 	end
-if matches[1] == 'promote' and is_owner(msg) then
+if matches[1] == 'promote' and is_owner(msg) or is_sudo(msg) then
 	if msg.reply_to_message_id_ ~= 0 then
 		tg.getMessage(msg.chat_id_,msg.reply_to_message_id_)
 		redis:set('promote'..msg.chat_id_,msg.from_id)
@@ -53,7 +53,7 @@ if matches[1] == 'promote' and is_owner(msg) then
 	end
 	end
 
-if matches[1] == 'demote' and is_owner(msg) then
+if matches[1] == 'demote' and is_owner(msg) or is_sudo(msg) then
 	if msg.reply_to_message_id_ ~= 0 then
 		tg.getMessage(msg.chat_id_,msg.reply_to_message_id_)
 		redis:set('demote'..msg.chat_id_,msg.from_id)
