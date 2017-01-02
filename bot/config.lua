@@ -7,6 +7,7 @@ do local _ = {
     "pin",
 --      "rank",
       "banhammer",
+      "settings",
       "plugins",
       "admin"
   },
