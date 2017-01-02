@@ -7,7 +7,8 @@ do local _ = {
     "pin",
       "rank",
       "plugins",
-      "admin"
+      "admin",
+      "tools"
   },
   group  = {
     data = "bot/group.json"
