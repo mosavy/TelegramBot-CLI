@@ -5,11 +5,11 @@ do local _ = {
     "lock",
     "msg_checks",
     "pin",
---      "rank",
-      "banhammer",
-      "settings",
+    "rank",
+  --    "banhammer",
+--      "settings",
       "plugins",
-      "tools",
+  --    "tools",
       "admin"
   },
   group  = {
