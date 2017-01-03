@@ -9,6 +9,7 @@ do local _ = {
       "banhammer",
       "settings",
       "plugins",
+      "tools",
       "admin"
   },
   group  = {
