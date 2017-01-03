@@ -1,7 +1,7 @@
 local function run(msg, matches)
 local addgroup = group[tostring(msg.chat_id)]
 if addgroup then
-if is_momod(msg) or is_robot(msg) then
+if is_momod(msg) or is_robot(msg) or is_sudo(msg) then
 return false
 else
 local group = load_data('bot/group.json')
