@@ -38,11 +38,11 @@ end
 local group_lock_tgservice = group[tostring(msg.chat_id)]['settings']['lock_tgservice']
 local is_tgservice_msg = msg.text:match("!!!tgservice:")
 if group_lock_tgservice == 'yes' and is_tgservice_msg then
---    if is_persian_msg or is_english_msg then
---        tg.deleteMessages(msg.chat_id_, {[0] = msg.id_ })
+    if is_persian_msg or is_english_msg then
+        tg.deleteMessages(msg.chat_id_, {[0] = msg.id_ })
 --    else
 --        tg.deleteMessages(msg.chat_id_, {[0] = msg.id_ }) 
---    end 
+    end 
 end
 local group_lock_sticker = group[tostring(msg.chat_id)]['settings']['lock_sticker']
 local is_sticker_msg = msg.text:match("!!!sticker:")
