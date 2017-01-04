@@ -5,8 +5,8 @@ local addgroup = group[tostring(msg.chat_id)]
 local setowner = redis:get('setowner'..msg.chat_id_)
 local promote = redis:get('promote'..msg.chat_id_)
 local demote = redis:get('demote'..msg.chat_id_)
-if addgroup and is_sudo(msg) then
-    if matches[1] == 'owner' then
+if addgroup then
+    if matches[1] == 'owner' and is_owner(msg) or is_sudo(msg) then
 	 pm = group[tostring(msg.chat_id_)]['set_owner']
 	 tg.sendMessage(msg.chat_id_, 0, 1,'owner['..pm..']', 1, 'html')
 	end
@@ -30,7 +30,7 @@ pm = msg.from_id..' has been demoted'
          tg.sendMessage(msg.chat_id_, 0, 1,pm, 1, 'html')
 		 redis:del('demote'..msg.chat_id_ ,true)
     end
-	if matches[1] == 'setowner' and is_owner(msg) then
+	if matches[1] == 'setowner' and is_owner(msg) or is_sudo(msg) then
 	if msg.reply_to_message_id_ ~= 0 then
 		tg.getMessage(msg.chat_id_,msg.reply_to_message_id_)
 		redis:set('setowner'..msg.chat_id_,msg.from_id)
@@ -41,7 +41,7 @@ pm = msg.from_id..' has been demoted'
          tg.sendMessage(msg.chat_id, 0, 0,  'User added as owner', 0)
 	end
 	end
-if matches[1] == 'promote' and is_owner(msg) then
+if matches[1] == 'promote' and is_owner(msg) or is_sudo(msg) then
 	if msg.reply_to_message_id_ ~= 0 then
 		tg.getMessage(msg.chat_id_,msg.reply_to_message_id_)
 		redis:set('promote'..msg.chat_id_,msg.from_id)
@@ -53,7 +53,7 @@ if matches[1] == 'promote' and is_owner(msg) then
 	end
 	end
 
-if matches[1] == 'demote' and is_owner(msg) then
+if matches[1] == 'demote' and is_owner(msg) or is_sudo(msg) then
 	if msg.reply_to_message_id_ ~= 0 then
 		tg.getMessage(msg.chat_id_,msg.reply_to_message_id_)
 		redis:set('demote'..msg.chat_id_,msg.from_id)
