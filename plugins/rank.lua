@@ -5,7 +5,7 @@ local addgroup = group[tostring(msg.chat_id)]
 local setowner = redis:get('setowner'..msg.chat_id_)
 local promote = redis:get('promote'..msg.chat_id_)
 local demote = redis:get('demote'..msg.chat_id_)
-if addgroup then
+if addgroup and is_sudo(msg) then
     if matches[1] == 'owner' then
 	 pm = group[tostring(msg.chat_id_)]['set_owner']
 	 tg.sendMessage(msg.chat_id_, 0, 1,'owner['..pm..']', 1, 'html')
