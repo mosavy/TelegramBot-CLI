@@ -631,6 +631,7 @@ pm = '*SuperGroup ID :* `'..msg.chat_id_..'`\n*User ID :* `'..msg.sender_user_id
 --local user_id = msg.sender_user_id_
 tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html') 
 end		
+if is_momod(msg) or is_owner(msg) then		
 if matches[1] == 'settings'  then
 group_settings(msg, msg.chat_id)
 elseif matches[1] == 'lock' then
@@ -721,6 +722,7 @@ elseif matches[2] == 'voice' then
 unmute_voice_group(msg, msg.chat_id)
 elseif matches[2] == 'video' then
 unmute_video_group(msg, msg.chat_id)
+end
 end
 end
 end
