@@ -621,7 +621,7 @@ tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html')
 end	
 if matches[1] == 'git pull' and is_sudo(msg) then
   io.popen("git pull")
-  tg.sendMessage(msg.chat_id_, msg.id_, 1, '✅ عمليات [Git Pull] به اتمام رسيد . . .‌\n🔸پيشنهاد ميشود ربات در مجددا launch كنيد . . . ', 1, 'md')
+  tg.sendMessage(msg.chat_id_, 0, 1, '✅ عمليات [Git Pull] به اتمام رسيد . . .‌\n🔸پيشنهاد ميشود ربات در مجددا launch كنيد . . . ', 1, 'md')
 end	
 local addgroup = group[tostring(msg.chat_id)]
 if addgroup and is_momod(msg) or is_sudo(msg) or is_owner(msg) then
