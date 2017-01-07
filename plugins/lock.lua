@@ -639,6 +639,9 @@ pm = matches[2]
 tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html')
 end
 if addgroup and is_momod(msg) or is_sudo(msg) or is_owner(msg) then
+if matches[1] == 'id' and is_momod(msg) or is_sudo(msg) or is_owner(msg) then then 
+tg.sendMessage(chat_id, msg.id_, 0, 1, nil, '<b>SuperGroup ID : </b>'..string.sub(chat_id, 5,14)..'\n<b>User ID : </b>'..user_id..'\n<b>Channel : </b>@LeaderCH', 1, 'html') 
+end		
 if matches[1] == 'settings'  then
 group_settings(msg, msg.chat_id)
 elseif matches[1] == 'lock' then
