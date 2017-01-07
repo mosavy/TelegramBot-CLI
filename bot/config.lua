@@ -5,7 +5,7 @@ do local _ = {
     "lock",
     "msg_checks",
 --    "pin",
---    "rank",
+    "rank",
   --    "banhammer",
 --      "settings",
       "plugins",
