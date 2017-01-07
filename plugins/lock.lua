@@ -24,7 +24,7 @@ pm = pm..'\n19- <code>Lock Voice</code> : '..(group[tostring(target)]['settings'
 pm = pm..'\n20- <code>Lock Document</code> : '..(group[tostring(target)]['settings']['mute_document'] or 'no')..''
 pm = pm..'\n21- <code>Lock Audio</code> : '..(group[tostring(target)]['settings']['mute_audio'] or 'no')..''
 pm = pm..'\n22- <code>Lock Gifs</code> : '..(group[tostring(target)]['settings']['mute_gif'] or 'no')..''
-pm = pm..'\n23- <code>Flood Sensitivity</code> : '..NUM_MSG_MAX..''
+--pm = pm..'\n23- <code>Flood Sensitivity</code> : '..NUM_MSG_MAX..''
 pm = pm..'\n-----------------------------------\n\n<b>Channel: </b>@LeaderCh'
 tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html')
 end
@@ -601,14 +601,6 @@ tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html')
 tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html')
   end
 end
-if group[tostring(target)] then
-     if group[tostring(target)]['settings']['flood_msg_max'] then
-        NUM_MSG_MAX = tonumber(group[tostring(target)]['settings']['flood_msg_max'])
-        print('custom'..NUM_MSG_MAX)
-    else
-        NUM_MSG_MAX = 5
-    end
- end
 local function group_settings(msg, target)
 local group = load_data('bot/group.json')
 pm = '<b>SuperGroup settings</b>\n-----------------------------------'
@@ -635,7 +627,7 @@ pm = pm..'\n19- <code>Lock Voice</code> : '..group[tostring(target)]['settings']
 pm = pm..'\n20- <code>Lock Document</code> : '..group[tostring(target)]['settings']['mute_document']..''
 pm = pm..'\n21- <code>Lock Audio</code> : '..group[tostring(target)]['settings']['mute_audio']..''
 pm = pm..'\n22- <code>Lock Gifs</code> : '..group[tostring(target)]['settings']['mute_gif']..''
-pm = pm..'\n23- <code>Flood Sensitivity</code> : '..NUM_MSG_MAX..''
+--pm = pm..'\n23- <code>Flood Sensitivity</code> : '..NUM_MSG_MAX..''
 pm = pm..'\n-----------------------------------\n<b>Channel: </b>@LeaderCh'
 tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html')
 end
