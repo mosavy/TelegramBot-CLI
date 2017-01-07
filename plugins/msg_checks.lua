@@ -125,7 +125,7 @@ if is_banuser(msg) then
 chat_del_user(msg.chat_id_, msg.sender_user_id_)
 return deleteMessages(msg.chat_id_, {[0] = msg.id_})
 end
-local group_reply_lock = group[tostring(msg.chat_id)]['settings']['lock_fosh']
+local group_reply_lock = group[tostring(msg.chat_id)]['settings']['lock_reply']
 if group_reply_lock == 'yes' and msg.reply_to_message_id_ ~= 0 then
 tg.deleteMessages(msg.chat_id_, {[0] = msg.id_ })
 end
