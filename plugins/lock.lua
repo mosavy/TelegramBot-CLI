@@ -626,7 +626,7 @@ end
 local addgroup = group[tostring(msg.chat_id)]
 if addgroup and is_momod(msg) or is_sudo(msg) or is_owner(msg) then
 if matches[1] == 'id' then 
-pm = '*SuperGroup ID :* `'..msg.chat_id_..'`\n*User ID :* `'..msg.sender_user_id_..'`\n*Channel :* @LeaderCH'			
+pm = '<b>SuperGroup ID:</b> <code>'..msg.chat_id_..'</code>\n<b>User ID:</b> <code>'..msg.sender_user_id_..'</code>\n<b>Channel:</b> @LeaderCH'			
 --local chat_id = msg.chat_id_
 --local user_id = msg.sender_user_id_
 tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html') 
