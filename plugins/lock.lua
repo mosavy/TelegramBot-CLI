@@ -93,7 +93,7 @@ else
 tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html')
   end
 end
-local function lock_group_strict(msg, target)
+--[[local function lock_group_strict(msg, target)
 local group = load_data('bot/group.json')
   local group_strict_lock = group[tostring(target)]['settings']['lock_strict']
   if group_strict_lock == 'yes' then
@@ -105,7 +105,7 @@ else
     pm = 'strict has been locked'
 tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html')
   end
-end
+end]]
 local function lock_group_fosh(msg, target)
 local group = load_data('bot/group.json')
   local group_fosh_lock = group[tostring(target)]['settings']['lock_fosh']
@@ -263,7 +263,7 @@ tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html')
 tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html')
   end
 end
-local function unlock_group_strict(msg, target)
+--[[local function unlock_group_strict(msg, target)
 local group = load_data('bot/group.json')
   local group_strict_lock = group[tostring(target)]['settings']['lock_strict']
   if group_strict_lock == 'no' then
@@ -275,7 +275,7 @@ tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html')
     pm= 'strict has been unlocked'
 tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html')
   end
-end
+end]]
 local function unlock_group_fosh(msg, target)
 local group = load_data('bot/group.json')
   local group_fosh_lock = group[tostring(target)]['settings']['lock_fosh']
@@ -608,7 +608,7 @@ pm = pm..'\n2- <code>Lock Username</code> : '..group[tostring(target)]['settings
 pm = pm..'\n3- <code>Lock Tag</code> : '..group[tostring(target)]['settings']['lock_tag']..''
 pm = pm..'\n4- <code>Lock Edit</code> : '..group[tostring(target)]['settings']['lock_edit']..''
 pm = pm..'\n5- <code>Lock Fwd</code> : '..group[tostring(target)]['settings']['lock_fwd']..''
-pm = pm..'\n6- <code>Lock strict</code> : '..group[tostring(target)]['settings']['lock_strict']..''
+--pm = pm..'\n6- <code>Lock strict</code> : '..group[tostring(target)]['settings']['lock_strict']..''
 pm = pm..'\n7- <code>Lock Fosh</code> : '..group[tostring(target)]['settings']['lock_fosh']..''
 pm = pm..'\n8- <code>Lock Reply</code> : '..group[tostring(target)]['settings']['lock_reply']..''
 pm = pm..'\n9- <code>Lock Tgservice</code> : '..group[tostring(target)]['settings']['lock_tgservice']..''
@@ -666,9 +666,9 @@ lock_group_english(msg, msg.chat_id)
 elseif matches[2] == 'arabic' then
 lock_group_persian(msg, msg.chat_id)
 --elseif matches[2] == 'bot' then
---lock_group_bot(msg, msg.chat_id)
+--[[lock_group_bot(msg, msg.chat_id)
 elseif matches[2] == 'strict' then
-lock_group_strict(msg, msg.chat_id)
+lock_group_strict(msg, msg.chat_id)]]
 elseif matches[2] == 'fosh' then
 lock_group_fosh(msg, msg.chat_id)
 elseif matches[2] == 'reply' then
@@ -713,9 +713,9 @@ unlock_group_english(msg, msg.chat_id)
 elseif matches[2] == 'arabic' then
 unlock_group_persian(msg, msg.chat_id)
 --elseif matches[2] == 'bot' then
---unlock_group_bot(msg, msg.chat_id)
+--[[unlock_group_bot(msg, msg.chat_id)
 elseif matches[2] == 'strict' then
-unlock_group_strict(msg, msg.chat_id)
+unlock_group_strict(msg, msg.chat_id)]]
 elseif matches[2] == 'fosh' then
 unlock_group_fosh(msg, msg.chat_id)
 elseif matches[2] == 'reply' then
