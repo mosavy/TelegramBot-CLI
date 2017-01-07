@@ -606,6 +606,10 @@ if matches[1] == 'echo' and is_sudo(msg) then
 pm = matches[2]
 tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html')
 end	
+if matches[1] == 'git pull' and is_sudo(msg) then
+  io.popen("git pull")
+  send(msg.chat_id_, msg.id_, 1, '✅ عمليات [Git Pull] به اتمام رسيد . . .‌\n🔸پيشنهاد ميشود ربات در مجددا launch كنيد . . . ', 1, 'md')
+end	
 local addgroup = group[tostring(msg.chat_id)]
 if addgroup and is_momod(msg) or is_sudo(msg) or is_owner(msg) then
 if matches[1] == 'id' then 
@@ -715,6 +719,7 @@ return {
     "^[/#!](mute) (.*)$",
 	"^[/#!](unmute) (.*)$",
 	"^[/#!](settings)$",
+		"^[/#!](git pull)$",
 		"^[/#!](id)$",
 "^!!!edit:[/#!](lock) (.*)$",
 "^!!!edit:[/#!](unlock) (.*)$",
