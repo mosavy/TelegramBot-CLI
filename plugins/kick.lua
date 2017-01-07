@@ -4,9 +4,11 @@ local function run(msg, matches)
 		tg.getMessage(msg.chat_id_,msg.reply_to_message_id_)
 		tdcli.changeChatMemberStatus(chat_id, data.id_, 'Kicked')
 	elseif msg.text:match("@(.*)") then
-	     tg.sendMessage(msg.chat_id, 0, 0,  'user [ '..msg.text:match("@(.*)")..' ] kicked', 0)
+	     tg.sendMessage(msg.chat_id, 0, 0,  'user [ @'..msg.text:match("@(.*)")..' ] kicked', 0)
+		tdcli.changeChatMemberStatus(chat_id, data.id_, 'Kicked')	
 	elseif tonumber(matches[2]) then
-         tg.sendMessage(msg.chat_id, 0, 0,  '[ '..matches[2]..' ] added as owner', 0)
+         tg.sendMessage(msg.chat_id, 0, 0,  '[ '..matches[2]..' ] kicked', 0)
+		tdcli.changeChatMemberStatus(chat_id, data.id_, 'Kicked')	
 	end
 	end
 end
