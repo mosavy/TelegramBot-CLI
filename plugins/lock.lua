@@ -6,7 +6,7 @@ pm = pm..'\n2- <code>Lock Username</code> : '..(group[tostring(target)]['setting
 pm = pm..'\n3- <code>Lock Tag</code> : '..(group[tostring(target)]['settings']['lock_tag'] or 'no')..''
 pm = pm..'\n4- <code>Lock Edit</code> : '..group[tostring(target)]['settings']['lock_edit']..''
 pm = pm..'\n5- <code>Lock Fwd</code> : '..(group[tostring(target)]['settings']['lock_fwd'] or 'no')..''
---pm = pm..'\n5- <code>Lock Flood</code> : '..(group[tostring(target)]['settings']['lock_flood'] or 'no')..''
+pm = pm..'\n5- <code>Lock Flood</code> : '..(group[tostring(target)]['settings']['lock_flood'] or 'no')..''
 pm = pm..'\n6- <code>Lock Fosh</code> : '..(group[tostring(target)]['settings']['lock_fosh'] or 'no')..''
 pm = pm..'\n7- <code>Lock Tgservice</code> : '..(group[tostring(target)]['settings']['lock_tgservice'] or 'no')..''
 pm = pm..'\n8- <code>Lock Sticker</code> : '..(group[tostring(target)]['settings']['lock_sticker'] or 'no')..''
@@ -91,7 +91,7 @@ else
 tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html')
   end
 end
---[[local function lock_group_flood(msg, target)
+local function lock_group_flood(msg, target)
 local group = load_data('bot/group.json')
   local group_flood_lock = group[tostring(target)]['settings']['lock_flood']
   if group_flood_lock == 'yes' then
@@ -103,7 +103,7 @@ else
     pm = 'Flood has been locked'
 tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html')
   end
-end]]
+end
 local function lock_group_fosh(msg, target)
 local group = load_data('bot/group.json')
   local group_fosh_lock = group[tostring(target)]['settings']['lock_fosh']
@@ -248,7 +248,7 @@ tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html')
 tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html')
   end
 end
---[[local function unlock_group_flood(msg, target)
+local function unlock_group_flood(msg, target)
 local group = load_data('bot/group.json')
   local group_flood_lock = group[tostring(target)]['settings']['lock_flood']
   if group_flood_lock == 'no' then
@@ -260,7 +260,7 @@ tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html')
     pm= 'Flood has been unlocked'
 tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html')
   end
-end]]
+end
 local function unlock_group_fosh(msg, target)
 local group = load_data('bot/group.json')
   local group_fosh_lock = group[tostring(target)]['settings']['lock_fosh']
@@ -573,6 +573,19 @@ tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html')
 tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html')
   end
 end
+local floodMax = 5
+local floodTime = 2
+local group = load_data('bot/group.json')
+local hashflood =  group[tostring(target)]['settings']['lock_flood']
+if hashflood == 'yes' and not is_momod(msg) or not is_owner(msg) then
+local hash = 'flood:'..msg.sender_user_id_..':'..msg.chat_id_..':msg-num'
+local msgs = tonumber(redis:get(hash) or 0)
+if msgs > (floodMax - 1) then
+        tg.changeChatMemberStatus(msg.chat_id_, msg.sender_user_id_, "Kicked")
+        tg.sendMessage(msg.chat_id_, 1, 'User _'..msg.sender_user_id_..' has been kicked for #flooding !', 1, 'md')
+redis:setex(hash, floodTime, msgs+1)
+end
+end
 local function group_settings(msg, target)
 local group = load_data('bot/group.json')
 pm = '*SuperGroup settings*\n-------------------------------------------'
@@ -581,7 +594,7 @@ pm = pm..'\n2- <code>Lock Username</code> : '..group[tostring(target)]['settings
 pm = pm..'\n3- <code>Lock Tag</code> : '..group[tostring(target)]['settings']['lock_tag']..''
 pm = pm..'\n4- <code>Lock Edit</code> : '..group[tostring(target)]['settings']['lock_edit']..''
 pm = pm..'\n5- <code>Lock Fwd</code> : '..group[tostring(target)]['settings']['lock_fwd']..''
---pm = pm..'\n5- <code>Lock Flood</code> : '..group[tostring(target)]['settings']['lock_flood']..''
+pm = pm..'\n5- <code>Lock Flood</code> : '..group[tostring(target)]['settings']['lock_flood']..''
 pm = pm..'\n6- <code>Lock Fosh</code> : '..group[tostring(target)]['settings']['lock_fosh']..''
 pm = pm..'\n7- <code>Lock Tgservice</code> : '..group[tostring(target)]['settings']['lock_tgservice']..''
 pm = pm..'\n8- <code>Lock Sticker</code> : '..group[tostring(target)]['settings']['lock_sticker']..''
@@ -641,8 +654,8 @@ elseif matches[2] == 'arabic' then
 lock_group_persian(msg, msg.chat_id)
 --elseif matches[2] == 'bot' then
 --lock_group_bot(msg, msg.chat_id)
---elseif matches[2] == 'flood' then
---lock_group_flood(msg, msg.chat_id)
+elseif matches[2] == 'flood' then
+lock_group_flood(msg, msg.chat_id)
 elseif matches[2] == 'fosh' then
 lock_group_fosh(msg, msg.chat_id)
 elseif matches[2] == 'inline' then
@@ -686,8 +699,8 @@ elseif matches[2] == 'arabic' then
 unlock_group_persian(msg, msg.chat_id)
 --elseif matches[2] == 'bot' then
 --unlock_group_bot(msg, msg.chat_id)
---elseif matches[2] == 'flood' then
---unlock_group_flood(msg, msg.chat_id)
+elseif matches[2] == 'flood' then
+unlock_group_flood(msg, msg.chat_id)
 elseif matches[2] == 'fosh' then
 unlock_group_fosh(msg, msg.chat_id)
 elseif matches[2] == 'inline' then
