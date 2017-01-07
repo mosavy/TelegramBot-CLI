@@ -1,6 +1,6 @@
 local function run(msg, matches)
 local addgroup = group[tostring(msg.chat_id)]
-if addgroup then
+if addgroup and not is_owner(msg) or not is_momod(msg) then
 if is_momod(msg) or is_robot(msg) then
 return false
 else
