@@ -132,7 +132,7 @@ else
 tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html')
   end
 end
---[[local function lock_group_inline(msg, target)
+local function lock_group_inline(msg, target)
 local group = load_data('bot/group.json')
   local group_inline_lock = group[tostring(target)]['settings']['lock_inline']
   if group_inline_lock == 'yes' then
@@ -144,7 +144,7 @@ else
     pm = 'Inline has been locked'
 tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html')
   end
-end]]
+end
 local function lock_group_sticker(msg, target)
 local group = load_data('bot/group.json')
   local group_sticker_lock = group[tostring(target)]['settings']['lock_sticker']
@@ -614,18 +614,19 @@ pm = pm..'\n8- <code>Lock Reply</code> : '..group[tostring(target)]['settings'][
 pm = pm..'\n9- <code>Lock Tgservice</code> : '..group[tostring(target)]['settings']['lock_tgservice']..''
 pm = pm..'\n10- <code>Lock Sticker</code> : '..group[tostring(target)]['settings']['lock_sticker']..''
 --pm = pm..'\n11- <code>Lock Bot</code> : '..group[tostring(target)]['settings']['lock_bot']..''
---pm = pm..'\n12- <code>Lock Inline</code> : '..group[tostring(target)]['settings']['lock_inline']..''
-pm = pm..'\n13- <code>Lock Spam</code> : '..group[tostring(target)]['settings']['lock_spam']..''
-pm = pm..'\n14- <code>Lock English</code> : '..group[tostring(target)]['settings']['lock_english']..''
-pm = pm..'\n15- <code>Lock Arabic</code> : '..group[tostring(target)]['settings']['lock_persian']..''
+pm = pm..'\n11- <code>Lock Inline</code> : '..group[tostring(target)]['settings']['lock_inline']..''
+pm = pm..'\n12- <code>Lock Spam</code> : '..group[tostring(target)]['settings']['lock_spam']..''
+pm = pm..'\n13- <code>Lock English</code> : '..group[tostring(target)]['settings']['lock_english']..''
+pm = pm..'\n14- <code>Lock Arabic</code> : '..group[tostring(target)]['settings']['lock_persian']..''
 --pm = pm..'\n     🔧<b>Mute</b>🔧'
-pm = pm..'\n16- <code>Lock All</code> : '..group[tostring(target)]['settings']['mute_all']..''
+pm = pm..'\n15- <code>Lock All</code> : '..group[tostring(target)]['settings']['mute_all']..''
+pm = pm..'\n16- <code>Lock Gifs</code> : '..group[tostring(target)]['settings']['mute_gif']..''
 pm = pm..'\n17- <code>Lock Photo</code> : '..group[tostring(target)]['settings']['mute_photo']..''
 pm = pm..'\n18- <code>Lock Video</code> : '..group[tostring(target)]['settings']['mute_video']..''
 pm = pm..'\n19- <code>Lock Voice</code> : '..group[tostring(target)]['settings']['mute_voice']..''
 pm = pm..'\n20- <code>Lock Document</code> : '..group[tostring(target)]['settings']['mute_document']..''
 pm = pm..'\n21- <code>Lock Audio</code> : '..group[tostring(target)]['settings']['mute_audio']..''
-pm = pm..'\n22- <code>Lock Gifs</code> : '..group[tostring(target)]['settings']['mute_gif']..''
+
 --pm = pm..'\n23- <code>Flood Sensitivity</code> : '..NUM_MSG_MAX..''
 pm = pm..'\n-----------------------------------\n<b>Channel: </b>@LeaderCh'
 tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html')
@@ -671,8 +672,8 @@ elseif matches[2] == 'fosh' then
 lock_group_fosh(msg, msg.chat_id)
 elseif matches[2] == 'reply' then
 lock_group_reply(msg, msg.chat_id)
---elseif matches[2] == 'inline' then
---lock_group_inline(msg, msg.chat_id)
+elseif matches[2] == 'inline' then
+lock_group_inline(msg, msg.chat_id)
 elseif matches[2] == 'sticker' then
 lock_group_sticker(msg, msg.chat_id)
 elseif matches[2] == 'all' then
@@ -718,8 +719,8 @@ elseif matches[2] == 'fosh' then
 unlock_group_fosh(msg, msg.chat_id)
 elseif matches[2] == 'reply' then
 unlock_group_reply(msg, msg.chat_id)
---elseif matches[2] == 'inline' then
---unlock_group_inline(msg, msg.chat_id)
+elseif matches[2] == 'inline' then
+unlock_group_inline(msg, msg.chat_id)
 elseif matches[2] == 'sticker' then
 unlock_group_sticker(msg, msg.chat_id)
 elseif matches[2] == 'all' then
