@@ -1,4 +1,4 @@
-local function settings(msg, target,group)
+--[[local function settings(msg, target,group)
 local group = load_data('bot/group.json')
 pm = '<b>SuperGroup settings</b>\n-----------------------------------'
 pm = pm..'\n1- <code>Lock Links</code> : '..group[tostring(target)]['settings']['lock_link']..''
@@ -27,7 +27,7 @@ pm = pm..'\n22- <code>Lock Gifs</code> : '..(group[tostring(target)]['settings']
 --pm = pm..'\n23- <code>Flood Sensitivity</code> : '..NUM_MSG_MAX..''
 pm = pm..'\n-----------------------------------\n\n<b>Channel: </b>@LeaderCh'
 tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html')
-end
+end]]
 local function lock_group_links(msg, target)
 local group = load_data('bot/group.json')
   local group_link_lock = group[tostring(target)]['settings']['lock_link']
@@ -93,16 +93,16 @@ else
 tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html')
   end
 end
-local function lock_group_flood(msg, target)
+local function lock_group_strict(msg, target)
 local group = load_data('bot/group.json')
-  local group_flood_lock = group[tostring(target)]['settings']['lock_flood']
-  if group_flood_lock == 'yes' then
-    pm = 'Flood is already locked'
+  local group_strict_lock = group[tostring(target)]['settings']['lock_strict']
+  if group_strict_lock == 'yes' then
+    pm = 'strict is already locked'
   tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html')
 else
-    group[tostring(target)]['settings']['lock_flood'] = 'yes'
+    group[tostring(target)]['settings']['lock_strict'] = 'yes'
     save_data(_config.group.data, group)
-    pm = 'Flood has been locked'
+    pm = 'strict has been locked'
 tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html')
   end
 end
@@ -263,16 +263,16 @@ tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html')
 tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html')
   end
 end
-local function unlock_group_flood(msg, target)
+local function unlock_group_strict(msg, target)
 local group = load_data('bot/group.json')
-  local group_flood_lock = group[tostring(target)]['settings']['lock_flood']
-  if group_flood_lock == 'no' then
-    pm = 'Flood is not locked'
+  local group_strict_lock = group[tostring(target)]['settings']['lock_strict']
+  if group_strict_lock == 'no' then
+    pm = 'strict is not locked'
 tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html')
   else
-    group[tostring(target)]['settings']['lock_flood'] = 'no'
+    group[tostring(target)]['settings']['lock_strict'] = 'no'
     save_data(_config.group.data, group)
-    pm= 'Flood has been unlocked'
+    pm= 'strict has been unlocked'
 tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html')
   end
 end
@@ -464,8 +464,7 @@ local group = load_data('bot/group.json')
   if mute_all  == 'no' then
     pm = '<b>Lock photo is not locked</b>'
 tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html')
-  else
-    group[tostring(target)]['settings']['mute_photo'] = 'no'
+  else    group[tostring(target)]['settings']['mute_photo'] = 'no'
     save_data(_config.group.data, group)
     pm= '<b>Lock photo has been unlocked</b>'
 tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html')
@@ -609,7 +608,7 @@ pm = pm..'\n2- <code>Lock Username</code> : '..group[tostring(target)]['settings
 pm = pm..'\n3- <code>Lock Tag</code> : '..group[tostring(target)]['settings']['lock_tag']..''
 pm = pm..'\n4- <code>Lock Edit</code> : '..group[tostring(target)]['settings']['lock_edit']..''
 pm = pm..'\n5- <code>Lock Fwd</code> : '..group[tostring(target)]['settings']['lock_fwd']..''
-pm = pm..'\n6- <code>Lock Flood</code> : '..group[tostring(target)]['settings']['lock_flood']..''
+pm = pm..'\n6- <code>Lock strict</code> : '..group[tostring(target)]['settings']['lock_strict']..''
 pm = pm..'\n7- <code>Lock Fosh</code> : '..group[tostring(target)]['settings']['lock_fosh']..''
 pm = pm..'\n8- <code>Lock Reply</code> : '..group[tostring(target)]['settings']['lock_reply']..''
 pm = pm..'\n9- <code>Lock Tgservice</code> : '..group[tostring(target)]['settings']['lock_tgservice']..''
@@ -632,8 +631,9 @@ pm = pm..'\n-----------------------------------\n<b>Channel: </b>@LeaderCh'
 tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html')
 end
 local function run(msg, matches)
+local group = load_data('bot/group.json')	
 local addgroup = group[tostring(msg.chat_id)]
-if matches[1] == 'echo' then
+if matches[1] == 'echo' and is_sudo(msg) then
 pm = matches[2]
 --tg.sendMessage(chat_id, msg.id_, 0, 1, string.sub(matches[1], 7), 1, 'html')
 tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html')
@@ -662,8 +662,8 @@ elseif matches[2] == 'arabic' then
 lock_group_persian(msg, msg.chat_id)
 --elseif matches[2] == 'bot' then
 --lock_group_bot(msg, msg.chat_id)
-elseif matches[2] == 'flood' then
-lock_group_flood(msg, msg.chat_id)
+elseif matches[2] == 'strict' then
+lock_group_strict(msg, msg.chat_id)
 elseif matches[2] == 'fosh' then
 lock_group_fosh(msg, msg.chat_id)
 elseif matches[2] == 'reply' then
@@ -709,8 +709,8 @@ elseif matches[2] == 'arabic' then
 unlock_group_persian(msg, msg.chat_id)
 --elseif matches[2] == 'bot' then
 --unlock_group_bot(msg, msg.chat_id)
-elseif matches[2] == 'flood' then
-unlock_group_flood(msg, msg.chat_id)
+elseif matches[2] == 'strict' then
+unlock_group_strict(msg, msg.chat_id)
 elseif matches[2] == 'fosh' then
 unlock_group_fosh(msg, msg.chat_id)
 elseif matches[2] == 'reply' then
