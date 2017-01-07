@@ -302,7 +302,7 @@ tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html')
 tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html')
   end
 end
---[[local function unlock_group_inline(msg, target)
+local function unlock_group_inline(msg, target)
 local group = load_data('bot/group.json')
   local group_inline_lock = group[tostring(target)]['settings']['lock_inline']
   if group_inline_lock == 'no' then
@@ -314,7 +314,7 @@ tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html')
     pm= 'Inline has been unlocked'
 tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html')
   end
-end]]
+end
 local function unlock_group_sticker(msg, target)
 local group = load_data('bot/group.json')
   local group_sticker_lock = group[tostring(target)]['settings']['lock_sticker']
@@ -633,15 +633,16 @@ tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html')
 end
 local function run(msg, matches)
 local group = load_data('bot/group.json')	
-local addgroup = group[tostring(msg.chat_id)]
 if matches[1] == 'echo' and is_sudo(msg) then
 pm = matches[2]
 --tg.sendMessage(chat_id, msg.id_, 0, 1, string.sub(matches[1], 7), 1, 'html')
 tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html')
-end
+end	
+local addgroup = group[tostring(msg.chat_id)]
+
 if addgroup and is_momod(msg) or is_sudo(msg) or is_owner(msg) then
-if matches[1] == 'id' and is_momod(msg) or is_sudo(msg) or is_owner(msg) then  
-tg.sendMessage(chat_id, msg.id_, 0, 1, nil, '<b>SuperGroup ID : </b>'..string.sub(chat_id, 5,14)..'\n<b>User ID : </b>'..user_id..'\n<b>Channel : </b>@LeaderCH', 1, 'html') 
+if matches[1] == 'id' then  
+tg.sendMessage(msg.chat_id_,chat_id, msg.id_, 0, 1, nil, '<b>SuperGroup ID : </b>'..string.sub(chat_id, 5,14)..'\n<b>User ID : </b>'..user_id..'\n<b>Channel : </b>@LeaderCH', 1, 'html') 
 end		
 if matches[1] == 'settings'  then
 group_settings(msg, msg.chat_id)
