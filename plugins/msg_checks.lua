@@ -47,11 +47,14 @@ if group_lock_bot == 'yes' and is_bot_msg and isABotBadWay(user) then
 tg.deleteMessages(msg.chat_id_, {[0] = msg.id_ })
 chat_del_user(msg.chat_id_, msg.sender_user_id_)
 end
---local group_lock_inline = group[tostring(msg.chat_id)]['settings']['lock_inline']
+local group_lock_inline = group[tostring(msg.chat_id)]['settings']['lock_inline']
 --local is_inline_msg =  msg.text == "[unsupported]"
---if group_lock_inline == 'yes' and is_inline_msg then
---tg.deleteMessages(msg.chat_id_, {[0] = msg.id_ })
---end
+if group_lock_inline == 'yes' and  msg.via_bot_user_id_ ~= 0 then
+tg.deleteMessages(msg.chat_id_, {[0] = msg.id_ })
+if group_lock_strict == 'yes'  then
+tg.changeChatMemberStatus(result.chat_id_, result.sender_user_id_, 'Kicked')
+end                                
+end
 --[[local group_lock_tgservice = group[tostring(msg.chat_id)]['settings']['lock_tgservice']
 local is_tgservice_msg = msg.text:match("!!!tgservice:")
 if group_lock_tgservice == 'yes' and is_tgservice_msg then
@@ -63,11 +66,9 @@ if group_lock_tgservice == 'yes' and is_tgservice_msg then
 end]]
 local group_lock_tgservice = group[tostring(msg.chat_id)]['settings']['lock_tgservice']
 local is_tgservice_msg = msg.text:match("!!!tgservice:")
-if group_lock_tgservice == 'yes' and is_persian_msg then
+if group_lock_tgservice == 'yes' and  is_persian_msg or is_english_msg then
 tg.deleteMessages(msg.chat_id_, {[0] = msg.id_ })
-if group_lock_strict == 'yes'  then
-tg.changeChatMemberStatus(result.chat_id_, result.sender_user_id_, 'Kicked')                    
-end                
+
 end
 local group_lock_sticker = group[tostring(msg.chat_id)]['settings']['lock_sticker']
 local is_sticker_msg = msg.text:match("!!!sticker:")
@@ -171,7 +172,7 @@ chat_del_user(msg.chat_id_, msg.sender_user_id_)
 return deleteMessages(msg.chat_id_, {[0] = msg.id_})
 end
 local group_reply_lock = group[tostring(msg.chat_id)]['settings']['lock_reply']
-if group_reply_lock == 'yes' and msg.reply_to_message_id_ ~= 0 then
+if group_reply_lock == 'yes' and msg.reply_to_message_id_ then
 tg.deleteMessages(msg.chat_id_, {[0] = msg.id_ })
 if group_lock_strict == 'yes'  then
 tg.changeChatMemberStatus(result.chat_id_, result.sender_user_id_, 'Kicked')
