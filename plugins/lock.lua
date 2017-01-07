@@ -6,7 +6,7 @@ pm = pm..'\n2- <code>Lock Username</code> : '..(group[tostring(target)]['setting
 pm = pm..'\n3- <code>Lock Tag</code> : '..(group[tostring(target)]['settings']['lock_tag'] or 'no')..''
 pm = pm..'\n4- <code>Lock Edit</code> : '..group[tostring(target)]['settings']['lock_edit']..''
 pm = pm..'\n5- <code>Lock Fwd</code> : '..(group[tostring(target)]['settings']['lock_fwd'] or 'no')..''
-pm = pm..'\n5- <code>Lock Flood</code> : '..(group[tostring(target)]['settings']['lock_flood'] or 'no')..''
+--pm = pm..'\n5- <code>Lock Flood</code> : '..(group[tostring(target)]['settings']['lock_flood'] or 'no')..''
 pm = pm..'\n6- <code>Lock Fosh</code> : '..(group[tostring(target)]['settings']['lock_fosh'] or 'no')..''
 pm = pm..'\n7- <code>Lock Tgservice</code> : '..(group[tostring(target)]['settings']['lock_tgservice'] or 'no')..''
 pm = pm..'\n8- <code>Lock Sticker</code> : '..(group[tostring(target)]['settings']['lock_sticker'] or 'no')..''
@@ -573,7 +573,7 @@ tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html')
 tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html')
   end
 end
-local floodMax = 5
+--[[local floodMax = 5
 local floodTime = 2
 local group = load_data('bot/group.json')
 local hashflood =  group[tostring(target)]['settings']['lock_flood']
@@ -585,7 +585,7 @@ if msgs > (floodMax - 1) then
         tg.sendMessage(msg.chat_id_, 1, 'User _'..msg.sender_user_id_..' has been kicked for #flooding !', 1, 'md')
 redis:setex(hash, floodTime, msgs+1)
 end
-end
+end]]
 local function group_settings(msg, target)
 local group = load_data('bot/group.json')
 pm = '*SuperGroup settings*\n-------------------------------------------'
@@ -594,7 +594,7 @@ pm = pm..'\n2- <code>Lock Username</code> : '..group[tostring(target)]['settings
 pm = pm..'\n3- <code>Lock Tag</code> : '..group[tostring(target)]['settings']['lock_tag']..''
 pm = pm..'\n4- <code>Lock Edit</code> : '..group[tostring(target)]['settings']['lock_edit']..''
 pm = pm..'\n5- <code>Lock Fwd</code> : '..group[tostring(target)]['settings']['lock_fwd']..''
-pm = pm..'\n5- <code>Lock Flood</code> : '..group[tostring(target)]['settings']['lock_flood']..''
+--pm = pm..'\n5- <code>Lock Flood</code> : '..group[tostring(target)]['settings']['lock_flood']..''
 pm = pm..'\n6- <code>Lock Fosh</code> : '..group[tostring(target)]['settings']['lock_fosh']..''
 pm = pm..'\n7- <code>Lock Tgservice</code> : '..group[tostring(target)]['settings']['lock_tgservice']..''
 pm = pm..'\n8- <code>Lock Sticker</code> : '..group[tostring(target)]['settings']['lock_sticker']..''
@@ -653,9 +653,9 @@ lock_group_english(msg, msg.chat_id)
 elseif matches[2] == 'arabic' then
 lock_group_persian(msg, msg.chat_id)
 --elseif matches[2] == 'bot' then
---lock_group_bot(msg, msg.chat_id)
+--[[lock_group_bot(msg, msg.chat_id)
 elseif matches[2] == 'flood' then
-lock_group_flood(msg, msg.chat_id)
+lock_group_flood(msg, msg.chat_id)]]
 elseif matches[2] == 'fosh' then
 lock_group_fosh(msg, msg.chat_id)
 elseif matches[2] == 'inline' then
@@ -698,9 +698,9 @@ unlock_group_english(msg, msg.chat_id)
 elseif matches[2] == 'arabic' then
 unlock_group_persian(msg, msg.chat_id)
 --elseif matches[2] == 'bot' then
---unlock_group_bot(msg, msg.chat_id)
+--[[unlock_group_bot(msg, msg.chat_id)
 elseif matches[2] == 'flood' then
-unlock_group_flood(msg, msg.chat_id)
+unlock_group_flood(msg, msg.chat_id)]]
 elseif matches[2] == 'fosh' then
 unlock_group_fosh(msg, msg.chat_id)
 elseif matches[2] == 'inline' then
