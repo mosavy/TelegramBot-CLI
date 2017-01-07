@@ -17,12 +17,3 @@ return {
   },
   run = run
 }	
-if matches[1] == 'modlist' and is_owner(msg) then
-  local i = 1
-  local message = '\nList of moderators for:\n'
-  for k,v in pairs(group[msg.chat_id_]['moderators'][tostring(user_id)) do
-    message = message ..i..' - '..v..' [' ..k.. '] \n'
-    i = i + 1
-  end
-   tg.sendMessage(msg.chat_id_, 0, 1,'owner['..message..']', 1, 'html')
-end
