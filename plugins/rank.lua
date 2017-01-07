@@ -29,10 +29,15 @@ if addgroup then
          tg.sendMessage(msg.chat_id, 0, 0,  '[ '..msg.from_id..' ] added as owner', 0)
 		 redis:del('setowner'..msg.chat_id_ ,true)
     end
- if matches[1] == 'modlist' then
-  pm = group[msg.chat_id_]['moderators'][tostring(user_id)]
-  tg.sendMessage(msg.chat_id_, 0, 1,'List mod:\n'..pm, 1, 'html')
- end
+if matches[1] == 'modlist' and is_owner(msg) then
+  local i = 1
+  local message = '\nList of moderators for:\n'
+  for k,v in pairs(group[msg.chat_id_]['moderators'][tostring(user_id)) do
+    message = message ..i..' - '..v..' [' ..k.. '] \n'
+    i = i + 1
+  end
+   tg.sendMessage(msg.chat_id_, 0, 1,'owner['..message..']', 1, 'html')
+end
 
 if promote then
 		redis:del('promote'..msg.chat_id_ ,true)
