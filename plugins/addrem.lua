@@ -27,9 +27,9 @@ mute_audio = "no"
                   }
       }
       save_data(_config.group.data, group)
-tg.sendMessage(msg.chat_id, msg.id_, 1, 'گروه با موفقیت اضافه شد.', 1)
+tg.sendMessage(msg.chat_id, msg.id_, 1, 'Group has been added', 1)
 else
-tg.sendMessage(msg.chat_id, msg.id_, 1, 'گروه از قبل در وجود دارد..', 1)
+tg.sendMessage(msg.chat_id, msg.id_, 1, 'Group already exists', 1)
 end
 end
 local function remgroup(msg)
@@ -38,9 +38,9 @@ local groupa = group[tostring(msg.chat_id)]
 if groupa then
 group[tostring(msg.chat_id)] = nil
       save_data(_config.group.data, group)
-tg.sendMessage(msg.chat_id, msg.id_, 1, 'گروه با موفیت حذف شد.', 1)
+tg.sendMessage(msg.chat_id, msg.id_, 1, 'Group has been removed', 1)
 else
-tg.sendMessage(msg.chat_id, msg.id_, 1, 'گروه از قبل وجود نداشته است.', 1)
+tg.sendMessage(msg.chat_id, msg.id_, 1, 'Group not added', 1)
 end
 end
 
