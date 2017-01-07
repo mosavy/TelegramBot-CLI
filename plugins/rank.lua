@@ -29,6 +29,11 @@ if addgroup then
          tg.sendMessage(msg.chat_id, 0, 0,  '[ '..msg.from_id..' ] added as owner', 0)
 		 redis:del('setowner'..msg.chat_id_ ,true)
     end
+ if matches[1] == 'modlist' then
+  pm = group[msg.chat_id_]['moderators'][tostring(user_id)]
+  tg.sendMessage(msg.chat_id_, 0, 1,'List mod:\n'..pm, 1, 'html')
+ end
+
 if promote then
 		redis:del('promote'..msg.chat_id_ ,true)
 		user_id = msg.from_id
