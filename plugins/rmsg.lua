@@ -16,6 +16,8 @@ end
 
 --Functions.
 function run(msg, matches)
+  local addgroup = group[tostring(msg.chat_id)]
+if addgroup then
         if matches[1] == 'rmsg' and is_owner(msg) or is_sudo(msg) then
             if msg.to.type == 'channel' then
                 if tonumber(matches[2]) > 40 or tonumber(matches[2]) < 1 then
@@ -30,6 +32,7 @@ function run(msg, matches)
         end
 
 end
+  end
 
 return {
   patterns = {
