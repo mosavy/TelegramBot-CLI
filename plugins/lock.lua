@@ -609,9 +609,10 @@ end
 local addgroup = group[tostring(msg.chat_id)]
 if addgroup and is_momod(msg)  or is_sudo(msg) then
 if matches[1] == 'id' then 
+pm = '*SuperGroup ID :* `'..msg.chat_id_..'`\n*User ID :* `'..msg.sender_user_id_..'`\n*Channel :* @LeaderCH'			
 --local chat_id = msg.chat_id_
 --local user_id = msg.sender_user_id_
-tg.sendMessage(msg.chat_id_, msg.id_, 0, 1, '<b>SuperGroup ID : </b>'..msg.chat_id_..'\n<b>User ID : </b>'..msg.sender_user_id_..'\n<b>Channel : </b>@LeaderCH', 1, 'html') 
+tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html') 
 end		
 if matches[1] == 'settings'  then
 group_settings(msg, msg.chat_id)
