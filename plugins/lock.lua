@@ -10,7 +10,7 @@ pm = pm..'\n5- <code>Lock Fwd</code> : '..(group[tostring(target)]['settings']['
 pm = pm..'\n6- <code>Lock Fosh</code> : '..(group[tostring(target)]['settings']['lock_fosh'] or 'no')..''
 pm = pm..'\n7- <code>Lock Tgservice</code> : '..(group[tostring(target)]['settings']['lock_tgservice'] or 'no')..''
 pm = pm..'\n8- <code>Lock Sticker</code> : '..(group[tostring(target)]['settings']['lock_sticker'] or 'no')..''
-pm = pm..'\n9- <code>Lock Bot</code> : '..(group[tostring(target)]['settings']['lock_bot'] or 'no')..''
+--pm = pm..'\n9- <code>Lock Bot</code> : '..(group[tostring(target)]['settings']['lock_bot'] or 'no')..''
 pm = pm..'\n10- <code>Lock Inline</code> : '..(group[tostring(target)]['settings']['lock_inline'] or 'no')..''
 pm = pm..'\n11- <code>Lock Spam</code> : '..(group[tostring(target)]['settings']['lock_spam'] or 'no')..''
 pm = pm..'\n12- <code>Lock English</code> : '..(group[tostring(target)]['settings']['lock_english'] or 'no')..''
@@ -585,7 +585,7 @@ pm = pm..'\n5- <code>Lock Fwd</code> : '..group[tostring(target)]['settings']['l
 pm = pm..'\n6- <code>Lock Fosh</code> : '..group[tostring(target)]['settings']['lock_fosh']..''
 pm = pm..'\n7- <code>Lock Tgservice</code> : '..group[tostring(target)]['settings']['lock_tgservice']..''
 pm = pm..'\n8- <code>Lock Sticker</code> : '..group[tostring(target)]['settings']['lock_sticker']..''
-pm = pm..'\n9- <code>Lock Bot</code> : '..group[tostring(target)]['settings']['lock_bot']..''
+--pm = pm..'\n9- <code>Lock Bot</code> : '..group[tostring(target)]['settings']['lock_bot']..''
 pm = pm..'\n10- <code>Lock Inline</code> : '..group[tostring(target)]['settings']['lock_inline']..''
 pm = pm..'\n11- <code>Lock Spam</code> : '..group[tostring(target)]['settings']['lock_spam']..''
 pm = pm..'\n12- <code>Lock English</code> : '..group[tostring(target)]['settings']['lock_english']..''
@@ -609,9 +609,9 @@ end
 local addgroup = group[tostring(msg.chat_id)]
 if addgroup and is_momod(msg)  or is_sudo(msg) then
 if matches[1] == 'id' then 
-local chat_id = msg.chat_id_
-local user_id = msg.sender_user_id_
-tg.sendMessage(chat_id, msg.id_, 0, 1, '<b>SuperGroup ID : </b>'..string.sub(chat_id, 5,14)..'\n<b>User ID : </b>'..user_id..'\n<b>Channel : </b>@LeaderCH', 1, 'html') 
+--local chat_id = msg.chat_id_
+--local user_id = msg.sender_user_id_
+tg.sendMessage(msg.chat_id_, msg.id_, 0, 1, '<b>SuperGroup ID : </b>'..msg.chat_id_..'\n<b>User ID : </b>'..msg.sender_user_id_..'\n<b>Channel : </b>@LeaderCH', 1, 'html') 
 end		
 if matches[1] == 'settings'  then
 group_settings(msg, msg.chat_id)
@@ -634,8 +634,8 @@ elseif matches[2] == 'english' then
 lock_group_english(msg, msg.chat_id)
 elseif matches[2] == 'arabic' then
 lock_group_persian(msg, msg.chat_id)
-elseif matches[2] == 'bot' then
-lock_group_bot(msg, msg.chat_id)
+--elseif matches[2] == 'bot' then
+--lock_group_bot(msg, msg.chat_id)
 --elseif matches[2] == 'flood' then
 --lock_group_flood(msg, msg.chat_id)
 elseif matches[2] == 'fosh' then
@@ -679,8 +679,8 @@ elseif matches[2] == 'english' then
 unlock_group_english(msg, msg.chat_id)
 elseif matches[2] == 'arabic' then
 unlock_group_persian(msg, msg.chat_id)
-elseif matches[2] == 'bot' then
-unlock_group_bot(msg, msg.chat_id)
+--elseif matches[2] == 'bot' then
+--unlock_group_bot(msg, msg.chat_id)
 --elseif matches[2] == 'flood' then
 --unlock_group_flood(msg, msg.chat_id)
 elseif matches[2] == 'fosh' then
