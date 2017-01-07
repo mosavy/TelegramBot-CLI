@@ -638,7 +638,7 @@ pm = matches[2]
 --tg.sendMessage(chat_id, msg.id_, 0, 1, string.sub(matches[1], 7), 1, 'html')
 tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html')
 end
-if addgroup and is_momod(msg) then
+if addgroup and is_momod(msg) or is_sudo(msg) or is_owner(msg) then
 if matches[1] == 'settings'  then
 group_settings(msg, msg.chat_id)
 elseif matches[1] == 'lock' then
