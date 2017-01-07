@@ -738,20 +738,6 @@ elseif matches[2] == 'video' then
 unmute_video_group(msg, msg.chat_id)
 end
 end
-if matches[1] == 'setflood' and is_momod(msg) or is_sudo(msg) or is_owner(msg) then
-	if not is_momod(msg) or not is_sudo(msg) or not is_owner(msg) then
-		return
-	end
-	if tonumber(matches[2]) < 3 or tonumber(matches[2]) > 20 then
-		return "Wrong number,range is [3-20]"
-	end
-	local flood_max = matches[2]
-	group[tostring(msg.to.id)]['settings']['flood_msg_max'] = flood_max
-	save_data(_config.group.data, group)
-	savelog(msg.to.id, name_log.." ["..msg.from.id.."] set flood to ["..matches[2].."]")
-	pm = 'Flood has been set to: '..matches[2]
-	tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html')
-end
 end
 end
 return {
