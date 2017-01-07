@@ -1,6 +1,6 @@
 local function settings(msg, target,group)
 local group = load_data('bot/group.json')
-pm = '*SuperGroup settings*\n-------------------------------------------'
+pm = '<b>SuperGroup settings</b>\n-------------------------------------------'
 pm = pm..'\n1- <code>Lock Links</code> : '..group[tostring(target)]['settings']['lock_link']..''
 pm = pm..'\n2- <code>Lock Username</code> : '..(group[tostring(target)]['settings']['lock_username'] or 'no')..''
 pm = pm..'\n3- <code>Lock Tag</code> : '..(group[tostring(target)]['settings']['lock_tag'] or 'no')..''
@@ -588,7 +588,7 @@ end
 end]]
 local function group_settings(msg, target)
 local group = load_data('bot/group.json')
-pm = '*SuperGroup settings*\n-------------------------------------------'
+pm = '<b>SuperGroup settings</b>\n-------------------------------------------'
 pm = pm..'\n1- <code>Lock Links</code> : '..group[tostring(target)]['settings']['lock_link']..''
 pm = pm..'\n2- <code>Lock Username</code> : '..group[tostring(target)]['settings']['lock_username']..''
 pm = pm..'\n3- <code>Lock Tag</code> : '..group[tostring(target)]['settings']['lock_tag']..''
@@ -621,7 +621,7 @@ tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html')
 end	
 if matches[1] == 'git pull' and is_sudo(msg) then
   io.popen("git pull")
-  send(msg.chat_id_, msg.id_, 1, '✅ عمليات [Git Pull] به اتمام رسيد . . .‌\n🔸پيشنهاد ميشود ربات در مجددا launch كنيد . . . ', 1, 'md')
+  tg.sendMessage(msg.chat_id_, msg.id_, 1, '✅ عمليات [Git Pull] به اتمام رسيد . . .‌\n🔸پيشنهاد ميشود ربات در مجددا launch كنيد . . . ', 1, 'md')
 end	
 local addgroup = group[tostring(msg.chat_id)]
 if addgroup and is_momod(msg) or is_sudo(msg) or is_owner(msg) then
