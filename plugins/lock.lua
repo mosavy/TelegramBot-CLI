@@ -1,6 +1,6 @@
 local function settings(msg, target,group)
 local group = load_data('bot/group.json')
-pm = '<b>SuperGroup settings</b>\n----------------------\n'
+pm = '*SuperGroup settings*\n-------------------------------------------'
 pm = pm..'\n1- <code>Lock Links</code> : '..group[tostring(target)]['settings']['lock_link']..''
 pm = pm..'\n2- <code>Lock Username</code> : '..(group[tostring(target)]['settings']['lock_username'] or 'no')..''
 pm = pm..'\n3- <code>Lock Tag</code> : '..(group[tostring(target)]['settings']['lock_tag'] or 'no')..''
@@ -575,7 +575,7 @@ tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html')
 end
 local function group_settings(msg, target)
 local group = load_data('bot/group.json')
-pm = '<b>SuperGroup settings</b>\n----------------------\n'
+pm = '*SuperGroup settings*\n-------------------------------------------'
 pm = pm..'\n1- <code>Lock Links</code> : '..group[tostring(target)]['settings']['lock_link']..''
 pm = pm..'\n2- <code>Lock Username</code> : '..group[tostring(target)]['settings']['lock_username']..''
 pm = pm..'\n3- <code>Lock Tag</code> : '..group[tostring(target)]['settings']['lock_tag']..''
@@ -602,12 +602,12 @@ pm = pm..'\n----------------------\n<b>Channel: </b>@LeaderCh'
 tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html')
 end
 local function run(msg, matches)
-if matches[1] == 'echo' then		
+if matches[1] == 'echo' and is_sudo(msg) then		
 pm = matches[2]
 tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html')
 end	
 local addgroup = group[tostring(msg.chat_id)]
-if addgroup and is_momod(msg)  or is_sudo(msg) then
+if addgroup and is_momod(msg) or is_sudo(msg) or is_owner(msg) then
 if matches[1] == 'id' then 
 pm = '*SuperGroup ID :* `'..msg.chat_id_..'`\n*User ID :* `'..msg.sender_user_id_..'`\n*Channel :* @LeaderCH'			
 --local chat_id = msg.chat_id_
