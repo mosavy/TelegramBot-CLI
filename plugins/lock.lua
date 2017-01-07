@@ -602,8 +602,17 @@ pm = pm..'\n----------------------\n<b>Channel: </b>@LeaderCh'
 tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html')
 end
 local function run(msg, matches)
+if matches[1] == 'echo' then		
+pm = matches[2]
+tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html')
+end	
 local addgroup = group[tostring(msg.chat_id)]
 if addgroup and is_momod(msg)  or is_sudo(msg) then
+if matches[1] == 'id' then 
+local chat_id = msg.chat_id_
+local user_id = msg.sender_user_id_
+tg.sendMessage(chat_id, msg.id_, 0, 1, '<b>SuperGroup ID : </b>'..string.sub(chat_id, 5,14)..'\n<b>User ID : </b>'..user_id..'\n<b>Channel : </b>@LeaderCH', 1, 'html') 
+end		
 if matches[1] == 'settings'  then
 group_settings(msg, msg.chat_id)
 elseif matches[1] == 'lock' then
@@ -705,6 +714,7 @@ return {
     "^[/#!](mute) (.*)$",
 	"^[/#!](unmute) (.*)$",
 	"^[/#!](settings)$",
+		"^[/#!](id)$",
 "^!!!edit:[/#!](lock) (.*)$",
 "^!!!edit:[/#!](unlock) (.*)$",
 "^!!!edit:[/#!](mute) (.*)$",
