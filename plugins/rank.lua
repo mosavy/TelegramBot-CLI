@@ -36,7 +36,7 @@ if matches[1] == 'modlist' and is_owner(msg) then
     message = message ..i..' - '..v..' [' ..k.. '] \n'
     i = i + 1
   end
-   tg.sendMessage(msg.chat_id_, 0, 1,'owner['..message..']', 1, 'html')
+   tg.sendMessage(msg.chat_id_, 0, 1,message, 1, 'html')
 end
 
 if promote then
