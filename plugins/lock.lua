@@ -595,7 +595,7 @@ pm = pm..'\n3- <code>Lock Tag</code> : '..group[tostring(target)]['settings']['l
 pm = pm..'\n4- <code>Lock Edit</code> : '..group[tostring(target)]['settings']['lock_edit']..''
 pm = pm..'\n5- <code>Lock Fwd</code> : '..group[tostring(target)]['settings']['lock_fwd']..''
 --pm = pm..'\n5- <code>Lock Flood</code> : '..group[tostring(target)]['settings']['lock_flood']..''
-pm = pm..'\n5- <code>Lock Flood</code> : '..forward..''
+
 pm = pm..'\n6- <code>Lock Fosh</code> : '..group[tostring(target)]['settings']['lock_fosh']..''
 pm = pm..'\n7- <code>Lock Tgservice</code> : '..group[tostring(target)]['settings']['lock_tgservice']..''
 pm = pm..'\n8- <code>Lock Sticker</code> : '..group[tostring(target)]['settings']['lock_sticker']..''
@@ -671,31 +671,7 @@ elseif matches[2] == 'voice' then
 mute_voice_group(msg, msg.chat_id)
 elseif matches[2] == 'video' then
 mute_video_group(msg, msg.chat_id)
-elseif matches[2] == 'flood' then
-    if redis:get('floodtg:'..msg.chat_id_) then
-        tg.sendMessage(msg.chat_id_, msg.id_, 0, 1, nil, 'Flood is already Locked', 1, 'html')
-    else
-        redis:set('floodtg:'..msg.chat_id_, true)
-        tg.sendMessage(msg.chat_id_, msg.id_, 0, 1, nil, 'Flood Has Been Locked', 1, 'html')
-    end
-	    local floodMax = 5
-    local floodTime = 2
-    local hashflood = 'floodtg:'..msg.chat_id_
-    if redis:get(hashflood) and not is_momod(msg) then
-      local hash = 'flood:'..msg.sender_user_id_..':'..msg.chat_id_..':msg-num'
-      local msgs = tonumber(redis:get(hash) or 0)
-      if msgs > (floodMax - 1) then
-        tdcli.changeChatMemberStatus(msg.chat_id_, msg.sender_user_id_, "Kicked")
-        tdcli.sendText(msg.chat_id_, msg.id_, 1, 'User _'..msg.sender_user_id_..' has been kicked for #flooding !', 1, 'md')
-        redis:setex(hash, floodTime, msgs+1)
-      end
-    end
-	local flood = 'flood:'..msg.chat_id_
-    if redis:get(flood) then
-      flood = "yes"
-     else
-      flood = "no`"
-    end				
+		
 end
 
 elseif matches[1] == 'unlock' then
@@ -741,13 +717,6 @@ elseif matches[2] == 'voice' then
 unmute_voice_group(msg, msg.chat_id)
 elseif matches[2] == 'video' then
 unmute_video_group(msg, msg.chat_id)
-elseif matches[2] == 'flood' then
-    if not redis:get('floodtg:'..msg.chat_id_) then
-        tg.sendMessage(msg.chat_id_, msg.id_, 0, 1, nil, 'ðflood is already Not Locked', 1, 'md')
-    else
-        redis:del('flood:'..msg.chat_id_)
-        tg.sendMessage(msg.chat_id_, msg.id_, 0, 1, nil, 'Flood Has Been UnLocked', 1, 'md')
-    end
 end
 end
 end
