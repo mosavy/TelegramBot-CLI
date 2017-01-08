@@ -15,7 +15,7 @@ pm = pm..'\n10- <code>Lock Inline</code> : '..(group[tostring(target)]['settings
 pm = pm..'\n11- <code>Lock Spam</code> : '..(group[tostring(target)]['settings']['lock_spam'] or 'no')..''
 pm = pm..'\n12- <code>Lock English</code> : '..(group[tostring(target)]['settings']['lock_english'] or 'no')..''
 pm = pm..'\n13- <code>Lock Arabic</code> : '..(group[tostring(target)]['settings']['lock_persian'] or 'no')..''
---pm = pm..'\n     🔧<b>Mute</b>🔧'
+--pm = pm..'\n     ðŸ”§<b>Mute</b>ðŸ”§'
 pm = pm..'\n14- <code>Lock All</code> : '..(group[tostring(target)]['settings']['mute_all'] or 'no')..''
 pm = pm..'\n15- <code>Lock Photo</code> : '..(group[tostring(target)]['settings']['mute_photo'] or 'no')..''
 pm = pm..'\n16- <code>Lock Video</code> : '..(group[tostring(target)]['settings']['mute_video'] or 'no')..''
@@ -604,7 +604,7 @@ pm = pm..'\n10- <code>Lock Inline</code> : '..group[tostring(target)]['settings'
 pm = pm..'\n11- <code>Lock Spam</code> : '..group[tostring(target)]['settings']['lock_spam']..''
 pm = pm..'\n12- <code>Lock English</code> : '..group[tostring(target)]['settings']['lock_english']..''
 pm = pm..'\n13- <code>Lock Arabic</code> : '..group[tostring(target)]['settings']['lock_persian']..''
---pm = pm..'\n     🔧<b>Mute</b>🔧'
+--pm = pm..'\n     ðŸ”§<b>Mute</b>ðŸ”§'
 pm = pm..'\n14- <code>Lock All</code> : '..group[tostring(target)]['settings']['mute_all']..''
 pm = pm..'\n15- <code>Lock Photo</code> : '..group[tostring(target)]['settings']['mute_photo']..''
 pm = pm..'\n16- <code>Lock Video</code> : '..group[tostring(target)]['settings']['mute_video']..''
@@ -616,25 +616,6 @@ pm = pm..'\n----------------------\n<b>Channel: </b>@LeaderCh'
 tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html')
 end
 
-    local floodMax = 5
-    local floodTime = 2
-    local hashflood = 'floodtg:'..msg.chat_id_
-    if redis:get(hashflood) and not is_momod(msg) then
-      local hash = 'flood:'..msg.sender_user_id_..':'..msg.chat_id_..':msg-num'
-      local msgs = tonumber(redis:get(hash) or 0)
-      if msgs > (floodMax - 1) then
-        tdcli.changeChatMemberStatus(msg.chat_id_, msg.sender_user_id_, "Kicked")
-        tdcli.sendText(msg.chat_id_, msg.id_, 1, 'User _'..msg.sender_user_id_..' has been kicked for #flooding !', 1, 'md')
-        redis:setex(hash, floodTime, msgs+1)
-      end
-    end
-	local flood = 'flood:'..msg.chat_id_
-    if redis:get(flood) then
-      flood = "yes"
-     else
-      flood = "no`"
-    end
-	
 local function run(msg, matches)
 local addgroup = group[tostring(msg.chat_id)]
 if addgroup and is_momod(msg) or is_owner(msg) then
@@ -697,6 +678,24 @@ elseif matches[2] == 'flood' then
         redis:set('floodtg:'..msg.chat_id_, true)
         tg.sendMessage(msg.chat_id_, msg.id_, 0, 1, nil, 'Flood Has Been Locked', 1, 'html')
     end
+	    local floodMax = 5
+    local floodTime = 2
+    local hashflood = 'floodtg:'..msg.chat_id_
+    if redis:get(hashflood) and not is_momod(msg) then
+      local hash = 'flood:'..msg.sender_user_id_..':'..msg.chat_id_..':msg-num'
+      local msgs = tonumber(redis:get(hash) or 0)
+      if msgs > (floodMax - 1) then
+        tdcli.changeChatMemberStatus(msg.chat_id_, msg.sender_user_id_, "Kicked")
+        tdcli.sendText(msg.chat_id_, msg.id_, 1, 'User _'..msg.sender_user_id_..' has been kicked for #flooding !', 1, 'md')
+        redis:setex(hash, floodTime, msgs+1)
+      end
+    end
+	local flood = 'flood:'..msg.chat_id_
+    if redis:get(flood) then
+      flood = "yes"
+     else
+      flood = "no`"
+    end				
 end
 
 elseif matches[1] == 'unlock' then
@@ -744,7 +743,7 @@ elseif matches[2] == 'video' then
 unmute_video_group(msg, msg.chat_id)
 elseif matches[2] == 'flood' then
     if not redis:get('floodtg:'..msg.chat_id_) then
-        tg.sendMessage(msg.chat_id_, msg.id_, 0, 1, nil, '�flood is already Not Locked', 1, 'md')
+        tg.sendMessage(msg.chat_id_, msg.id_, 0, 1, nil, 'ðflood is already Not Locked', 1, 'md')
     else
         redis:del('flood:'..msg.chat_id_)
         tg.sendMessage(msg.chat_id_, msg.id_, 0, 1, nil, 'Flood Has Been UnLocked', 1, 'md')
