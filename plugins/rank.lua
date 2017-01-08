@@ -24,7 +24,7 @@ if addgroup then
 	 tg.sendMessage(msg.chat_id_, 0, 1,'<b>owner:</b>[ '..pm..' ]', 1, 'html')
 	end
 	if matches[1] == 'modlist' then
-	 pm = group[msg.chat_id_]['moderators'][tostring(user_id)]
+	 pm = group[msg.chat_id_]['moderators']
 	 tg.sendMessage(msg.chat_id_, 0, 1,'<b>ListMod:</b>[ '..pm..' ]', 1, 'html')
 	end
     if setowner then
