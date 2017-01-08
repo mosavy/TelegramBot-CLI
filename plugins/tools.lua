@@ -10,7 +10,7 @@ if matches[1] == 'git pull' and is_sudo(msg) then
 end	
 	if matches[1] == 'help' and is_momod(msg) or is_owner(msg) and addgroup then
 
-pm = [[ 🔴⚜🔐help lock🔐⚜🔴
+pm1 = [[ 🔴⚜🔐help lock🔐⚜🔴
 
 🔹!lock links  =>قفل لینک 
 🔹!lock fwd  =>قفل فروارد 
@@ -46,7 +46,7 @@ pm = [[ 🔴⚜🔐help lock🔐⚜🔴
 سایلنت کردن فرد/خارج کردن فرد از سایلنت 
 -------------------------------------------
 📢Channel: @leaderCh ]]
-  tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'md')
+  tg.sendMessage(msg.chat_id_, 0, 1, pm1, 1, 'md')
 end
 local group = load_data('bot/group.json')
 local addgroup = group[tostring(msg.chat_id_)]
