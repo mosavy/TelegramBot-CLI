@@ -610,7 +610,7 @@ pm = pm..'\n16- <code>Lock Video</code> : '..group[tostring(target)]['settings']
 pm = pm..'\n17- <code>Lock Voice</code> : '..group[tostring(target)]['settings']['mute_voice']..''
 pm = pm..'\n18- <code>Lock Document</code> : '..group[tostring(target)]['settings']['mute_document']..''
 pm = pm..'\n19- <code>Lock Audio</code> : '..group[tostring(target)]['settings']['mute_audio']..'\n-------------------------------------------'
-pm = pm..'\n20- <code>mute All</code> : '..group[tostring(target)]['settings']['mute_all']..''
+pm = pm..'\n20- <code>Mute All</code> : '..group[tostring(target)]['settings']['mute_all']..''
 pm = pm..'\n-------------------------------------------\n<b>Channel: </b>@LeaderCh'
 tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html')
 end
