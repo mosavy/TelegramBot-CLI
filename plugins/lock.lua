@@ -1,4 +1,4 @@
---[[local function settings(msg, target,group)
+local function settings(msg, target,group)
 local group = load_data('bot/group.json')
 pm = '<b>SuperGroup settings</b>\n-------------------------------------------'
 pm = pm..'\n1- <code>Lock Links</code> : '..group[tostring(target)]['settings']['lock_link']..''
@@ -10,7 +10,7 @@ pm = pm..'\n5- <code>Lock Fwd</code> : '..(group[tostring(target)]['settings']['
 pm = pm..'\n6- <code>Lock Fosh</code> : '..(group[tostring(target)]['settings']['lock_fosh'] or 'no')..''
 pm = pm..'\n7- <code>Lock Tgservice</code> : '..(group[tostring(target)]['settings']['lock_tgservice'] or 'no')..''
 pm = pm..'\n8- <code>Lock Sticker</code> : '..(group[tostring(target)]['settings']['lock_sticker'] or 'no')..''
---pm = pm..'\n9- <code>Lock Bot</code> : '..(group[tostring(target)]['settings']['lock_bot'] or 'no')..''
+pm = pm..'\n9- <code>Lock Bot</code> : '..(group[tostring(target)]['settings']['lock_bot'] or 'no')..''
 pm = pm..'\n10- <code>Lock Inline</code> : '..(group[tostring(target)]['settings']['lock_inline'] or 'no')..''
 pm = pm..'\n11- <code>Lock Spam</code> : '..(group[tostring(target)]['settings']['lock_spam'] or 'no')..''
 pm = pm..'\n12- <code>Lock English</code> : '..(group[tostring(target)]['settings']['lock_english'] or 'no')..''
@@ -23,9 +23,9 @@ pm = pm..'\n17- <code>Lock Voice</code> : '..(group[tostring(target)]['settings'
 pm = pm..'\n18- <code>Lock Document</code> : '..(group[tostring(target)]['settings']['mute_document'] or 'no')..''
 pm = pm..'\n19- <code>Lock Audio</code> : '..(group[tostring(target)]['settings']['mute_audio'] or 'no')..''
 pm = pm..'\n20- <code>Lock Gifs</code> : '..(group[tostring(target)]['settings']['mute_gif'] or 'no')..''
-pm = pm..'\n----------------------\n\n<b>Channel: </b>@LeaderCh'
+pm = pm..'\n-------------------------------------------\n\n<b>Channel: </b>@LeaderCh'
 tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html')
-end]]
+end
 local function lock_group_links(msg, target)
 local group = load_data('bot/group.json')
   local group_link_lock = group[tostring(target)]['settings']['lock_link']
@@ -611,7 +611,7 @@ pm = pm..'\n17- <code>Lock Voice</code> : '..group[tostring(target)]['settings']
 pm = pm..'\n18- <code>Lock Document</code> : '..group[tostring(target)]['settings']['mute_document']..''
 pm = pm..'\n19- <code>Lock Audio</code> : '..group[tostring(target)]['settings']['mute_audio']..''
 pm = pm..'\n20- <code>Lock Gifs</code> : '..group[tostring(target)]['settings']['mute_gif']..''
-pm = pm..'\n----------------------\n<b>Channel: </b>@LeaderCh'
+pm = pm..'\n-------------------------------------------\n<b>Channel: </b>@LeaderCh'
 tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html')
 end
 	
