@@ -150,7 +150,7 @@ if matches[1] == 'promote' and is_owner(msg) then
     	end
 	end
 	end
-if matches[1] == 'muteuser' and is_momod(msg) then
+if matches[1] == 'muteuser' and is_momod(msg) or is_owner(msg) then
 if msg.reply_to_message_id_ ~= 0 then
 		tg.getMessage(msg.chat_id_,msg.reply_to_message_id_)
 		redis:set('muteuser'..msg.chat_id_..msg.chat_id_,msg.from_id)
