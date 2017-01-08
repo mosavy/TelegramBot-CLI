@@ -14,7 +14,7 @@ end
 return {
   patterns = {
 		"^[/#!](git pull)$",
-		"^[/#!](id)$",
+		"^[/#!](echo)$",
   },
   run = run
 }
