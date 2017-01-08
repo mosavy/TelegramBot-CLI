@@ -618,7 +618,7 @@ end
 local function run(msg, matches)
 local addgroup = group[tostring(msg.chat_id)]
 if addgroup and is_momod(msg) or is_owner(msg) then
-if matches[1] == 'id' and ont msg.reply_to_message_id_ ~= 0 then 
+if matches[1] == 'id' and not msg.reply_to_message_id_ ~= 0 then 
 pm = '<b>SuperGroup ID:</b> <code>['..msg.chat_id_..']</code>\n<b>User ID:</b> <code>['..msg.sender_user_id_..']</code>\n\n<b>Channel:</b> @LeaderCH'			
 --local chat_id = msg.chat_id_
 --local user_id = msg.sender_user_id_
