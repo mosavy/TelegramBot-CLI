@@ -11,18 +11,18 @@ local function run(msg, result ,matches)
 		tg.changeChatMemberStatus(chat_id, data.id_, 'Kicked')	
 	end
 	end
-	if matches[1] == 'ban' and is_owner(msg) or is_momod(msg) then
+		if matches[1] == 'ban' and is_owner(msg) or is_momod(msg) then
 	if msg.reply_to_message_id_ then
 		tg.getMessage(msg.chat_id_,msg.reply_to_message_id_)
-		tg.changeChatMemberStatus(result.chat_id_, result.sender_user_id_, 'Banned)
+		tg.changeChatMemberStatus(result.chat_id_, result.sender_user_id_, 'Banned')
 	elseif msg.text:match("@(.*)") then
 	     tg.sendMessage(msg.chat_id, 0, 0,  'user [ @'..msg.text:match("@(.*)")..' ] Banned', 0)
-		tg.changeChatMemberStatus(chat_id, msg.text:match("@(.*)"), 'Kicked')	
+		tg.changeChatMemberStatus(chat_id, msg.text:match("@(.*)"), 'Banned')	
 	elseif tonumber(matches[2]) then
-         tg.sendMessage(msg.chat_id, 0, 0,  'user [ '..matches[2]..' ] Banned', 0)
-		tg.changeChatMemberStatus(chat_id, data.id_, 'Banned)	
+         tg.sendMessage(msg.chat_id, 0, 0,  '[ '..matches[2]..' ] Banned', 0)
+		tg.changeChatMemberStatus(chat_id, data.id_, 'Banned')	
 	end
-	end	
+	end
 end
 return {
   patterns = {
