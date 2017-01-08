@@ -1,4 +1,4 @@
-local function run(msg,result, matches)
+local function run(msg, matches)
 local group = load_data('bot/group.json')	
 local addgroup = group[tostring(msg.chat_id)]	
 if matches[1] == 'echo' and matches[2] and is_sudo(msg) then		
