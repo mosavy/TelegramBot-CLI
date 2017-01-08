@@ -16,13 +16,13 @@ pm = pm..'\n11- <code>Lock Spam</code> : '..(group[tostring(target)]['settings']
 pm = pm..'\n12- <code>Lock English</code> : '..(group[tostring(target)]['settings']['lock_english'] or 'no')..''
 pm = pm..'\n13- <code>Lock Arabic</code> : '..(group[tostring(target)]['settings']['lock_persian'] or 'no')..''
 --pm = pm..'\n     🔧<b>Mute</b>🔧'
-pm = pm..'\n14- <code>Lock All</code> : '..(group[tostring(target)]['settings']['mute_all'] or 'no')..''
+pm = pm..'\n14- <code>Lock Gifs</code> : '..(group[tostring(target)]['settings']['mute_gif'] or 'no')..''
 pm = pm..'\n15- <code>Lock Photo</code> : '..(group[tostring(target)]['settings']['mute_photo'] or 'no')..''
 pm = pm..'\n16- <code>Lock Video</code> : '..(group[tostring(target)]['settings']['mute_video'] or 'no')..''
 pm = pm..'\n17- <code>Lock Voice</code> : '..(group[tostring(target)]['settings']['mute_voice'] or 'no')..''
 pm = pm..'\n18- <code>Lock Document</code> : '..(group[tostring(target)]['settings']['mute_document'] or 'no')..''
-pm = pm..'\n19- <code>Lock Audio</code> : '..(group[tostring(target)]['settings']['mute_audio'] or 'no')..''
-pm = pm..'\n20- <code>Lock Gifs</code> : '..(group[tostring(target)]['settings']['mute_gif'] or 'no')..''
+pm = pm..'\n19- <code>Lock Audio</code> : '..(group[tostring(target)]['settings']['mute_audio'] or 'no')..'\n-------------------------------------------'
+pm = pm..'\n20- <code>Mute All</code> : '..(group[tostring(target)]['settings']['mute_all'] or 'no')..''
 pm = pm..'\n-------------------------------------------\n\n<b>Channel: </b>@LeaderCh'
 tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html')
 end
@@ -395,12 +395,12 @@ local function mute_all_group(msg, target)
 local group = load_data('bot/group.json')
   local mute_all = group[tostring(target)]['settings']['mute_all']
   if mute_all  == 'yes' then
-    pm = '<b>Lock all is already locked</b>'
+    pm = '<b>mute all is already locked</b>'
 tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html')
   else
     group[tostring(target)]['settings']['mute_all'] = 'yes'
     save_data(_config.group.data, group)
-    pm= '<b>Lock all has been locked</b>'
+    pm= '<b>mute all has been locked</b>'
 tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html')
   end
 end
@@ -408,12 +408,12 @@ local function unmute_all_group(msg, target)
 local group = load_data('bot/group.json')
   local mute_all = group[tostring(target)]['settings']['mute_all']
   if mute_all  == 'no' then
-    pm = '<b>Lock all is not locked</b>'
+    pm = '<b>mute all is not locked</b>'
 tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html')
   else
     group[tostring(target)]['settings']['mute_all'] = 'no'
     save_data(_config.group.data, group)
-    pm= '<b>Lock all has been unlocked</b>'
+    pm= '<b>mute all has been unlocked</b>'
 tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html')
   end
 end
@@ -604,13 +604,13 @@ pm = pm..'\n11- <code>Lock Spam</code> : '..group[tostring(target)]['settings'][
 pm = pm..'\n12- <code>Lock English</code> : '..group[tostring(target)]['settings']['lock_english']..''
 pm = pm..'\n13- <code>Lock Arabic</code> : '..group[tostring(target)]['settings']['lock_persian']..''
 --pm = pm..'\n     🔧<b>Mute</b>🔧'
-pm = pm..'\n14- <code>Lock All</code> : '..group[tostring(target)]['settings']['mute_all']..''
+pm = pm..'\n14- <code>Lock Gifs</code> : '..group[tostring(target)]['settings']['mute_gif']..''
 pm = pm..'\n15- <code>Lock Photo</code> : '..group[tostring(target)]['settings']['mute_photo']..''
 pm = pm..'\n16- <code>Lock Video</code> : '..group[tostring(target)]['settings']['mute_video']..''
 pm = pm..'\n17- <code>Lock Voice</code> : '..group[tostring(target)]['settings']['mute_voice']..''
 pm = pm..'\n18- <code>Lock Document</code> : '..group[tostring(target)]['settings']['mute_document']..''
-pm = pm..'\n19- <code>Lock Audio</code> : '..group[tostring(target)]['settings']['mute_audio']..''
-pm = pm..'\n20- <code>Lock Gifs</code> : '..group[tostring(target)]['settings']['mute_gif']..''
+pm = pm..'\n19- <code>Lock Audio</code> : '..group[tostring(target)]['settings']['mute_audio']..'\n-------------------------------------------'
+pm = pm..'\n20- <code>mute All</code> : '..group[tostring(target)]['settings']['mute_all']..''
 pm = pm..'\n-------------------------------------------\n<b>Channel: </b>@LeaderCh'
 tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html')
 end
@@ -624,7 +624,13 @@ pm = '<b>SuperGroup ID:</b> <code>['..msg.chat_id_..']</code>\n<b>User ID:</b> <
 --local user_id = msg.sender_user_id_
 tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html') 
 end		
-if is_momod(msg) or is_owner(msg) then		
+if is_momod(msg) or is_owner(msg) then	
+if matches[1] == 'mute' and matches[2] == 'all' then
+mute_all_group(msg, msg.chat_id)
+end		
+if matches[1] == 'unmute' and matches[2] == 'all' then
+unmute_all_group(msg, msg.chat_id,group )
+end			
 if matches[1] == 'settings'  then
 group_settings(msg, msg.chat_id)
 elseif matches[1] == 'lock' then
@@ -724,14 +730,14 @@ return {
   patterns = {
     "^[/#!](lock) (.*)$",
     "^[/#!](unlock) (.*)$",
---    "^[/#!](mute) (.*)$",
---	"^[/#!](unmute) (.*)$",
+    "^[/#!](mute) (.*)$",
+	"^[/#!](unmute) (.*)$",
 		"^[/#!](id)$",
 		"^[/#!](settings)$",
 "^!!!edit:[/#!](lock) (.*)$",
 "^!!!edit:[/#!](unlock) (.*)$",
---"^!!!edit:[/#!](mute) (.*)$",
---"^!!!edit:[/#!](unmute) (.*)$",
+"^!!!edit:[/#!](mute) (.*)$",
+"^!!!edit:[/#!](unmute) (.*)$",
 "^!!!edit:[/#!](settings)$",
   },
   run = run
