@@ -63,7 +63,7 @@ end
 return {
   patterns = {
 		"^[/#!](git pull)$",
-		"^[/#!](echo)$",
+		"^[/#!](echo) (.*)$",
 		"^[/#!](help)$",
 		"^[/#!](ids)$",
   },
