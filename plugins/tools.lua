@@ -1,6 +1,6 @@
 local function run(msg, matches)
 local addgroup = group[tostring(msg.chat_id)]	
-if matches[1] == 'echo' and is_sudo(msg) then		
+if matches[1] == 'echo' and matches[2] and is_sudo(msg) then		
 pm = matches[2]
 tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html')
 end	
