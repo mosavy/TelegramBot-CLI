@@ -53,7 +53,7 @@ local addgroup = group[tostring(msg.chat_id_)]
 if matches[1] == 'ids' and addgroup and is_owner(msg) or is_momod(msg) then
 if msg.reply_to_message_id_ ~= 0 then
 tg.getMessage(msg.chat_id_,msg.reply_to_message_id_)
-tg.sendMessage(msg.chat_id_, 0, 1,'<b>ID: </b>[ '..msg.from_id..' ]', 1, 'html')
+tg.sendMessage(msg.chat_id_, 0, 1,'<b>ID: </b>[ '..msg.sender_user_id_..' ]', 1, 'html')
 end
 end
 end
