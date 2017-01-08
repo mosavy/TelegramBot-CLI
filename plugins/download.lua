@@ -1,7 +1,7 @@
 
 local function run(msg,matches) 
 if is_sudo then
-   if matches[1] == 'download'
+   if matches[1] == 'download' then
    tg.downloadFile(matches[2])
    text = "Downloading File..."
    tg.sendMessage(msg.chat_id_, 0, 1, text, 1, 'html')
