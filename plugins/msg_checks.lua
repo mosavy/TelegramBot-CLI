@@ -51,7 +51,7 @@ if group_lock_tgservice == 'yes' and is_tgservice_msg then
 end]]
 local group_lock_tgservice = group[tostring(msg.chat_id)]['settings']['lock_tgservice']
 local is_tgservice_msg = msg.text:match("!!!tgservice:")
-if group_lock_tgservice == 'yes' and is_persian_msg or is_tgservice_msg then
+if group_lock_tgservice == 'yes' and is_tgservice_msg then
 tg.deleteMessages(msg.chat_id_, {[0] = msg.id_ })
 end
 local group_lock_sticker = group[tostring(msg.chat_id)]['settings']['lock_sticker']
