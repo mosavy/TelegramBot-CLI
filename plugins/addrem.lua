@@ -56,16 +56,13 @@ addgroup(msg)
 elseif matches[1] == 'rem' and is_sudo(msg) then
 remgroup(msg)
 end
-if matches[1] == 'setrules' and is_owner(msg) or is_momod(msg) and groupa then
-redis:set('rules'..msg.chat_id_,matches[2])
-tg.sendMessage(msg.chat_id_, 0, 1, '<b>Group Rules Saved</b>', 1, 'html')
-end		
+
 end
 return {
   patterns = {
     "^[/#!](add)$",
     "^[/#!](rem)$",
-	"^[/#!](setrules) (.*)$",	
+		
 "^!!!edit:[/#!](add)$",
     "^!!!edit:[/#!](rem)$"
   },
