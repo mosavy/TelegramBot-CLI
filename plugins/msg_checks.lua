@@ -33,7 +33,7 @@ local group_lock_bot = group[tostring(msg.chat_id)]['settings']['lock_bot']
 local is_bot_msg = msg.text:match("^!!tgservice (chat_add_user)$") or msg.text:match("^!!tgservice (chat_add_user_link)$")
 if group_lock_bot == 'yes' and is_bot_msg and isABotBadWay(user) then
 tg.deleteMessages(msg.chat_id_, {[0] = msg.id_ })
-chat_del_user(msg.chat_id_, msg.sender_user_id_)
+
 end
 local group_lock_inline = group[tostring(msg.chat_id)]['settings']['lock_inline']
 --local is_inline_msg =  msg.text == "[unsupported]"
@@ -64,7 +64,7 @@ local _nl, ctrl_chars = string.gsub(msg.text, '%c', '')
 local _nl, real_digits = string.gsub(msg.text, '%d', '')
 if group_lock_spam == "yes" and string.len(msg.text) > 2049 or ctrl_chars > 40 or real_digits > 2000 then
 tg.deleteMessages(msg.chat_id_, {[0] = msg.id_ })
-tg.chat_del_user(msg.chat_id_, msg.sender_user_id_)
+
 end
 local group_mute_video = group[tostring(msg.chat_id)]['settings']['mute_video']
 local is_video_msg = msg.text:match("!!!video:")
