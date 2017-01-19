@@ -10,19 +10,19 @@ pm = pm..'\n5- <code>Lock Fwd</code> : '..(group[tostring(target)]['settings']['
 pm = pm..'\n6- <code>Lock Fosh</code> : '..(group[tostring(target)]['settings']['lock_fosh'] or 'no')..''
 pm = pm..'\n7- <code>Lock Tgservice</code> : '..(group[tostring(target)]['settings']['lock_tgservice'] or 'no')..''
 pm = pm..'\n8- <code>Lock Sticker</code> : '..(group[tostring(target)]['settings']['lock_sticker'] or 'no')..''
-pm = pm..'\n9- <code>Lock Bot</code> : '..(group[tostring(target)]['settings']['lock_bot'] or 'no')..''
-pm = pm..'\n10- <code>Lock Inline</code> : '..(group[tostring(target)]['settings']['lock_inline'] or 'no')..''
-pm = pm..'\n11- <code>Lock Spam</code> : '..(group[tostring(target)]['settings']['lock_spam'] or 'no')..''
-pm = pm..'\n12- <code>Lock English</code> : '..(group[tostring(target)]['settings']['lock_english'] or 'no')..''
-pm = pm..'\n13- <code>Lock Arabic</code> : '..(group[tostring(target)]['settings']['lock_persian'] or 'no')..''
+--pm = pm..'\n9- <code>Lock Bot</code> : '..(group[tostring(target)]['settings']['lock_bot'] or 'no')..''
+pm = pm..'\n9- <code>Lock Inline</code> : '..(group[tostring(target)]['settings']['lock_inline'] or 'no')..''
+pm = pm..'\n10- <code>Lock Spam</code> : '..(group[tostring(target)]['settings']['lock_spam'] or 'no')..''
+pm = pm..'\n11- <code>Lock English</code> : '..(group[tostring(target)]['settings']['lock_english'] or 'no')..''
+pm = pm..'\n12- <code>Lock Arabic</code> : '..(group[tostring(target)]['settings']['lock_persian'] or 'no')..''
 --pm = pm..'\n     🔧<b>Mute</b>🔧'
-pm = pm..'\n14- <code>Lock Gifs</code> : '..(group[tostring(target)]['settings']['mute_gif'] or 'no')..''
-pm = pm..'\n15- <code>Lock Photo</code> : '..(group[tostring(target)]['settings']['mute_photo'] or 'no')..''
-pm = pm..'\n16- <code>Lock Video</code> : '..(group[tostring(target)]['settings']['mute_video'] or 'no')..''
-pm = pm..'\n17- <code>Lock Voice</code> : '..(group[tostring(target)]['settings']['mute_voice'] or 'no')..''
-pm = pm..'\n18- <code>Lock Document</code> : '..(group[tostring(target)]['settings']['mute_document'] or 'no')..''
-pm = pm..'\n19- <code>Lock Audio</code> : '..(group[tostring(target)]['settings']['mute_audio'] or 'no')..'\n-------------------------------------------'
-pm = pm..'\n20- <code>Mute All</code> : '..(group[tostring(target)]['settings']['mute_all'] or 'no')..''
+pm = pm..'\n13- <code>Lock Gifs</code> : '..(group[tostring(target)]['settings']['mute_gif'] or 'no')..''
+pm = pm..'\n14- <code>Lock Photo</code> : '..(group[tostring(target)]['settings']['mute_photo'] or 'no')..''
+pm = pm..'\n15- <code>Lock Video</code> : '..(group[tostring(target)]['settings']['mute_video'] or 'no')..''
+pm = pm..'\n16- <code>Lock Voice</code> : '..(group[tostring(target)]['settings']['mute_voice'] or 'no')..''
+pm = pm..'\n17- <code>Lock Document</code> : '..(group[tostring(target)]['settings']['mute_document'] or 'no')..''
+pm = pm..'\n18- <code>Lock Audio</code> : '..(group[tostring(target)]['settings']['mute_audio'] or 'no')..'\n-------------------------------------------'
+pm = pm..'\n19- <code>Mute All</code> : '..(group[tostring(target)]['settings']['mute_all'] or 'no')..''
 pm = pm..'\n-------------------------------------------\n\n<b>Channel: </b>@LeaderCh'
 tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html')
 end
@@ -598,19 +598,19 @@ pm = pm..'\n5- <code>Lock Fwd</code> : '..group[tostring(target)]['settings']['l
 pm = pm..'\n6- <code>Lock Fosh</code> : '..group[tostring(target)]['settings']['lock_fosh']..''
 pm = pm..'\n7- <code>Lock Tgservice</code> : '..group[tostring(target)]['settings']['lock_tgservice']..''
 pm = pm..'\n8- <code>Lock Sticker</code> : '..group[tostring(target)]['settings']['lock_sticker']..''
-pm = pm..'\n9- <code>Lock Bot</code> : '..group[tostring(target)]['settings']['lock_bot']..''
-pm = pm..'\n10- <code>Lock Inline</code> : '..group[tostring(target)]['settings']['lock_inline']..''
-pm = pm..'\n11- <code>Lock Spam</code> : '..group[tostring(target)]['settings']['lock_spam']..''
-pm = pm..'\n12- <code>Lock English</code> : '..group[tostring(target)]['settings']['lock_english']..''
-pm = pm..'\n13- <code>Lock Arabic</code> : '..group[tostring(target)]['settings']['lock_persian']..''
+--pm = pm..'\n9- <code>Lock Bot</code> : '..group[tostring(target)]['settings']['lock_bot']..''
+pm = pm..'\n9- <code>Lock Inline</code> : '..group[tostring(target)]['settings']['lock_inline']..''
+pm = pm..'\n10- <code>Lock Spam</code> : '..group[tostring(target)]['settings']['lock_spam']..''
+pm = pm..'\n11- <code>Lock English</code> : '..group[tostring(target)]['settings']['lock_english']..''
+pm = pm..'\n12- <code>Lock Arabic</code> : '..group[tostring(target)]['settings']['lock_persian']..''
 --pm = pm..'\n     🔧<b>Mute</b>🔧'
-pm = pm..'\n14- <code>Lock Gifs</code> : '..group[tostring(target)]['settings']['mute_gif']..''
-pm = pm..'\n15- <code>Lock Photo</code> : '..group[tostring(target)]['settings']['mute_photo']..''
-pm = pm..'\n16- <code>Lock Video</code> : '..group[tostring(target)]['settings']['mute_video']..''
-pm = pm..'\n17- <code>Lock Voice</code> : '..group[tostring(target)]['settings']['mute_voice']..''
-pm = pm..'\n18- <code>Lock Document</code> : '..group[tostring(target)]['settings']['mute_document']..''
-pm = pm..'\n19- <code>Lock Audio</code> : '..group[tostring(target)]['settings']['mute_audio']..'\n-------------------------------------------'
-pm = pm..'\n20- <code>Mute All</code> : '..group[tostring(target)]['settings']['mute_all']..''
+pm = pm..'\n13- <code>Lock Gifs</code> : '..group[tostring(target)]['settings']['mute_gif']..''
+pm = pm..'\n14- <code>Lock Photo</code> : '..group[tostring(target)]['settings']['mute_photo']..''
+pm = pm..'\n15- <code>Lock Video</code> : '..group[tostring(target)]['settings']['mute_video']..''
+pm = pm..'\n16- <code>Lock Voice</code> : '..group[tostring(target)]['settings']['mute_voice']..''
+pm = pm..'\n17- <code>Lock Document</code> : '..group[tostring(target)]['settings']['mute_document']..''
+pm = pm..'\n18- <code>Lock Audio</code> : '..group[tostring(target)]['settings']['mute_audio']..'\n-------------------------------------------'
+pm = pm..'\n19- <code>Mute All</code> : '..group[tostring(target)]['settings']['mute_all']..''
 pm = pm..'\n-------------------------------------------\n<b>Channel: </b>@LeaderCh'
 tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html')
 end
@@ -653,7 +653,7 @@ elseif matches[2] == 'english' then
 lock_group_english(msg, msg.chat_id)
 elseif matches[2] == 'arabic' then
 lock_group_persian(msg, msg.chat_id)
-elseif matches[2] == 'bot' then
+--[[elseif matches[2] == 'bot' then
 lock_group_bot(msg, msg.chat_id)
 --[[elseif matches[2] == 'flood' then
 lock_group_flood(msg, msg.chat_id)]]
@@ -698,9 +698,9 @@ elseif matches[2] == 'english' then
 unlock_group_english(msg, msg.chat_id)
 elseif matches[2] == 'arabic' then
 unlock_group_persian(msg, msg.chat_id)
-elseif matches[2] == 'bot' then
+--[[elseif matches[2] == 'bot' then
 unlock_group_bot(msg, msg.chat_id)
---[[elseif matches[2] == 'flood' then
+elseif matches[2] == 'flood' then
 unlock_group_flood(msg, msg.chat_id)]]
 elseif matches[2] == 'fosh' then
 unlock_group_fosh(msg, msg.chat_id)
