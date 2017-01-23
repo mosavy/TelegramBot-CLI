@@ -438,8 +438,9 @@ function tdcli_update_callback(data)
         if msg.content_.caption_ then
           msg.text = msg.text .. msg.content_.caption_
         end
-      elseif msg.content_.ID == "MessageChatJoinByLink" then
+      elseif msg.content_.ID == "MessageChatAddMembers" or msg.content_.ID == "MessageChatDeleteMember" or msg.content_.ID == "MessageChatChangeTitle" or msg.content_.ID == "MessageChatChangePhoto" or msg.content_.ID == "MessageChatJoinByLink" or msg.content_.ID == "MessageGameScore"  then
         msg.text = "!!!tgservice:joinbylink"
+      
       elseif msg.content_.ID == "MessageSticker" then
         msg.text = "!!!sticker:" .. data.message_.content_.sticker_.emoji_
       elseif msg.content_.document_ then
@@ -447,6 +448,22 @@ function tdcli_update_callback(data)
         if msg.content_.caption_ then
           msg.text = msg.text .. msg.content_.caption_
         end
+        
+      elseif msg.content_.contact_ then
+        msg.text = "!!!contact:"
+	if msg.content_.caption_ then
+          msg.text = msg.text .. msg.content_.caption_
+        end			
+      elseif msg.content_.location_ then
+        msg.text = "!!!location:"  
+	if msg.content_.caption_ then
+          msg.text = msg.text .. msg.content_.caption_
+        end			
+      elseif msg.content_.game_ then
+        msg.text = "!!!game:"
+	if msg.content_.caption_ then
+          msg.text = msg.text .. msg.content_.caption_
+        end			
       elseif msg.content_.video_ then
         msg.text = "!!!video:"
         if msg.content_.caption_ then
