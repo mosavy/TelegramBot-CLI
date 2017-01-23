@@ -1,4 +1,4 @@
-local function settings(msg, target,group)
+--[[local function settings(msg, target,group)
 local group = load_data('bot/group.json')
 pm = '<b>SuperGroup settings</b>\n-------------------------------------------'
 pm = pm..'\n1- <code>Lock Links</code> : '..group[tostring(target)]['settings']['lock_link']..''
@@ -25,7 +25,7 @@ pm = pm..'\n18- <code>Lock Audio</code> : '..(group[tostring(target)]['settings'
 pm = pm..'\n19- <code>Mute All</code> : '..(group[tostring(target)]['settings']['mute_all'] or 'no')..''
 pm = pm..'\n-------------------------------------------\n\n<b>Channel: </b>@LeaderCh'
 tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html')
-end
+end]]
 local function lock_group_links(msg, target)
 local group = load_data('bot/group.json')
   local group_link_lock = group[tostring(target)]['settings']['lock_link']
