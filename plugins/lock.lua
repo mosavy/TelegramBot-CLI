@@ -341,6 +341,45 @@ tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html')
 tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html')
   end
 end
+local function unlock_group_contact(msg, target)
+local group = load_data('bot/group.json')
+  local group_contact_lock = group[tostring(target)]['settings']['lock_contact']
+  if group_contact_lock == 'no' then
+    pm = '<b>Send Contact is not locked</b>'
+tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html')
+  else
+    group[tostring(target)]['settings']['lock_contact'] = 'no'
+    save_data(_config.group.data, group)
+    pm= '<b>Send Contact has been unlocked</b>'
+tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html')
+  end
+end
+local function unlock_group_location(msg, target)
+local group = load_data('bot/group.json')
+  local group_location_lock = group[tostring(target)]['settings']['lock_location']
+  if group_location_lock == 'no' then
+    pm = '<b>Send Location is not locked</b>'
+tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html')
+  else
+    group[tostring(target)]['settings']['lock_location'] = 'no'
+    save_data(_config.group.data, group)
+    pm= '<b>Send Location has been unlocked</b>'
+tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html')
+  end
+end
+local function unlock_group_game(msg, target)
+local group = load_data('bot/group.json')
+  local group_game_lock = group[tostring(target)]['settings']['lock_game']
+  if group_game_lock == 'no' then
+    pm = '<b>Send Game is not locked</b>'
+tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html')
+  else
+    group[tostring(target)]['settings']['lock_game'] = 'no'
+    save_data(_config.group.data, group)
+    pm= '<b>Send Game has been unlocked</b>'
+tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html')
+  end
+end
 local function unlock_group_bot(msg, target)
 local group = load_data('bot/group.json')
   local group_bot_lock = group[tostring(target)]['settings']['lock_bot']
