@@ -746,6 +746,12 @@ elseif matches[2] == 'inline' then
 lock_group_inline(msg, msg.chat_id)
 elseif matches[2] == 'sticker' then
 lock_group_sticker(msg, msg.chat_id)
+elseif matches[2] == 'contact' then
+lock_group_contact(msg, msg.chat_id)
+elseif matches[2] == 'location' then
+lock_group_location(msg, msg.chat_id)
+elseif matches[2] == 'game' then
+lock_group_game(msg, msg.chat_id)					
 elseif matches[2] == 'all' then
 mute_all_group(msg, msg.chat_id)
 elseif matches[2] == 'photo' then
@@ -791,6 +797,12 @@ elseif matches[2] == 'inline' then
 unlock_group_inline(msg, msg.chat_id)
 elseif matches[2] == 'sticker' then
 unlock_group_sticker(msg, msg.chat_id)
+elseif matches[2] == 'contact' then
+unlock_group_contact(msg, msg.chat_id)
+elseif matches[2] == 'location' then
+unlock_group_location(msg, msg.chat_id)
+elseif matches[2] == 'game' then
+unlock_group_game(msg, msg.chat_id)					
 elseif matches[2] == 'all' then
 unmute_all_group(msg, msg.chat_id,group )
 elseif matches[2] == 'photo' then
