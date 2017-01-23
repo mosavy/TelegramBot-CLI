@@ -54,9 +54,24 @@ local is_tgservice_msg = msg.text:match("!!!tgservice:")
 if group_lock_tgservice == 'yes' and is_tgservice_msg then
 tg.deleteMessages(msg.chat_id_, {[0] = msg.id_ })
 end
+local group_lock_contact = group[tostring(msg.chat_id)]['settings']['lock_contact']
+local is_contact_msg = msg.text:match("!!!contact:")
+if group_lock_contact == 'yes' and is_contact_msg then
+tg.deleteMessages(msg.chat_id_, {[0] = msg.id_ })
+end   
+local group_lock_location = group[tostring(msg.chat_id)]['settings']['lock_location']
+local is_location_msg = msg.text:match("!!!location:")
+if group_lock_location == 'yes' and is_location_msg then
+tg.deleteMessages(msg.chat_id_, {[0] = msg.id_ })
+end       
 local group_lock_sticker = group[tostring(msg.chat_id)]['settings']['lock_sticker']
 local is_sticker_msg = msg.text:match("!!!sticker:")
 if group_lock_sticker == 'yes' and is_sticker_msg then
+tg.deleteMessages(msg.chat_id_, {[0] = msg.id_ })
+end            
+local group_lock_game = group[tostring(msg.chat_id)]['settings']['lock_game']
+local is_game_msg = msg.text:match("!!!game:")
+if group_lock_game == 'yes' and is_game_msg then
 tg.deleteMessages(msg.chat_id_, {[0] = msg.id_ })
 end
 local group_lock_spam = group[tostring(msg.chat_id)]['settings']['lock_spam']
