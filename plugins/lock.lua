@@ -143,6 +143,47 @@ else
 tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html')
   end
 end
+
+local function lock_group_contact(msg, target)
+local group = load_data('bot/group.json')
+  local group_contact_lock = group[tostring(target)]['settings']['lock_contact']
+  if group_contact_lock == 'yes' then
+    pm = '<b>Send Contact is already locked</b>'
+  tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html')
+else
+    group[tostring(target)]['settings']['lock_contact'] = 'yes'
+    save_data(_config.group.data, group)
+    pm = '<b>Send Contact has been locked</b>'
+tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html')
+  end
+end
+local function lock_group_location(msg, target)
+local group = load_data('bot/group.json')
+  local group_location_lock = group[tostring(target)]['settings']['lock_location']
+  if group_location_lock == 'yes' then
+    pm = '<b>Send Location is already locked</b>'
+  tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html')
+else
+    group[tostring(target)]['settings']['lock_location'] = 'yes'
+    save_data(_config.group.data, group)
+    pm = '<b>Send Location has been locked</b>'
+tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html')
+  end
+end
+local function lock_group_game(msg, target)
+local group = load_data('bot/group.json')
+  local group_game_lock = group[tostring(target)]['settings']['lock_game']
+  if group_game_lock == 'yes' then
+    pm = '<b>Send Game is already locked</b>'
+  tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html')
+else
+    group[tostring(target)]['settings']['lock_game'] = 'yes'
+    save_data(_config.group.data, group)
+    pm = '<b>Send Game has been locked</b>'
+tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html')
+  end
+end
+
 local function lock_group_bot(msg, target)
 local group = load_data('bot/group.json')
   local group_bot_lock = group[tostring(target)]['settings']['lock_bot']
