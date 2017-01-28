@@ -131,15 +131,15 @@ if group_tag_lock == 'yes' and is_tag_msg then
 tg.deleteMessages(msg.chat_id_, {[0] = msg.id_ })
 end
 local group_fosh_lock = group[tostring(msg.chat_id)]['settings']['lock_fosh']
-local is_fosh_msg = msg.text:match("مادر") or msg.text:match("پدر") or msg.text:match("خواهر") or msg.text:match("مار") or msg.text:match("تمار") or msg.text:match("خار") or msg.text:match("کص") or msg.text:match("کس") or msg.text:match("کیر") or msg.text:match("کاندوم") or msg.text:match("شورت") or msg.text:match("ننه") or msg.text:match("مامان") or msg.text:match("شارژ") or msg.text:match("کد") or msg.text:match("همراه اول") or msg.text:match("ایرانسل") or msg.text:match("رایتل") 
+local is_fosh_msg = msg.text:match("مار") or msg.text:match("کونی") or msg.text:match("کیونی") or msg.text:match("کصده") or msg.text:match("تخمه") or msg.text:match("سگ") or msg.text:match("حروم زاده") or msg.text:match("حرومزاده") or msg.text:match("تمار") or msg.text:match("خار") or msg.text:match("کص") or msg.text:match("کس") or msg.text:match("کیر") or msg.text:match("کاندوم") or msg.text:match("شورت") or msg.text:match("ننه") or msg.text:match("شارژ") or msg.text:match("کد") or msg.text:match("همراه اول") or msg.text:match("ایرانسل") or msg.text:match("رایتل")  or msg.text:match("کون") or msg.text:match("بیشرف") or msg.text:match("زن") or msg.text:match("ناموس") or msg.text:match("بیناموس") or msg.text:match("بی ناموس") or msg.text:match("کثافت") or msg.text:match("کصافت") or msg.text:match("کسافت") or msg.text:match("اشغال") or msg.text:match("عمه") or msg.text:match("فاک") or msg.text:match("fuck") or msg.text:match("سیک") or msg.text:match("سیکتیر") or msg.text:match("خفه") or msg.text:match("چونی") or msg.text:match("گشاد") or msg.text:match("سولاخی") or msg.text:match("سکسی") or msg.text:match("سکس") or msg.text:match("صکص") or msg.text:match("سکص") or msg.text:match("صکس") or msg.text:match("صکصی") or msg.text:match("گو") or msg.text:match("عن") or msg.text:match("شاش") or msg.text:match("عنتر") or msg.text:match("گوریل") or msg.text:match("نفهم") or msg.text:match("عقب افتاده") or msg.text:match("عوضی") or msg.text:match("عوزی") or msg.text:match("پاره") or msg.text:match("ژنده") or msg.text:match("دزد") or msg.text:match("مادر") or msg.text:match("پدر") or msg.text:match("بی شرف") or msg.text:match("جاکش") or msg.text:match("پوفیوز") or msg.text:match("خایه") or msg.text:match("تخمک") or msg.text:match("پشم") or msg.text:match("ادرار") or msg.text:match("تاپاله") or msg.text:match("گوز") or msg.text:match("چوس")
 local is_foshh_msg = msg.text:match("madar") or msg.text:match("mather") or msg.text:match("father") or msg.text:match("pedar") or msg.text:match("khahar") or msg.text:match("khar") or msg.text:match("mar") or msg.text:match("tamar") or msg.text:match("cos") or msg.text:match("koc") or msg.text:match("coc") or msg.text:match("kos") or msg.text:match("kir") or msg.text:match("cir") or msg.text:match("short") or msg.text:match("kandom") or msg.text:match("kandoom") or msg.text:match("nane") or msg.text:match("maman") or msg.text:match("sharg") or msg.text:match("kod") or msg.text:match("cod") or msg.text:match("hamrah aval") or msg.text:match("irancell") or msg.text:match("raitel") or msg.text:match("nnh") or msg.text:match("nne")
 if group_fosh_lock == 'yes' and is_fosh_msg or is_foshh_msg then
 tg.deleteMessages(msg.chat_id_, {[0] = msg.id_ })
 end
-local group_reply_lock = group[tostring(msg.chat_id)]['settings']['lock_fosh']
+--[[local group_reply_lock = group[tostring(msg.chat_id)]['settings']['lock_fosh']
 if group_reply_lock == 'yes' and msg.reply_to_message_id_~=0 then
 tg.deleteMessages(msg.chat_id_, {[0] = msg.id_ })
-end
+end]]
 end
 end
 end
