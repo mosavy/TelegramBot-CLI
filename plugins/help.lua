@@ -36,10 +36,7 @@ pm1 = [[🔴⚜🔐help lock🔐⚜🔴
 🔻!demote [id-reply] =>حذف فرداز مدیریت 
 
 🔺!settings =>تنظیمات 
-
-🔻!muteuser [id-reply] =>
-سایلنت کردن فرد/خارج کردن فرد از سایلنت
-
+		
 🔺!setlink [link] =>تنظیم لینک گروه
 
 🔻!link =>دریافت لینک گروه
