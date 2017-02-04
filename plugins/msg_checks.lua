@@ -116,10 +116,10 @@ local is_edit_msg = msg.text:match("!!!edit:")
 if group_edit_lock == 'yes' and is_edit_msg then
 tg.deleteMessages(msg.chat_id_, {[0] = msg.id_ })
 end
-local group_fwd_lock = group[tostring(msg.chat_id)]['settings']['lock_fwd']
+--[[local group_fwd_lock = group[tostring(msg.chat_id)]['settings']['lock_fwd']
 if group_fwd_lock == 'yes' and msg.forward_info_ ~= false then
 tg.deleteMessages(msg.chat_id_, {[0] = msg.id_ })
-end
+end]]
 local group_username_lock = group[tostring(msg.chat_id)]['settings']['lock_username']
 local is_username_msg = msg.text:match("@")
 if group_username_lock == 'yes' and is_username_msg then
