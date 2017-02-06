@@ -37,7 +37,7 @@ local function run(msg, matches)
 local group = load_data('bot/group.json')
 local chat = msg.chat_id_
 local user = msg.sender_user_id_
-if matches[1] == "id" then
+if matches[1] == "id" and is_momod(msg) or is_owner(msg) then
 if not matches[2] and tonumber(msg.reply_to_message_id_) == 0 then
 --return "*Chat ID :* [`"..chat.."`]\n*User ID :* [`"..user.."`]\n\n*channel: *@LeaderCh"
 pm = '*SuperGroup ID:* [_'..msg.chat_id_..'_]\n*User ID:* [_'..msg.sender_user_id_..'_]\n\n*Channel:* @LeaderCH'			
