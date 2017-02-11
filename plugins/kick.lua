@@ -74,15 +74,3 @@ return {
 run = run,
 }
 
---bot.lua
-function dl_cb (arg, data)
-end
-
-function kick_user(chat_id,user_id)
-if not tonumber(user_id) then
-return false
-end
---  tg.changeChatMemberStatus(chat_id, user_id, 'Kicked', dl_cb, nil)
-    tg.changeChatMemberStatus(chat_id, user_id, "Kicked")
-end
---bot.lua
