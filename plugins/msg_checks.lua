@@ -111,12 +111,12 @@ local is_link_msg = msg.text:match("[Tt][Ee][Ll][Ee][Gg][Rr][Aa][Mm].[Mm][Ee]/")
 if is_link_msg and group_link_lock == 'yes'then
 tg.deleteMessages(msg.chat_id_, {[0] = msg.id_ })
 end
---[[local group_edit_lock = group[tostring(msg.chat_id)]['settings']['lock_edit']
+local group_edit_lock = group[tostring(msg.chat_id)]['settings']['lock_edit']
 local is_edit_msg = msg.text:match("!!!edit:")
 if group_edit_lock == 'yes' and is_edit_msg then
 tg.deleteMessages(msg.chat_id_, {[0] = msg.id_ })
 end
-local group_fwd_lock = group[tostring(msg.chat_id)]['settings']['lock_fwd']
+--[[local group_fwd_lock = group[tostring(msg.chat_id)]['settings']['lock_fwd']
 if group_fwd_lock == 'yes' and msg.forward_info_ ~= false then
 tg.deleteMessages(msg.chat_id_, {[0] = msg.id_ })
 end]]
