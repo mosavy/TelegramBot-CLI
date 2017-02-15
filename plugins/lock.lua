@@ -700,7 +700,7 @@ end
 	
 local function run(msg, matches)
 local addgroup = group[tostring(msg.chat_id)]
-if addgroup and is_momod(msg) or is_owner(msg) then
+
 --[[if matches[1] == 'id' then 
 pm = '<b>SuperGroup ID:</b> <code>['..msg.chat_id_..']</code>\n<b>User ID:</b> <code>['..msg.sender_user_id_..']</code>\n\n<b>Channel:</b> @LeaderCH'			
 --local chat_id = msg.chat_id_
@@ -708,7 +708,7 @@ pm = '<b>SuperGroup ID:</b> <code>['..msg.chat_id_..']</code>\n<b>User ID:</b> <
 tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html') 
 end	]]
 			
-if is_momod(msg) or is_owner(msg) then	
+if addgroup and is_momod(msg) or is_owner(msg) then	
 if matches[1] == 'mute' and matches[2] == 'all' then
 mute_all_group(msg, msg.chat_id)
 end		
@@ -821,7 +821,7 @@ end
 end
 	
 end
-end
+
 end
 return {
   patterns = {
