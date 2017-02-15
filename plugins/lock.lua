@@ -708,14 +708,14 @@ pm = '<b>SuperGroup ID:</b> <code>['..msg.chat_id_..']</code>\n<b>User ID:</b> <
 tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html') 
 end	]]
 			
-if addgroup and is_momod(msg) or is_owner(msg) then	
-if matches[1] == 'mute' and matches[2] == 'all' then
+
+if matches[1] == 'mute' and matches[2] == 'all' and is_momod(msg) or is_owner(msg)  then
 mute_all_group(msg, msg.chat_id)
 end		
-if matches[1] == 'unmute' and matches[2] == 'all' then
+if matches[1] == 'unmute' and matches[2] == 'all and is_momod(msg) or is_owner(msg) ' then
 unmute_all_group(msg, msg.chat_id,group )
 end			
-if matches[1] == 'settings'  then
+if matches[1] == 'settings'  and is_momod(msg) or is_owner(msg)  then
 group_settings(msg, msg.chat_id)
 elseif matches[1] == 'lock' then
 if matches[2] == 'links' then
@@ -820,7 +820,7 @@ unmute_video_group(msg, msg.chat_id)
 end
 end
 	
-end
+
 
 end
 return {
