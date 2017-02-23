@@ -1,7 +1,7 @@
 local function pre_process(msg)
 	local group = load_data('bot/group.json')
 	local addgroup = group[tostring(msg.chat_id)]
-	if addgroup and msg.content_.caption_ then
+	if addgroup --[[and msg.content_.caption_]] then
 		--if msg.text then
 			if is_filter(msg, msg.text) then
 				tg.deleteMessages(msg.chat_id_, tonumber(msg.id_))
@@ -61,7 +61,7 @@ function filter_list(msg)
 		filterlist = filterlist..'*'..i..'-* '..k..'\n'
         i = i + 1
     end
-    tg.sendMessage(msg.chat_id_, 0, 1, filterlist..'-----------------------------------\n`Channel:` @LeaderCh', 1, 'md')
+    tg.sendMessage(msg.chat_id_, 0, 1, filterlist..'---------------------------------------------------\n`Channel:` @LeaderCh', 1, 'md')
 end
 
 local function run(msg, matches)
