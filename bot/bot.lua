@@ -43,6 +43,15 @@ function load_config()
   return config
 end
 
+function is_filter(msg, text)
+local var = false
+local group = load_data('bot/group.json')
+  if group[tostring(msg.chat_id_)]['filterlist'] then
+for k,v in pairs(group[tostring(msg.chat_id_)]['filterlist']) do 
+    if string.find(string.lower(text), string.lower(k)) then
+       var = true
+        end
+
 function check_markdown(text) 
 		str = text
 		if str:match('_') then
