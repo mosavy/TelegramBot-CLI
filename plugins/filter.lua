@@ -4,8 +4,8 @@ local function pre_process(msg)
 	if addgroup and not is_momod(msg) or not is_owner(msg) --[[and msg.content_.caption_]] then
 		--if msg.text then
 			if is_filter(msg, msg.text) then
-				tg.deleteMessages(msg.chat_id_, tonumber(msg.id_))
-				--tg.deleteMessages(msg.chat_id_, {[0] = msg.id_ })
+				--tg.deleteMessages(msg.chat_id_, tonumber(msg.id_))
+				tg.deleteMessages(msg.chat_id_, {[0] = msg.id_ })
 			end
 		--end
 	end
