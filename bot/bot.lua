@@ -51,6 +51,10 @@ for k,v in pairs(group[tostring(msg.chat_id_)]['filterlist']) do
     if string.find(string.lower(text), string.lower(k)) then
        var = true
         end
+     end
+  end
+ return var
+end
 
 function check_markdown(text) 
 		str = text
