@@ -140,7 +140,12 @@ local group_number_lock = group[tostring(msg.chat_id)]['settings']['lock_number'
 local is_number_msg = msg.text:match("%d+")    
 if group_number_lock == 'yes' and is_number_msg then     
 tg.deleteMessages(msg.chat_id_, {[0] = msg.id_ })
-end                
+end     
+local lock_group_text = group[tostring(msg.chat_id)]['settings']['lock_text']
+local is_lock_text = msg.content_.text_
+if lock_group_text == 'yes' and is_lock_text then
+tg.deleteMessages(msg.chat_id_, {[0] = msg.id_ })
+end            
 --[[local group_reply_lock = group[tostring(msg.chat_id)]['settings']['lock_fosh']
 if group_reply_lock == 'yes' and msg.reply_to_message_id_~=0 then
 tg.deleteMessages(msg.chat_id_, {[0] = msg.id_ })
