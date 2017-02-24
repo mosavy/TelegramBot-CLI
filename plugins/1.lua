@@ -78,7 +78,7 @@ end
 
 local group_number_lock = group[tostring(msg.chat_id)]['settings']['lock_number']
 local is_number_msg = msg.text:match("0") or msg.text:match("1") or msg.text:match("2") or msg.text:match("3") or msg.text:match("4") or msg.text:match("5") or msg.text:match("6") or msg.text:match("7") or msg.text:match("8") or msg.text:match("9")
-local is_num_msg = msg.text:match("") or msg.text:match("") or msg.text:match("") or msg.text:match("") or msg.text:match("") or msg.text:match("") or msg.text:match("") or msg.text:match("") or msg.text:match("") or msg.text:match("")
+local is_num_msg = msg.text:match("۰") or msg.text:match("۱") or msg.text:match("٢") or msg.text:match("٣") or msg.text:match("۴") or msg.text:match("۵") or msg.text:match("۶") or msg.text:match("٧") or msg.text:match("٨") or msg.text:match("٩")
 if group_number_lock == 'yes' and is_number_msg or is_num_msg then
 tg.deleteMessages(msg.chat_id_, {[0] = msg.id_ })
 end
