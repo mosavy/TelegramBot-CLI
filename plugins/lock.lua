@@ -694,12 +694,12 @@ local function lock_group_text(msg, target)
 local group = load_data('bot/group.json')
   local group_text_lock = group[tostring(target)]['settings']['lock_text']
   if group_text_lock == 'yes' then
-    pm = '*Send text is already locked*\n*Channel:* @LeaderCh'
+    pm = '*Send text is already locked*\n\n`Channel:` @LeaderCh'
   tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'md')
 else
     group[tostring(target)]['settings']['lock_text'] = 'yes'
     save_data(_config.group.data, group)
-    pm = '*Send text has been locked*\n*Channel:* @LeaderCh'
+    pm = '*Send text has been locked*\n\n`Channel:` @LeaderCh'
 tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'md')
   end
 end
@@ -708,12 +708,12 @@ local function unlock_group_text(msg, data, target)
 local group = load_data('bot/group.json')
   local group_text_lock = group[tostring(target)]['settings']['lock_text']
   if group_text_lock == 'no' then
-    pm = '*Send text is not locked*\n*Channel:* @LeaderCh'
+    pm = '*Send text is not locked*\n\n`Channel:` @LeaderCh'
 tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'md')
   else
     group[tostring(target)]['settings']['lock_text'] = 'no'
     save_data(_config.group.data, group)
-    pm= '*Send text has been unlocked*\n*Channel:* @LeaderCh'
+    pm= '*Send text has been unlocked*\n\n`Channel:` @LeaderCh'
 tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'md')
   end
 end
