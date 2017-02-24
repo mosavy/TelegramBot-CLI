@@ -690,6 +690,34 @@ tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'md')
   end
 end
 
+local function lock_group_text(msg, target)
+local group = load_data('bot/group.json')
+  local group_text_lock = group[tostring(target)]['settings']['lock_text']
+  if group_text_lock == 'yes' then
+    pm = '*Send text is already locked*\n*Channel:* @LeaderCh'
+  tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'md')
+else
+    group[tostring(target)]['settings']['lock_text'] = 'yes'
+    save_data(_config.group.data, group)
+    pm = '*Send text has been locked*\n*Channel:* @LeaderCh'
+tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'md')
+  end
+end
+
+local function unlock_group_text(msg, data, target)
+local group = load_data('bot/group.json')
+  local group_text_lock = group[tostring(target)]['settings']['lock_text']
+  if group_text_lock == 'no' then
+    pm = '*Send text is not locked*\n*Channel:* @LeaderCh'
+tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'md')
+  else
+    group[tostring(target)]['settings']['lock_text'] = 'no'
+    save_data(_config.group.data, group)
+    pm= '*Send text has been unlocked*\n*Channel:* @LeaderCh'
+tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'md')
+  end
+end
+
 local function group_settings(msg, target)
 local group = load_data('bot/group.json')
 pm = '<b>SuperGroup settings</b>\n-------------------------------------------'
@@ -716,9 +744,10 @@ pm = pm..'\n17- <code>Lock Photo</code> : '..group[tostring(target)]['settings']
 pm = pm..'\n18- <code>Lock Video</code> : '..group[tostring(target)]['settings']['mute_video']..''
 pm = pm..'\n19- <code>Lock Voice</code> : '..group[tostring(target)]['settings']['mute_voice']..''
 pm = pm..'\n20- <code>Lock Document</code> : '..group[tostring(target)]['settings']['mute_document']..''
-pm = pm..'\n21- <code>Lock Number</code> : '..group[tostring(target)]['settings']['lock_number']..''	
-pm = pm..'\n22- <code>Lock Audio</code> : '..group[tostring(target)]['settings']['mute_audio']..'\n-------------------------------------------'
-pm = pm..'\n23- <code>Mute All</code> : '..group[tostring(target)]['settings']['mute_all']..''
+pm = pm..'\n21- <code>Lock Number</code> : '..group[tostring(target)]['settings']['lock_number']..''
+pm = pm..'\n22- <code>Lock Text</code> : '..group[tostring(target)]['settings']['lock_text']..''	
+pm = pm..'\n23- <code>Lock Audio</code> : '..group[tostring(target)]['settings']['mute_audio']..'\n-------------------------------------------'
+pm = pm..'\n24- <code>Mute All</code> : '..group[tostring(target)]['settings']['mute_all']..''
 pm = pm..'\n-------------------------------------------\n<b>Channel: </b>@LeaderCh'
 tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'html')
 end
@@ -773,8 +802,10 @@ local function run(msg, matches)
 					
 		elseif matches[2] == 'contact' then
 			lock_group_contact(msg, msg.chat_id)
+		elseif matches[2] == 'text' then
+			lock_group_text(msg, msg.chat_id)
 		elseif matches[2] == 'number' then
-			lock_group_number(msg, msg.chat_id)				
+			lock_group_number(msg, msg.chat_id)		
 		elseif matches[2] == 'location' then
 			lock_group_location(msg, msg.chat_id)
 		elseif matches[2] == 'game' then
@@ -828,6 +859,8 @@ local function run(msg, matches)
 
 		elseif matches[2] == 'contact' then
 			unlock_group_contact(msg, msg.chat_id)
+		elseif matches[2] == 'text' then
+			unlock_group_text(msg, msg.chat_id)		
 		elseif matches[2] == 'number' then
 			unlock_group_number(msg, msg.chat_id)		
 		elseif matches[2] == 'location' then
