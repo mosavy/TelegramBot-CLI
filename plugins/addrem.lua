@@ -32,7 +32,8 @@ mute_video = "no",
 mute_voice = "no",
 mute_document = "no",
 mute_gif = "no",
-mute_audio = "no"
+mute_audio = "no",
+lock_number = "no",				
                   }
       }
       save_data(_config.group.data, group)
