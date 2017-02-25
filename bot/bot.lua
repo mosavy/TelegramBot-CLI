@@ -475,7 +475,8 @@ function tdcli_update_callback(data)
         end
       elseif msg.content_.ID == "MessageChatAddMembers" or msg.content_.ID == "MessageChatDeleteMember" or msg.content_.ID == "MessageChatChangeTitle" or msg.content_.ID == "MessageChatChangePhoto" or msg.content_.ID == "MessageChatJoinByLink" or msg.content_.ID == "MessageGameScore"  then
         msg.text = "!!!tgservice:joinbylink"
-      
+      	elseif msg.content_.ID == "MessageChatAddMembers" then
+		msg.text = "!!!tgservice:"
       elseif msg.content_.ID == "MessageSticker" then
         msg.text = "!!!sticker:" .. data.message_.content_.sticker_.emoji_
       elseif msg.content_.document_ then
