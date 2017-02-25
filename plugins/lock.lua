@@ -719,15 +719,15 @@ tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'md')
 end
 
 local group = load_data('bot/group.json')
---local addgroup = group[tostring(msg.chat_id_)]
---if addgroup then 	
-	if group[tostring(msg.chat_id_)]['settings']['num_msg_max'] then 	
+local addgroup = group[tostring(msg.chat_id)]
+if addgroup then 	
+	if group[tostring(target)]['settings']['num_msg_max'] then 	
 		NUM_MSG_MAX = tonumber(group[tostring(msg.chat_id_)]['settings']['num_msg_max'])
 		print('custom'..NUM_MSG_MAX) 	
 	else 	
 		NUM_MSG_MAX = 5
 	end
---end
+end
 
 local function group_settings(msg, target)
 local group = load_data('bot/group.json')
@@ -777,7 +777,8 @@ local function run(msg, matches)
         if matches[1] == 'setflood' then
 	if tonumber(matches[2]) < 1 or tonumber(matches[2]) > 20 then
 		tg.sendMessage(msg.chat_id_, 0, 1, '*Wrong number, range is [*`1-20`*]*\n\n`Channel:` @LeaderCh', 1, 'md')
-        end
+        --end
+	else			
 	local flood_max = matches[2]
 	group[tostring(chat)]['settings']['num_msg_max'] = flood_max
 	save_data(_config.group.data, group)
