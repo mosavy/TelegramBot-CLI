@@ -704,7 +704,7 @@ tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'md')
   end
 end
 
-local function unlock_group_text(msg, data, target)
+local function unlock_group_text(msg, target)
 local group = load_data('bot/group.json')
   local group_text_lock = group[tostring(target)]['settings']['lock_text']
   if group_text_lock == 'no' then
