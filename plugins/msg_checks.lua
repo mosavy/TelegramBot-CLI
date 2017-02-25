@@ -150,6 +150,7 @@ if lock_group_text == 'yes' and is_lock_text then
 tg.deleteMessages(msg.chat_id_, {[0] = msg.id_ })
 end        
 	--if msg.content_.caption_ then
+		local lock_flood = group[tostring(msg.chat_id)]['settings']['lock_flood']	
 		if lock_flood == "yes" then
 			local hash = 'user:'..user..':msgs'
 			local msgs = tonumber(redis:get(hash) or 0)
