@@ -721,7 +721,7 @@ end
 local group = load_data('bot/group.json')
 --local addgroup = group[tostring(msg.chat_id_)]
 --if addgroup then 	
-	if group[tostring(target)]["settings"]["num_msg_max"] then 	
+	if group[tostring(target)]['settings']['num_msg_max'] then 	
 		NUM_MSG_MAX = tonumber(group[tostring(target)]['settings']['num_msg_max'])
 		print('custom'..NUM_MSG_MAX) 	
 	else 	
@@ -774,7 +774,7 @@ local function run(msg, matches)
 		tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'md') 
 	end	]] 
 	local chat = msg.chat_id_
-        if matches[1] == 'setflood' and is_momod(msg) or is_owner(msg) then
+        if matches[1] == 'setflood' then
 	if tonumber(matches[2]) < 1 or tonumber(matches[2]) > 20 then
 		tg.sendMessage(msg.chat_id_, 0, 1, '*Wrong number, range is [*`1-20`*]*\n\n`Channel:` @LeaderCh', 1, 'md')
         end
