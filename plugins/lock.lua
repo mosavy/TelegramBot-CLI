@@ -719,8 +719,8 @@ tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'md')
 end
 
 local group = load_data('bot/group.json')
-local addgroup = group[tostring(msg.chat_id)]
-if addgroup then 	
+--local addgroup = group[tostring(msg.chat_id)]
+if group[tostring(msg.chat_id)] then 	
 	if group[tostring(target)]['settings']['num_msg_max'] then 	
 		NUM_MSG_MAX = tonumber(group[tostring(msg.chat_id_)]['settings']['num_msg_max'])
 		print('custom'..NUM_MSG_MAX) 	
