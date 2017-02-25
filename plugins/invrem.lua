@@ -5,7 +5,7 @@ local addgroup = group[tostring(msg.chat_id)]
     if matches[1] == 'invrem' and is_owner(msg) then
             tg.getChannelMembers(msg.chat_id_, 0, "Kicked", 200, function (i, leader)
                 for k,v in pairs(leader.members_) do
-                    tg.addChatMember(i.chat_id, v.user_id_, 3--[[, dl_cb, nil]])
+                    tg.addChatMember(i.chat_id_, v.user_id_, 3--[[, dl_cb, nil]])
                 end
             end, {
             chat_id=msg.chat_id_
