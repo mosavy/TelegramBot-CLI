@@ -784,6 +784,7 @@ local function run(msg, matches)
 	save_data(_config.group.data, group)
 	tg.sendMessage(msg.chat_id_, 0, 1, '*SuperGroup flood sensitivity has been set to: [* `'..matches[2]..'` *]*\n\n`Channel:` @LeaderCh', 1, 'md')
         end
+	end		
 		
 	if matches[1] == 'mute' and matches[2] == 'all' then
 		mute_all_group(msg, msg.chat_id)
