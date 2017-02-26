@@ -11,8 +11,10 @@ local aid = msg.content_.members_[0].id_
 local id = msg.id_
 local group_lock_bot = group[tostring(target)]['settings']['lock_bot']
 if group_lock_bot == 'yes' then
-tg.changeChatMemberStatus(gid, aid, 'Kicked')
-tg.changeChatMemberStatus(gid, uid, 'Kicked')
+--tg.changeChatMemberStatus(gid, aid, 'Kicked')
+--tg.changeChatMemberStatus(gid, uid, 'Kicked')
+kick_user(gid, aid)
+kick_user(gid, uid)          
 end
 end
 end
