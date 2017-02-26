@@ -813,8 +813,8 @@ local function run(msg, matches)
 			lock_group_english(msg, msg.chat_id)
 		elseif matches[2] == 'arabic' then
 			lock_group_persian(msg, msg.chat_id)
-		--[[elseif matches[2] == 'bot' then
-			lock_group_bot(msg, msg.chat_id)]]
+		elseif matches[2] == 'bot' then
+			lock_group_bot(msg, msg.chat_id)
 		elseif matches[2] == 'flood' then
 			lock_group_flood(msg, msg.chat_id)
 		elseif matches[2] == 'fosh' then
@@ -836,8 +836,8 @@ local function run(msg, matches)
 			lock_group_game(msg, msg.chat_id)
 					
 		--[[elseif matches[2] == 'all' then
-			mute_all_group(msg, msg.chat_id)]]
-		elseif matches[2] == 'photo' then
+			mute_all_group(msg, msg.chat_id)]]		
+                elseif matches[2] == 'photo' then
 			mute_photo_group(msg, msg.chat_id)
 		elseif matches[2] == 'document' then
 			mute_document_group(msg, msg.chat_id)
@@ -870,8 +870,8 @@ local function run(msg, matches)
 			unlock_group_english(msg, msg.chat_id)
 		elseif matches[2] == 'arabic' then
 			unlock_group_persian(msg, msg.chat_id)
-		--[[elseif matches[2] == 'bot' then
-			unlock_group_bot(msg, msg.chat_id)]]
+		elseif matches[2] == 'bot' then
+			unlock_group_bot(msg, msg.chat_id)
 		elseif matches[2] == 'flood' then
 			unlock_group_flood(msg, msg.chat_id)
 		elseif matches[2] == 'fosh' then
