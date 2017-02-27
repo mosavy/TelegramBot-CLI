@@ -56,6 +56,23 @@ for k,v in pairs(group[tostring(msg.chat_id_)]['filterlist']) do
  return var
 end
 
+function is_silent_user(user_id, chat_id)
+	local var = false
+	local group = load_data(_config.group.data)
+	local user = msg.from_id
+	if group[tostring(msg.chat_id_)] then
+		if group[tostring(msg.chat_id_)]['is_silent_users'] 
+		--if group[tostring(msg.chat_id_)].is_silent_users then
+			if group[tostring(msg.chat_id_)]['is_silent_users'][tostring(user)] then
+			--if group[tostring(msg.chat_id_)].is_silent_users[tostring(user)] then
+				var = true
+			end
+		end
+	end
+	return var
+end
+
+
 function check_markdown(text) 
 		str = text
 		if str:match('_') then
@@ -76,22 +93,6 @@ end
 --  tg.changeChatMemberStatus(chat_id, user_id, 'Kicked', dl_cb, nil)
     tg.changeChatMemberStatus(chat_id, user_id, "Kicked")
 end
-
---[[function is_silent_user(user_id, chat_id)
-	local var = false
-	local group = load_data(_config.group.data)
-	local user = msg.from_id
-	if group[tostring(msg.chat_id_)] then
-		if data[tostring(msg.chat_id_)]['is_silent_users'] 
-		--if data[tostring(msg.chat_id_)].is_silent_users then
-			if data[tostring(msg.chat_id_)]['is_silent_users'][tostring(user)] then
-			--if data[tostring(msg.chat_id_)].is_silent_users[tostring(user)] then
-				var = true
-			end
-		end
-	end
-	return var
-end]]
 
 function is_sudo(msg)
   local var = false
