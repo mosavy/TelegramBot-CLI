@@ -89,15 +89,3 @@ return {
 	run=run,
 	pre_process = pre_process
 }
-
---bot.lua
-    elseif msg.content_.ID == "MessageChatAddMembers" then
-        msg.text = "!!!tgservice:adduser"
-	elseif msg.content_.ID == "MessageChatJoinByLink" then
-        msg.text = "!!!tgservice:joinuser"	
---bot.lua
-
-
---lock-lua
-pm = pm..'\n23- <code>Welcome</code> : '..group[tostring(target)]['settings']['welcome']..''
---lock.lua 
