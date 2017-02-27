@@ -56,7 +56,7 @@ for k,v in pairs(group[tostring(msg.chat_id_)]['filterlist']) do
  return var
 end
 
-function is_silent_user(user_id, chat_id)
+function is_silent_user(msg)
 	local var = false
 	local group = load_data(_config.group.data)
 	local user = msg.from_id
