@@ -77,7 +77,7 @@ end
     tg.changeChatMemberStatus(chat_id, user_id, "Kicked")
 end
 
-function is_silent_user(user_id, chat_id)
+--[[function is_silent_user(user_id, chat_id)
 	local var = false
 	local group = load_data(_config.group.data)
 	local user = msg.from_id
@@ -91,7 +91,7 @@ function is_silent_user(user_id, chat_id)
 		end
 	end
 	return var
-end
+end]]
 
 function is_sudo(msg)
   local var = false
