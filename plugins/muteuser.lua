@@ -201,21 +201,3 @@ return {
 	run = run,
 	pre_process = pre_process
 }
-
---bot.lua
-function is_silent_user(user_id, chat_id)
-	local var = false
-	local group = load_data(_config.group.data)
-	local user = msg.from_id
-	if group[tostring(msg.chat_id_)] then
-		if data[tostring(msg.chat_id_)]['is_silent_users'] 
-		--if data[tostring(msg.chat_id_)].is_silent_users then
-			if data[tostring(msg.chat_id_)]['is_silent_users'][tostring(user)] then
-			--if data[tostring(msg.chat_id_)].is_silent_users[tostring(user)] then
-				var = true
-			end
-		end
-	end
-	return var
-end
---bot.lua
