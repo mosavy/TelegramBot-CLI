@@ -77,6 +77,22 @@ end
     tg.changeChatMemberStatus(chat_id, user_id, "Kicked")
 end
 
+function is_silent_user(user_id, chat_id)
+	local var = false
+	local group = load_data(_config.group.data)
+	local user = msg.from_id
+	if group[tostring(msg.chat_id_)] then
+		if data[tostring(msg.chat_id_)]['is_silent_users'] 
+		--if data[tostring(msg.chat_id_)].is_silent_users then
+			if data[tostring(msg.chat_id_)]['is_silent_users'][tostring(user)] then
+			--if data[tostring(msg.chat_id_)].is_silent_users[tostring(user)] then
+				var = true
+			end
+		end
+	end
+	return var
+end
+
 function is_sudo(msg)
   local var = false
   for v, user in pairs(_config.sudo_users) do
@@ -477,6 +493,12 @@ function tdcli_update_callback(data)
         msg.text = "!!!tgservice:joinbylink"
       	elseif msg.content_.ID == "MessageChatAddMembers" then
 		msg.text = "!!!tgservice:"
+				
+	    elseif msg.content_.ID == "MessageChatAddMembers" then
+        msg.text = "!!!tgservice:adduser"
+	elseif msg.content_.ID == "MessageChatJoinByLink" then
+        msg.text = "!!!tgservice:joinuser"
+				
       elseif msg.content_.ID == "MessageSticker" then
         msg.text = "!!!sticker:" .. data.message_.content_.sticker_.emoji_
       elseif msg.content_.document_ then
