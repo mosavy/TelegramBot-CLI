@@ -61,10 +61,10 @@ function is_silent_user(msg)
 	local group = load_data(_config.group.data)
 	local user = msg.from_id
 	if group[tostring(msg.chat_id_)] then
-		if group[tostring(msg.chat_id_)]['is_silent_users'] 
-		--if group[tostring(msg.chat_id_)].is_silent_users then
-			if group[tostring(msg.chat_id_)]['is_silent_users'][tostring(user)] then
-			--if group[tostring(msg.chat_id_)].is_silent_users[tostring(user)] then
+		--if group[tostring(msg.chat_id_)]['is_silent_users'] 
+		if group[tostring(msg.chat_id_)].is_silent_users then
+			--if group[tostring(msg.chat_id_)]['is_silent_users'][tostring(user)] then
+			if group[tostring(msg.chat_id_)].is_silent_users[tostring(user)] then
 				var = true
 			end
 		end
