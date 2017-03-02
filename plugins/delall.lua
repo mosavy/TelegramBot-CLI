@@ -3,7 +3,7 @@ local function action_by_reply(arg, data)
 	if not tonumber(data.sender_user_id_) then return false end
 	if data.sender_user_id_ then
 		if cmd == "delall" and not is_owner(msg) or not is_momod(msg) then
-			tg.deleteMessagesFromUser(data.chat_id_, data.sender_user_id_, dl_cb, nil)
+			tg.deleteMessagesFromUser(data.chat_id_, data.sender_user_id_)
 			tg.sendMessage(data.chat_id_, "", 0, "*All messages user [* `"..data.sender_user_id_.."` *] has been deleted*", 0, "md")
 		end
 	else
@@ -21,7 +21,7 @@ local function action_by_username(arg, data)
 			user_name = check_markdown(data.title_)
 		end
 		if cmd == "delall" and not is_owner(msg) or not is_momod(msg) then
-			tg.deleteMessagesFromUser(arg.chat_id, data.id_, dl_cb, nil)
+			tg.deleteMessagesFromUser(arg.chat_id, data.id_)
 			tg.sendMessage(arg.chat_id, "", 0, "*All messages user [* `"..data.id_.."` *] has been deleted*", 0, "md")
 		end
 	else
@@ -45,7 +45,7 @@ local function run(msg, matches)
 			end
 			if matches[2] and string.match(matches[2], '^%d+$') then
 				if not is_momod(msg) or not is_owner(msg) then
-					tg.deleteMessagesFromUser(msg.chat_id_, matches[2], dl_cb, nil)
+					tg.deleteMessagesFromUser(msg.chat_id_, matches[2])
 					tg.sendMessage(msg.chat_id_, "", 0, "*All messages user [* `"..matches[2].."` *] has been deleted*", 0, "md")
 				end	
 			end
