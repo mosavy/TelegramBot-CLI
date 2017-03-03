@@ -13,7 +13,7 @@ local function run(msg, matches
 	if addgroup and is_momod(msg) or is_owner(msg) then
 		if matches[1]:lower() == 'mutetime' then
 			local hash = 'mute_time:'..msg.chat_id_
-			if matches[2] and matches[3] then
+			--if matches[2] and matches[3] then
 			--if not matches[2] then
 			--	return ":لطفا ساعت و دقیقه را وارد نمایید"
 			--else
@@ -23,9 +23,9 @@ local function run(msg, matches
 				local num2 = tonumber(minutes) * 60
 				local num4 = tonumber(num1 + num2)
 				redis:setex(hash, num4, true)
-				pm1 = "*Group to time:* \n`"..matches[2].."` hour *and* `"..matches[3].."` minutes \n*closed*\n\n`Channel:` @LeaderCh"
+				pm1 = "*Group to time:* \n`"..matches[2].."` hour *and* `"..matches[3].."` minutes *closed*\n\n`Channel:` @LeaderCh"
 				tg.sendMessage(msg.chat_id_, msg.id_, 1, pm1, 1, "md")
-			end
+			--end
 		end
 		if matches[1]:lower() == 'unmutetime' then
 			local hash = 'mute_time:'..msg.chat_id_
