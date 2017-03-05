@@ -90,10 +90,10 @@ function save($filename,$TXTdata)
 $inch = file_get_contents("https://api.telegram.org/bot".API_KEY."/getChatMember?chat_id=@LeaderCh&user_id=".$from_id);
 	
 	if (strpos($inch , '"status":"left"') !== false ) {
-SendMessage($chat_id,"ÈÑÇí ÇÓÊÝÇÏå ÑÇíÇä ÇÒ Çíä ÑÈÇÊ ÈÇíÏ Çæá ÏÑ ˜ÇäÇá ÚÖæ ÔæíÏ.\n@LeaderCh");
+SendMessage($chat_id,"Ø¨Ø±Ø§ÙŠ Ø§Ø³ØªÙØ§Ø¯Ù‡ Ø±Ø§ÙŠÚ¯Ø§Ù† Ø§Ø² Ø§ÙŠÙ† Ø±Ø¨Ø§Øª Ø¨Ø§ÙŠØ¯ Ø§ÙˆÙ„ Ø¯Ø± Ú©Ø§Ù†Ø§Ù„ Ø¹Ø¶Ùˆ Ø´ÙˆÙŠØ¯.\n@LeaderCh");
 }
 if (strpos($ban , "$from_id") !== false  ) {
-SendMessage($chat_id,"You Are Banned From Server.ðŸ¤“\nDon't Message Again...ðŸ˜Ž\nâž–âž–âž–âž–âž–âž–âž–âž–âž–âž–\náØÝÇ íÇãí ÇÑÓÇá ä˜äíÏ ÏÓÊÑÓí ÔãÇ Èå Çíä ÓÑæÑ ãÓÏæÏ ÔÏå ÇÓÊ");
+SendMessage($chat_id,"You Are Banned From Server.\nDon't Message Again...\n---------------------------------------â€“\nÙ„Ø·ÙØ§ Ù¾ÙŠØ§Ù…ÙŠ Ø§Ø±Ø³Ø§Ù„ Ù†Ú©Ù†ÙŠØ¯ Ø¯Ø³ØªØ±Ø³ÙŠ Ø´Ù…Ø§ Ø¨Ù‡ Ø§ÙŠÙ† Ø³Ø±ÙˆØ± Ù…Ø³Ø¯ÙˆØ¯ Ø´Ø¯Ù‡ Ø§Ø³Øª");
 	}
 
 elseif(isset($update->callback_query)){
@@ -115,11 +115,11 @@ elseif(isset($update->callback_query)){
         makereq('editMessageText',[
             'chat_id'=>$chat_id,
             'message_id'=>$message_id,
-            'text'=>"ÑÈÇÊ ÔãÇ ÈÇ ãæÝÞíÊ ÍÐÝ ÔÏå\n Robot has ben deleted!",
+            'text'=>"Ø±Ø¨Ø§Øª Ø´Ù…Ø§ Ø¨Ø§ Ù…ÙˆÙÙ‚ÙŠØª Ø­Ø°Ù Ø´Ø¯Ù‡\n---------------------------------\n Robot has ben deleted!",
             'reply_markup'=>json_encode([
                 'inline_keyboard'=>[
                     [
-                        ['text'=>"Èå ˜ÇäÇá ãÇ ÈíæäÏíÏ - Pease join to my channel",'url'=>"https://telegram.me/LeaderCh"]
+                        ['text'=>"Ø¨Ù‡ Ú©Ø§Ù†Ø§Ù„ Ù…Ø§ Ø¨Ù¾ÙŠÙˆÙ†Ø¯ÙŠØ¯ - Pease join to my channel",'url'=>"https://telegram.me/LeaderCh"]
                     ]
                 ]
             ])
@@ -135,7 +135,7 @@ elseif(isset($update->callback_query)){
             'reply_markup'=>json_encode([
                 'inline_keyboard'=>[
                     [
-                        ['text'=>"Èå ˜ÇäÇá ãÇ ÈíæäÏíÏ - Pleas join to my channel",'url'=>"https://telegram.me/LeaderCh"]
+                        ['text'=>"Ø¨Ù‡ Ú©Ø§Ù†Ø§Ù„ Ù…Ø§ Ø¨Ù¾ÙŠÙˆÙ†Ø¯ÙŠØ¯ - Pleas join to my channel",'url'=>"https://telegram.me/LeaderCh"]
                     ]
                 ]
             ])
@@ -144,16 +144,16 @@ elseif(isset($update->callback_query)){
  }
 }
 
-elseif ($textmessage == 'ÈÑÔÊ - Back') {
+elseif ($textmessage == 'Ø¨Ø±Ú¯Ø´Øª - Back') {
 save("data/$from_id/step.txt","none");
 var_dump(makereq('sendMessage',[
         	'chat_id'=>$update->message->chat->id,
-        	'text'=>"Èå ãäæí ÇÕáí ÑÈÇÊ ÎæÔ ÇãÏíÏ :)\n---------------------------------\n Welcome To Main Menu :)",
+        	'text'=>"Ø¨Ù‡ Ù…Ù†ÙˆÙŠ Ø§ØµÙ„ÙŠ Ø±Ø¨Ø§Øª Ø®ÙˆØ´ Ø§Ù…Ø¯ÙŠØ¯ :)\n---------------------------------\n Welcome To Main Menu :)",
 		'parse_mode'=>'MarkDown',
         	'reply_markup'=>json_encode([
             	'keyboard'=>[
   [
-                   ['text'=>"ÝÇÑÓí"],['text'=>"English ðŸ‡¦ðŸ‡º"]          
+                   ['text'=>"ÙØ§Ø±Ø³ÙŠ"],['text'=>"English"]          
 ]
                 
             	],
@@ -172,7 +172,7 @@ save("data/$from_id/step.txt","none");
 unlink("bots/".$botun."/index.php");
 var_dump(makereq('sendMessage',[
         	'chat_id'=>$update->message->chat->id,
-        	'text'=>"ÑÈÇÊ ÔãÇ ÈÇ ãæÝÞíÊ Ç˜ ÔÏ]\ní˜ ÑÈÇÊ ÌÏíÏ ÈÓÇÒíÏ \n-----------------------------------------------\nYur Robot has ben deleted \nPlease create new bot",
+        	'text'=>"Ø±Ø¨Ø§Øª Ø´Ù…Ø§ Ø¨Ø§ Ù…ÙˆÙÙ‚ÙŠØª Ù¾Ø§Ú© Ø´Ø¯]\nÙŠÚ© Ø±Ø¨Ø§Øª Ø¬Ø¯ÙŠØ¯ Ø¨Ø³Ø§Ø²ÙŠØ¯ \n-----------------------------------------------\nYur Robot has ben deleted \nPlease create new bot",
 		'parse_mode'=>'MarkDown',
         	'reply_markup'=>json_encode([
             	'keyboard'=>[
@@ -186,11 +186,11 @@ var_dump(makereq('sendMessage',[
     		]));
 }
 else {
-SendMessage($chat_id,"ÎØÇ!!!\nÔãÇ äãíÊæÇäíÏ Çíä ÑÈÇÊ ÑÇ Ç˜ ˜äíÏ \n-------------------------------------------\nError \nYou cant delete this bot");
+SendMessage($chat_id,"Ø®Ø·Ø§!!!\nØ´Ù…Ø§ Ù†Ù…ÙŠØªÙˆØ§Ù†ÙŠØ¯ Ø§ÙŠÙ† Ø±Ø¨Ø§Øª Ø±Ø§ Ù¾Ø§Ú© Ú©Ù†ÙŠØ¯ \n-------------------------------------------\nError \nYou cant delete this bot");
 }
 }
 else {
-SendMessage($chat_id,"ÏÑÎæÇÓÊ ÔãÇ íÇÝÊ äÔÏ\n---------------------------\n Not found");
+SendMessage($chat_id,"Ø¯Ø±Ø®ÙˆØ§Ø³Øª Ø´Ù…Ø§ ÙŠØ§ÙØª Ù†Ø´Ø¯\n---------------------------\n Not found");
 }
 }
 elseif ($step == 'create bot') {
@@ -215,11 +215,11 @@ $token = $textmessage ;
 	$ok = $resultb["ok"];
 		if($ok != 1) {
 			//Token Not True
-			SendMessage($chat_id,"Êæ˜ä ÇÑÓÇáí äÇãÚÊÈÑ ÇÓÊ\n-----------------------------------\nYour token is invalid");
+			SendMessage($chat_id,"ØªÙˆÚ©Ù† Ø§Ø±Ø³Ø§Ù„ÙŠ Ù†Ø§Ù…Ø¹ØªØ¨Ø± Ø§Ø³Øª\n-----------------------------------\nYour token is invalid");
 		}
 		else
 		{
-		SendMessage($chat_id,"áØÝÇ ãäÊÙÑ ÈãÇäíÏ \nÏÑÍÇá ÓÇÎÊ ÑÈÇÊ...\n Please wite...\nare creating bot...");
+		SendMessage($chat_id,"Ù„Ø·ÙØ§ Ù…Ù†ØªØ¸Ø± Ø¨Ù…Ø§Ù†ÙŠØ¯ \nØ¯Ø±Ø­Ø§Ù„ Ø³Ø§Ø®Øª Ø±Ø¨Ø§Øª...\n Please wite\nare creating bot...");
 		if (file_exists("bots/$un/index.php")) {
 		$source = file_get_contents("bot/index.php");
 		$source = str_replace("**TOKEN**",$token,$source);
@@ -229,12 +229,12 @@ $token = $textmessage ;
 
 var_dump(makereq('sendMessage',[
         	'chat_id'=>$update->message->chat->id,
-        	'text'=>" ÑÈÇÊ ÔãÇ ÈÇ ãæÝÞíÊ ÓÇÎÊå ÔÏ\n[ÈÑÇí æÑæÏ Èå ÑÈÇÊ ÎæÏ ˜áí˜ ˜äíÏ](https://telegram.me/$un) \n-----------------------------------------------------------Your Robot Has ben Created\n[start Bot](https://telegram.me/$un)",
+        	'text'=>" Ø±Ø¨Ø§Øª Ø´Ù…Ø§ Ø¨Ø§ Ù…ÙˆÙÙ‚ÙŠØª Ø³Ø§Ø®ØªÙ‡ Ø´Ø¯\n[Ø¨Ø±Ø§ÙŠ ÙˆØ±ÙˆØ¯ Ø¨Ù‡ Ø±Ø¨Ø§Øª Ø®ÙˆØ¯ Ú©Ù„ÙŠÚ© Ú©Ù†ÙŠØ¯](https://telegram.me/$un) \n-------------------------------------------\nYour Robot Has ben Created\n[start Bot](https://telegram.me/$un)",
 		'parse_mode'=>'MarkDown',
         	'reply_markup'=>json_encode([
             	'keyboard'=>[
                 [
-                   ['text'=>"ÈÑÔÊ - Back"]
+                   ['text'=>"Ø¨Ø±Ú¯Ø´Øª - Back"]
                 ]
                 
             	],
@@ -274,14 +274,14 @@ var_dump(makereq('sendMessage',[
 		save("bots/$un/data/btn/btn3_post","");
 		save("bots/$un/data/btn/btn4_post","");
 	
-		save("bots/$un/data/setting/sticker.txt","âœ…");
-		save("bots/$un/data/setting/video.txt","âœ…");
-		save("bots/$un/data/setting/voice.txt","âœ…");
-		save("bots/$un/data/setting/file.txt","âœ…");
-		save("bots/$un/data/setting/photo.txt","âœ…");
-		save("bots/$un/data/setting/music.txt","âœ…");
-		save("bots/$un/data/setting/forward.txt","âœ…");
-		save("bots/$un/data/setting/joingp.txt","âœ…");
+		save("bots/$un/data/setting/sticker.txt","");
+		save("bots/$un/data/setting/video.txt","");
+		save("bots/$un/data/setting/voice.txt","");
+		save("bots/$un/data/setting/file.txt","");
+		save("bots/$un/data/setting/photo.txt","");
+		save("bots/$un/data/setting/music.txt","");
+		save("bots/$un/data/setting/forward.txt","");
+		save("bots/$un/data/setting/joingp.txt","");
 		
 		$source = file_get_contents("bot/index.php");
 		$source = str_replace("**TOKEN**",$token,$source);
@@ -291,12 +291,12 @@ var_dump(makereq('sendMessage',[
 
 var_dump(makereq('sendMessage',[
         	'chat_id'=>$update->message->chat->id,
-        	'text'=>" ÑÈÇÊ ÔãÇ ÈÇ ãæÝÞíÊ ÓÇÎÊå ÔÏ\n[ÈÑÇí æÑæÏ Èå ÑÈÇÊ ÎæÏ ˜áí˜ ˜äíÏ](https://telegram.me/$un) \n-----------------------------------------------------------Your Robot Has ben Created\n[start Bot](https://telegram.me/$un)",		
+        	'text'=>" Ø±Ø¨Ø§Øª Ø´Ù…Ø§ Ø¨Ø§ Ù…ÙˆÙÙ‚ÙŠØª Ø³Ø§Ø®ØªÙ‡ Ø´Ø¯\n[Ø¨Ø±Ø§ÙŠ ÙˆØ±ÙˆØ¯ Ø¨Ù‡ Ø±Ø¨Ø§Øª Ø®ÙˆØ¯ Ú©Ù„ÙŠÚ© Ú©Ù†ÙŠØ¯](https://telegram.me/$un) \n-----------------------------------------------------------Your Robot Has ben Created\n[start Bot](https://telegram.me/$un)",		
                 'parse_mode'=>'MarkDown',
         	'reply_markup'=>json_encode([
             	'keyboard'=>[
                 [
-                   ['text'=>"ÈÑÔÊ - Back"]
+                   ['text'=>"Ø¨Ø±Ú¯Ø´Øª - Back"]
                 ]
                 
             	],
@@ -330,7 +330,7 @@ SendMessage($chat_id,"You Are Not Admin");
 elseif (strpos($textmessage , "/feedback") !== false ) {
 if ($from_id == $ban) {
 $text = str_replace("/feedback","",$textmessage);
-SendMessage($chat_id,"äÙÑ ÔãÇ ÈÇ ãæÝÞíÊ ÇÑÓÇá ÔÏ\n---------------------------------\n Your comment has been sent");
+SendMessage($chat_id,"Ù†Ø¸Ø± Ø´Ù…Ø§ Ø¨Ø§ Ù…ÙˆÙÙ‚ÙŠØª Ø§Ø±Ø³Ø§Ù„ Ø´Ø¯\n---------------------------------\n Your comment has been sent");
 SendMessage($admin,"FeedBack : \n name: $name \n username: $username \n id: $from_id\n Text: $text");
 }
 else {
@@ -340,34 +340,34 @@ SendMessage($chat_id,"You Are banned");
 elseif (strpos($textmessage , "/report") !== false ) {
 if ($from_id == $ban) {
 $text = str_replace("/report","",$textmessage);
-SendMessage($chat_id,"ÈÚÏ ÇÒ ÊÇííÏ ÑÈÇÊ ÇÒ ÓÑæÑ ÇÎÑÇÌ ãíÔæÏ\nRobots Ben from server is later confirmed");
+SendMessage($chat_id,"Ø¨Ø¹Ø¯ Ø§Ø² ØªØ§ÙŠÙŠØ¯ Ø±Ø¨Ø§Øª Ø§Ø² Ø³Ø±ÙˆØ± Ø§Ø®Ø±Ø§Ø¬ Ù…ÙŠØ´ÙˆØ¯\n---------------------------------------------\nRobots Ben from server is later confirmed");
 SendMessage($admin,"Report : \n name: $name \n username: $username \n id: $from_id\n Bot: $text");
 }
 else {
 SendMessage($chat_id,"You Are banned");
 }
 }
-elseif($textmessage == 'ÑÈÇÊåÇí ãä')
+elseif($textmessage == 'Ø±Ø¨Ø§ØªÙ‡Ø§ÙŠ Ù…Ù†')
 {
 $botname = file_get_contents("data/$from_id/bots.txt");
 if ($botname == "") {
-SendMessage($chat_id,"ÔãÇ åäæÒ åí ÑÈÇÊí äÓÇÎÊå ÇíÏ!!!");
+SendMessage($chat_id,"Ø´Ù…Ø§ Ù‡Ù†ÙˆØ² Ù‡ÙŠÚ† Ø±Ø¨Ø§ØªÙŠ Ù†Ø³Ø§Ø®ØªÙ‡ Ø§ÙŠØ¯!!!");
 return;
 }
  	var_dump(makereq('sendMessage',[
 	'chat_id'=>$update->message->chat->id,
-	'text'=>"áíÓÊ ÑÈÇÊåÇí ÔãÇ: ",
+	'text'=>"Ù„ÙŠØ³Øª Ø±Ø¨Ø§ØªÙ‡Ø§ÙŠ Ø´Ù…Ø§: ",
 	'parse_mode'=>'MarkDown',
 	'reply_markup'=>json_encode([
 	'inline_keyboard'=>[
 	[
-	['text'=>"ðŸ‘‰ @".$botname,'url'=>"https://telegram.me/".$botname]
+	['text'=>"Ù‹@".$botname,'url'=>"https://telegram.me/".$botname]
 	]
 	]
 	])
 	]));
 }
-elseif($textmessage == 'ðŸš€ my robots')
+elseif($textmessage == 'Ù‹my robots')
 {
 $botname = file_get_contents("data/$from_id/bots.txt");
 if ($botname == "") {
@@ -381,7 +381,7 @@ return;
 	'reply_markup'=>json_encode([
 	'inline_keyboard'=>[
 	[
-	['text'=>"ðŸ‘‰ @".$botname,'url'=>"https://telegram.me/".$botname]
+	['text'=>"Ù‹@".$botname,'url'=>"https://telegram.me/".$botname]
 	]
 	]
 	])
@@ -401,19 +401,19 @@ fclose($myfile2);
 
 var_dump(makereq('sendMessage',[
          'chat_id'=>$update->message->chat->id,
-         'text'=>"Please Select your Language.\n---------------------------------\náØÝÇ ÒÈÇä ÎæÏ ÑÇ ÇäÊÎÇÈ ˜äíÏ.",
+         'text'=>"Please Select your Language.\n---------------------------------\nÙ„Ø·ÙØ§ Ø²Ø¨Ø§Ù† Ø®ÙˆØ¯ Ø±Ø§ Ø§Ù†ØªØ®Ø§Ø¨ Ú©Ù†ÙŠØ¯.",
   'parse_mode'=>'MarkDown',
          'reply_markup'=>json_encode([
              'keyboard'=>[
 [
-                   ['text'=>"ÝÇÑÓí"],['text'=>"English ðŸ‡¦ðŸ‡º"]          
+                   ['text'=>"ÙØ§Ø±Ø³ÙŠ"],['text'=>"English"]          
 ]
              ],
              'resize_keyboard'=>true
          ])
       ]));
 }
-elseif($textmessage == 'ÊÛííÑ ÒÈÇä' )
+elseif($textmessage == 'ØªØºÙŠÙŠØ± Ø²Ø¨Ø§Ù†' )
 {
 if (!file_exists("data/$from_id/step.txt")) {
 mkdir("data/$from_id");
@@ -427,19 +427,19 @@ fclose($myfile2);
 
 var_dump(makereq('sendMessage',[
          'chat_id'=>$update->message->chat->id,
-         'text'=>"Please Select your Language.\n---------------------------------\náØÝÇ ÒÈÇä ÎæÏ ÑÇ ÇäÊÎÇÈ ˜äíÏ.",
+         'text'=>"Please Select your Language.\n---------------------------------\nÙ„Ø·ÙØ§ Ø²Ø¨Ø§Ù† Ø®ÙˆØ¯ Ø±Ø§ Ø§Ù†ØªØ®Ø§Ø¨ Ú©Ù†ÙŠØ¯.",
   'parse_mode'=>'MarkDown',
          'reply_markup'=>json_encode([
              'keyboard'=>[
 [
-                   ['text'=>"ÝÇÑÓí"],['text'=>"English ðŸ‡¦ðŸ‡º"]          
+                   ['text'=>"ÙØ§Ø±Ø³ÙŠ"],['text'=>"English"]          
 ]
              ],
              'resize_keyboard'=>true
          ])
       ]));
 }
-elseif($textmessage == 'ðŸ‡¦ðŸ‡º Language ðŸ‡®ðŸ‡·' )
+elseif($textmessage == 'Ù‹Language' )
 {
 if (!file_exists("data/$from_id/step.txt")) {
 mkdir("data/$from_id");
@@ -453,19 +453,19 @@ fclose($myfile2);
 
 var_dump(makereq('sendMessage',[
          'chat_id'=>$update->message->chat->id,
-         'text'=>"Please Select your Language.\n---------------------------------\náØÝÇ ÒÈÇä ÎæÏ ÑÇ ÇäÊÎÇÈ ˜äíÏ.",
+         'text'=>"Please Select your Language.\n---------------------------------\nÙ„Ø·ÙØ§ Ø²Ø¨Ø§Ù† Ø®ÙˆØ¯ Ø±Ø§ Ø§Ù†ØªØ®Ø§Ø¨ Ú©Ù†ÙŠØ¯.",
   'parse_mode'=>'MarkDown',
          'reply_markup'=>json_encode([
              'keyboard'=>[
 [
-                   ['text'=>"ÝÇÑÓí"],['text'=>"English ðŸ‡¦ðŸ‡º"]          
+                   ['text'=>"ÙØ§Ø±Ø³ÙŠ"],['text'=>"English"]          
 ]
              ],
              'resize_keyboard'=>true
          ])
       ]));
 }
-elseif($textmessage == 'English ðŸ‡¦ðŸ‡º')
+elseif($textmessage == 'English')
 {
 
 if (!file_exists("data/$from_id/step.txt")) {
@@ -480,34 +480,28 @@ fclose($myfile2);
 
 var_dump(makereq('sendMessage',[
          'chat_id'=>$update->message->chat->id,
-         'text'=>"HelloðŸ‘‹ðŸ˜‰
-
-ðŸ”¹ WellCome To PvResan Robot ðŸŒ¹
-
-ðŸ”¸ with this Service you can Provide Support  your Robot Mmbers , Channel , Groups and  Websites 
-
-ðŸ”¹ To Create Robot Select 'ðŸ”„ Create a Robot' Button!",
+         'text'=>"Hello\n\nWellCome To PvResan Robot\n\nwith this Service you can Provide Support  your Robot Mmbers , Channel , Groups and  Websites\n\nTo Create Robot Select Create a Robot' Button!",
   'parse_mode'=>'MarkDown',
          'reply_markup'=>json_encode([
              'keyboard'=>[
                 [
-                   ['text'=>"ðŸ”„ Create a ot"],['text'=>"ðŸš€ my robots"],['text'=>"â˜¢ Delete a Robot"]
+                   ['text'=>"Create a bot"],['text'=>"my robots"],['text'=>"Delete a Robot"]
                 ],
                 [
-                   ['text'=>"â„¹ï¸ help"],['text'=>"ðŸ”° rules"]
+                   ['text'=>"help"],['text'=>"rules"]
                 ],
                      [
-                   ['text'=>"âœ… Send Comment"],['text'=>"âš ï¸ Robot Report"]
+                   ['text'=>"Send Comment"],['text'=>"Robot Report"]
                 ],
 [
-                   ['text'=>"ðŸ‡¦ðŸ‡º Language ðŸ‡®ðŸ‡·"]          
+                   ['text'=>"Language"]          
 ]
              ],
              'resize_keyboard'=>true
          ])
       ]));
 }
-elseif($textmessage == 'ÙØ§Ø±Ø³ÛŒ ðŸ‡®ðŸ‡·' )
+elseif($textmessage == 'ÙØ§Ø±Ø³ÛŒ' )
 {
 
 if (!file_exists("data/$from_id/step.txt")) {
@@ -522,21 +516,21 @@ fclose($myfile2);
 
 var_dump(makereq('sendMessage',[
          'chat_id'=>$update->message->chat->id,
-         'text'=>"ÓáÇã Èå ÓÑæíÓ íÇã ÑÓÇä ÊáÑÇã ÎæÔ ÂãÏíÏ.\n\nÈÇ ÇÓÊÝÇÏå ÇÒ Çíä ÓÑæíÓ ÔãÇ ãíÊæÇäíÏ ÑÈÇÊí ÌåÊ ÇÑöÆå Èå ˜ÇÑÈÑÇä ÑÈÇÊ, ˜ÇäÇá,Ñæå íÇ æÈÓÇíÊÎæÏ ÇíÌÇÏ ˜äíÏ\n\nÈÑÇí ÓÇÎÊ ÑÈÇÊ ÑÈÇÊ ãíÊæÇäíÏ ÇÒ Ï˜ãå ÓÇÎÊ ÑÈÇÊ ÇÓÊÝÇÏå ˜äíÏ ",
+         'text'=>"Ø³Ù„Ø§Ù… Ø¨Ù‡ Ø³Ø±ÙˆÙŠØ³ Ù¾ÙŠØ§Ù… Ø±Ø³Ø§Ù† ØªÙ„Ú¯Ø±Ø§Ù… Ø®ÙˆØ´ Ø¢Ù…Ø¯ÙŠØ¯.\n\nØ¨Ø§ Ø§Ø³ØªÙØ§Ø¯Ù‡ Ø§Ø² Ø§ÙŠÙ† Ø³Ø±ÙˆÙŠØ³ Ø´Ù…Ø§ Ù…ÙŠØªÙˆØ§Ù†ÙŠØ¯ Ø±Ø¨Ø§ØªÙŠ Ø¬Ù‡Øª Ø§Ø±ÙØ¦Ù‡ Ø¨Ù‡ Ú©Ø§Ø±Ø¨Ø±Ø§Ù† Ø±Ø¨Ø§Øª, Ú©Ø§Ù†Ø§Ù„,Ú¯Ø±ÙˆÙ‡ ÙŠØ§ ÙˆØ¨Ø³Ø§ÙŠØªØ®ÙˆØ¯ Ø§ÙŠØ¬Ø§Ø¯ Ú©Ù†ÙŠØ¯\n\nØ¨Ø±Ø§ÙŠ Ø³Ø§Ø®Øª Ø±Ø¨Ø§Øª Ø±Ø¨Ø§Øª Ù…ÙŠØªÙˆØ§Ù†ÙŠØ¯ Ø§Ø² Ø¯Ú©Ù…Ù‡ Ø³Ø§Ø®Øª Ø±Ø¨Ø§Øª Ø§Ø³ØªÙØ§Ø¯Ù‡ Ú©Ù†ÙŠØ¯ ",
   'parse_mode'=>'MarkDown',
          'reply_markup'=>json_encode([
              'keyboard'=>[
                 [
-                   ['text'=>"ðÓÇÎÊ ÑÈÇÊ"],['text'=>"ÑÈÇÊåÇí ãä"],['text'=>"ÍÐÝ ÑÈÇÊ"]
+                   ['text'=>"Ø³Ø§Ø®Øª Ø±Ø¨Ø§Øª"],['text'=>"Ø±Ø¨Ø§ØªÙ‡Ø§ÙŠ Ù…Ù†"],['text'=>"Ø­Ø°Ù Ø±Ø¨Ø§Øª"]
                 ],
                 [
-                   ['text'=>"ÑÇåäãÇ"],['text'=>"ÞæÇäíä"]
+                   ['text'=>"Ø±Ø§Ù‡Ù†Ù…Ø§"],['text'=>"Ù‚ÙˆØ§Ù†ÙŠÙ†"]
                 ],
                 [
-                   ['text'=>"ÇÑÓÇá äÙÑ"],['text'=>"ÒÇÑÔ ÊÎáÝ"]
+                   ['text'=>"Ø§Ø±Ø³Ø§Ù„ Ù†Ø¸Ø±"],['text'=>"Ú¯Ø²Ø§Ø±Ø´ ØªØ®Ù„Ù"]
                 ],
            [
-                ['text'=>"ÊÛííÑ ÒÈÇä"]
+                ['text'=>"ØªØºÙŠÙŠØ± Ø²Ø¨Ø§Ù†"]
             ]
                 
              ],
@@ -544,37 +538,37 @@ var_dump(makereq('sendMessage',[
          ])
       ]));
 }
-elseif($textmessage == 'ÞæÇäíä') {
-SendMessage($chat_id, "1) ãÓÆæáíÊ íÇãåÇí ÑÏ æ ÈÏá ÔÏå ÏÑ åÑ ÑÈÇÊ ÈÇ ãÏíÑ Âä ÑÈÇÊ ãíÈÇÔÏ æ Ñæå áíÏÑ åí æäå ãÓÆæáíÊí ÞÈæá äãí˜äÏ.\n\n2) ÇíÌÇÏ ÑÈÇÊ ÈÇ ÚäæÇäåÇí ãÈÊÐá æ ÎÇÑÌ ÇÒ ÚÑÝ ÌÇãÚå ˜å ÈÑÇí ÌÐÈ ÂãÇÑ æ ÝÑæÔ ãÍÕæáÇÊ ÛíÑ ãÚÇÑÝ ÈÇÔÏ ããäæÚ ãíÈÇÔÏ æ ÏÑ ÕæÑÊ ãÔÇåÏå ÍÐÝ æ ãÓæÏæ ãíÑÏÏ\n\n3) ÇØáÇÚÇÊ ËÈÊ ÔÏå ÏÑ ÑÈÇÊåÇí ÓÇÎÊå ÔÏå ÊæÓØ pvceator ÇÒ ÞÈíá ÇØáÇÚÇÊ ÑæÝÇíá äÒÏ ãÏíÑÇä pvcreator ãÍÝæÙ åÓÊ æ ÏÑ ÇÎÊíÇÑ ÇÔÎÇÕ ÍÞíÞí íÇ ÍÞæÞí ÞÑÇÑ äãííÑÏ.\n\n4) ÑÈÇÊåÇíí ˜å ÇÞÏÇã Èå ÇäÊÔÇÑ ãØÇáÈ íÇ ÊÕÇæíÑ ãÓÊÍÌä ˜ääÏ íÇ Èå ãÐÇåÈ,ÇÏíÇä æíÇ ãæãíÊí Êæåíä ˜ääÏ ãÓÏæÏ ÎæÇåäÏ ÔÏ\n\n5) ÓÇÎÊ åÑæäå ÑÈÇÊ æ ÝÚÇáíÊ ÏÑ Òãíäå Hacking íÇ Sexology ÎáÇÝ ÞæÇäíä ÇÓÊ ÏÑÕæÑÊ ÈÑÎæÑÏ ÕÇÍÈ ÑÈÇÊ æ ÑÈÇÊ ÓÇÎÊå ÔÏå ÇÒ ÓÑæÑ ãÇ ãÓÏæÏ ÎæÇåÏ ÔÏ\n\n6) ÏÑ ÕæÑÊ ãÔÇåÏå ÇÓÊÝÇÏå ÇÒ ÞÇÈáíÊåÇí ÑÈÇÊ ÏÑ ÌåÇÊ ãäÝí ãÇääÏ Spam íÇ Hack ˜ÇÑÈÑÇä ÊáÑÇã ÔÏíÏÇ ÈÑÎæÑÏ ãíÔæÏ æ ÊãÇã ÇØáÇÚÇÊ ÔÎÕ ãæÑÏ äÙÑ Èå ãÑÇÌÚ ÞÖÇíí ÒÇÑÔ ãíÔæÏ\n\n7) ÇÑ ÊÚÏÇÏ ÏÑÎæÇÓÊåÇí ÑÈÇÊ ÔãÇ Èå ÓÑæÑ ãÇ ÈíÔ ÇÒ ÍÏ ãÚãæá ÈÇÔÏ æ åãäíä ÑÈÇÊ ÔãÇ VIP äÈÇÔÏ äÏ ÈÇÑ Èå ÔãÇ ÎØÇÑí ÏÇÏå ãíÔæÏ. ÇÑ Çíä ÇÎØÇÑ äÇÏíÏå ÑÝÊå ÔæÏ ÑÈÇÊ ÔãÇ Èå ÕæÑÊ ÇÊæãÇÊí˜ Èå ÍÇáÊ ÊÚáíÞ ÏÑ ãí ÂíÏ");
+elseif($textmessage == 'Ù‚ÙˆØ§Ù†ÙŠÙ†') {
+SendMessage($chat_id, "1) Ù…Ø³Ø¦ÙˆÙ„ÙŠØª Ù¾ÙŠØ§Ù…Ù‡Ø§ÙŠ Ø±Ø¯ Ùˆ Ø¨Ø¯Ù„ Ø´Ø¯Ù‡ Ø¯Ø± Ù‡Ø± Ø±Ø¨Ø§Øª Ø¨Ø§ Ù…Ø¯ÙŠØ± Ø¢Ù† Ø±Ø¨Ø§Øª Ù…ÙŠØ¨Ø§Ø´Ø¯ Ùˆ Ú¯Ø±ÙˆÙ‡ Ù„ÙŠØ¯Ø± Ù‡ÙŠÚ† Ú¯ÙˆÙ†Ù‡ Ù…Ø³Ø¦ÙˆÙ„ÙŠØªÙŠ Ù‚Ø¨ÙˆÙ„ Ù†Ù…ÙŠÚ©Ù†Ø¯.\n\n2) Ø§ÙŠØ¬Ø§Ø¯ Ø±Ø¨Ø§Øª Ø¨Ø§ Ø¹Ù†ÙˆØ§Ù†Ù‡Ø§ÙŠ Ù…Ø¨ØªØ°Ù„ Ùˆ Ø®Ø§Ø±Ø¬ Ø§Ø² Ø¹Ø±Ù Ø¬Ø§Ù…Ø¹Ù‡ Ú©Ù‡ Ø¨Ø±Ø§ÙŠ Ø¬Ø°Ø¨ Ø¢Ù…Ø§Ø± Ùˆ ÙØ±ÙˆØ´ Ù…Ø­ØµÙˆÙ„Ø§Øª ØºÙŠØ± Ù…Ø¹Ø§Ø±Ù Ø¨Ø§Ø´Ø¯ Ù…Ù…Ù†ÙˆØ¹ Ù…ÙŠØ¨Ø§Ø´Ø¯ Ùˆ Ø¯Ø± ØµÙˆØ±Øª Ù…Ø´Ø§Ù‡Ø¯Ù‡ Ø­Ø°Ù Ùˆ Ù…Ø³ÙˆØ¯Ùˆ Ù…ÙŠÚ¯Ø±Ø¯Ø¯\n\n3) Ø§Ø·Ù„Ø§Ø¹Ø§Øª Ø«Ø¨Øª Ø´Ø¯Ù‡ Ø¯Ø± Ø±Ø¨Ø§ØªÙ‡Ø§ÙŠ Ø³Ø§Ø®ØªÙ‡ Ø´Ø¯Ù‡ ØªÙˆØ³Ø· pvceator Ø§Ø² Ù‚Ø¨ÙŠÙ„ Ø§Ø·Ù„Ø§Ø¹Ø§Øª Ù¾Ø±ÙˆÙØ§ÙŠÙ„ Ù†Ø²Ø¯ Ù…Ø¯ÙŠØ±Ø§Ù† pvcreator Ù…Ø­ÙÙˆØ¸ Ù‡Ø³Øª Ùˆ Ø¯Ø± Ø§Ø®ØªÙŠØ§Ø± Ø§Ø´Ø®Ø§Øµ Ø­Ù‚ÙŠÙ‚ÙŠ ÙŠØ§ Ø­Ù‚ÙˆÙ‚ÙŠ Ù‚Ø±Ø§Ø± Ù†Ù…ÙŠÚ¯ÙŠØ±Ø¯.\n\n4) Ø±Ø¨Ø§ØªÙ‡Ø§ÙŠÙŠ Ú©Ù‡ Ø§Ù‚Ø¯Ø§Ù… Ø¨Ù‡ Ø§Ù†ØªØ´Ø§Ø± Ù…Ø·Ø§Ù„Ø¨ ÙŠØ§ ØªØµØ§ÙˆÙŠØ± Ù…Ø³ØªØ­Ø¬Ù† Ú©Ù†Ù†Ø¯ ÙŠØ§ Ø¨Ù‡ Ù…Ø°Ø§Ù‡Ø¨,Ø§Ø¯ÙŠØ§Ù† ÙˆÙŠØ§ Ù…ÙˆÙ…ÙŠØªÙŠ ØªÙˆÙ‡ÙŠÙ† Ú©Ù†Ù†Ø¯ Ù…Ø³Ø¯ÙˆØ¯ Ø®ÙˆØ§Ù‡Ù†Ø¯ Ø´Ø¯\n\n5) Ø³Ø§Ø®Øª Ù‡Ø±Ú¯ÙˆÙ†Ù‡ Ø±Ø¨Ø§Øª Ùˆ ÙØ¹Ø§Ù„ÙŠØª Ø¯Ø± Ø²Ù…ÙŠÙ†Ù‡ Hacking ÙŠØ§ Sexology Ø®Ù„Ø§Ù Ù‚ÙˆØ§Ù†ÙŠÙ† Ø§Ø³Øª Ø¯Ø±ØµÙˆØ±Øª Ø¨Ø±Ø®ÙˆØ±Ø¯ ØµØ§Ø­Ø¨ Ø±Ø¨Ø§Øª Ùˆ Ø±Ø¨Ø§Øª Ø³Ø§Ø®ØªÙ‡ Ø´Ø¯Ù‡ Ø§Ø² Ø³Ø±ÙˆØ± Ù…Ø§ Ù…Ø³Ø¯ÙˆØ¯ Ø®ÙˆØ§Ù‡Ø¯ Ø´Ø¯\n\n6) Ø¯Ø± ØµÙˆØ±Øª Ù…Ø´Ø§Ù‡Ø¯Ù‡ Ø§Ø³ØªÙØ§Ø¯Ù‡ Ø§Ø² Ù‚Ø§Ø¨Ù„ÙŠØªÙ‡Ø§ÙŠ Ø±Ø¨Ø§Øª Ø¯Ø± Ø¬Ù‡Ø§Øª Ù…Ù†ÙÙŠ Ù…Ø§Ù†Ù†Ø¯ Spam ÙŠØ§ Hack Ú©Ø§Ø±Ø¨Ø±Ø§Ù† ØªÙ„Ú¯Ø±Ø§Ù… Ø´Ø¯ÙŠØ¯Ø§ Ø¨Ø±Ø®ÙˆØ±Ø¯ Ù…ÙŠØ´ÙˆØ¯ Ùˆ ØªÙ…Ø§Ù… Ø§Ø·Ù„Ø§Ø¹Ø§Øª Ø´Ø®Øµ Ù…ÙˆØ±Ø¯ Ù†Ø¸Ø± Ø¨Ù‡ Ù…Ø±Ø§Ø¬Ø¹ Ù‚Ø¶Ø§ÙŠÙŠ Ú¯Ø²Ø§Ø±Ø´ Ù…ÙŠØ´ÙˆØ¯\n\n7) Ø§Ú¯Ø± ØªØ¹Ø¯Ø§Ø¯ Ø¯Ø±Ø®ÙˆØ§Ø³ØªÙ‡Ø§ÙŠ Ø±Ø¨Ø§Øª Ø´Ù…Ø§ Ø¨Ù‡ Ø³Ø±ÙˆØ± Ù…Ø§ Ø¨ÙŠØ´ Ø§Ø² Ø­Ø¯ Ù…Ø¹Ù…ÙˆÙ„ Ø¨Ø§Ø´Ø¯ Ùˆ Ù‡Ù…Ú†Ù†ÙŠÙ† Ø±Ø¨Ø§Øª Ø´Ù…Ø§ VIP Ù†Ø¨Ø§Ø´Ø¯ Ú†Ù†Ø¯ Ø¨Ø§Ø± Ø¨Ù‡ Ø´Ù…Ø§ Ø®Ø·Ø§Ø±ÙŠ Ø¯Ø§Ø¯Ù‡ Ù…ÙŠØ´ÙˆØ¯. Ø§Ú¯Ø± Ø§ÙŠÙ† Ø§Ø®Ø·Ø§Ø± Ù†Ø§Ø¯ÙŠØ¯Ù‡ Ú¯Ø±ÙØªÙ‡ Ø´ÙˆØ¯ Ø±Ø¨Ø§Øª Ø´Ù…Ø§ Ø¨Ù‡ ØµÙˆØ±Øª Ø§ØªÙˆÙ…Ø§ØªÙŠÚ© Ø¨Ù‡ Ø­Ø§Ù„Øª ØªØ¹Ù„ÙŠÙ‚ Ø¯Ø± Ù…ÙŠ Ø¢ÙŠØ¯");
 }
-elseif($textmessage == 'ðŸ”° rules') {
-SendMessage($chat_id, "1âƒ£ Recorded data in robots made by PvResan such as profile data , are preserved to PvResan's managers and will not be available for real or juridical people.\n\n 2âƒ£ Robots that publish obscene pictures or subjects and insult the officials , religions and nations and races , will be blocked.\n\n3âƒ£ Creating a robot with vulgar titles and out of norm of society which absorbs the statistics and selling offbeat products are prohibited and in case of witnessing  intended robot will be deleted and blocked.\n\n4âƒ£ The responsibility of exchanged messages in each robot is with the manager of that robot and PvResan does not accept any responsibilities.\n\n5âƒ£ Respecting the privacy and rights of individuals is necessary. Including no offense to religious , political and juridical figures of the country specially robot users.");
+elseif($textmessage == 'Ù‹rules') {
+SendMessage($chat_id, "1) Recorded data in robots made by PvResan such as profile data , are preserved to PvResan's managers and will not be available for real or juridical people.\n\n 2) Robots that publish obscene pictures or subjects and insult the officials , religions and nations and races , will be blocked.\n\n3) Creating a robot with vulgar titles and out of norm of society which absorbs the statistics and selling offbeat products are prohibited and in case of witnessing  intended robot will be deleted and blocked.\n\n4) The responsibility of exchanged messages in each robot is with the manager of that robot and PvResan does not accept any responsibilities.\n\n5) Respecting the privacy and rights of individuals is necessary. Including no offense to religious , political and juridical figures of the country specially robot users.");
 }
-elseif($textmessage == 'ÑÇåäãÇ') {
-SendMessage($chat_id, "ÑÈÇÊ íÇã ÑíÇä íÓÊ¿\n\nÑÈÇÊ íÇã ÑÓÇä Èå ÔãÇ Çíä Çã˜Çä ÑÇ ãíÏåÏ ÊÇ ÈÇ ãÎÇØÈ åÇíÊÇä ˜å ÑíæÑÊ ÔÏå ÇäÏ íÇ Èå åÑ Ïáíáí äãíÊæÇääÏ Èå ÔãÇ Èå ÕæÑÊ ÎÕæÕí íÇã ÏåäÏ ÕÍÈÊ ˜äíÏ\n\nÈÑÎí æíŽíåÇí ÑÈÇÊ íÇã ÑÓÇä:\n\nÓÑÚÊ ÈÇáÇ\n1)ÇÑÓÇá ãØÇáÈ Èå ÊãÇã ˜ÇÑÈÑÇä íÇ ÊãÇã Ñæå åÇ\n2) ÞÝá ˜ÑÏä ÇÑÓÇá Ú˜Ó, Ýíáã,ÇÓÊí˜Ñ, ÝÇíá, ææíÓ, Âåä ÈÕæÑÊ ãÌÒÇ\n3) ÞÝá ˜ÑÏä ÝÑæÇÑÏ ÏÑ ÑÈÇÊ\n4) ÞÝá ˜ÑÏä ÚÖæíÊ ÑÈÇÊ ÏÑ Ñæå åÇ\n5) ãÔÇåÏå ÊÚÏÇÏ ÇÚÖÇ æ Ñæå åÇ æ íæÒÑäíã 10 ˜ÇÑÈÑ ÊÇÒå ÚÖæ ÔÏå\n6) ÞÑÇÑ ÏÇÏä ÇÝÑÇÏ ÏÑ áíÓÊ ÓíÇå æ Èä ˜ÑÏä ÂäåÇ\n7) ÞÇÈáíÊ ÔíÑ ˜ÑÏä ÔãÇÑå ÔãÇ Èå ÕæÑÊ ÓÑíÚ\næ äÏíä æíŽí ÏíÑ...");
+elseif($textmessage == 'Ø±Ø§Ù‡Ù†Ù…Ø§') {
+SendMessage($chat_id, "Ø±Ø¨Ø§Øª Ù¾ÙŠØ§Ù… Ø±ÙŠØ§Ù† Ú†ÙŠØ³ØªØŸ\n\nØ±Ø¨Ø§Øª Ù¾ÙŠØ§Ù… Ø±Ø³Ø§Ù† Ø¨Ù‡ Ø´Ù…Ø§ Ø§ÙŠÙ† Ø§Ù…Ú©Ø§Ù† Ø±Ø§ Ù…ÙŠØ¯Ù‡Ø¯ ØªØ§ Ø¨Ø§ Ù…Ø®Ø§Ø·Ø¨ Ù‡Ø§ÙŠØªØ§Ù† Ú©Ù‡ Ø±ÙŠÙ¾ÙˆØ±Øª Ø´Ø¯Ù‡ Ø§Ù†Ø¯ ÙŠØ§ Ø¨Ù‡ Ù‡Ø± Ø¯Ù„ÙŠÙ„ÙŠ Ù†Ù…ÙŠØªÙˆØ§Ù†Ù†Ø¯ Ø¨Ù‡ Ø´Ù…Ø§ Ø¨Ù‡ ØµÙˆØ±Øª Ø®ØµÙˆØµÙŠ Ù¾ÙŠØ§Ù… Ø¯Ù‡Ù†Ø¯ ØµØ­Ø¨Øª Ú©Ù†ÙŠØ¯\n\nØ¨Ø±Ø®ÙŠ ÙˆÙŠÚ˜Ú¯ÙŠÙ‡Ø§ÙŠ Ø±Ø¨Ø§Øª Ù¾ÙŠØ§Ù… Ø±Ø³Ø§Ù†:\n\nØ³Ø±Ø¹Øª Ø¨Ø§Ù„Ø§\n1)Ø§Ø±Ø³Ø§Ù„ Ù…Ø·Ø§Ù„Ø¨ Ø¨Ù‡ ØªÙ…Ø§Ù… Ú©Ø§Ø±Ø¨Ø±Ø§Ù† ÙŠØ§ ØªÙ…Ø§Ù… Ú¯Ø±ÙˆÙ‡ Ù‡Ø§\n2) Ù‚ÙÙ„ Ú©Ø±Ø¯Ù† Ø§Ø±Ø³Ø§Ù„ Ø¹Ú©Ø³, ÙÙŠÙ„Ù…,Ø§Ø³ØªÙŠÚ©Ø±, ÙØ§ÙŠÙ„, ÙˆÙˆÙŠØ³, Ø¢Ù‡Ù†Ú¯ Ø¨ØµÙˆØ±Øª Ù…Ø¬Ø²Ø§\n3) Ù‚ÙÙ„ Ú©Ø±Ø¯Ù† ÙØ±ÙˆØ§Ø±Ø¯ Ø¯Ø± Ø±Ø¨Ø§Øª\n4) Ù‚ÙÙ„ Ú©Ø±Ø¯Ù† Ø¹Ø¶ÙˆÙŠØª Ø±Ø¨Ø§Øª Ø¯Ø± Ú¯Ø±ÙˆÙ‡ Ù‡Ø§\n5) Ù…Ø´Ø§Ù‡Ø¯Ù‡ ØªØ¹Ø¯Ø§Ø¯ Ø§Ø¹Ø¶Ø§ Ùˆ Ú¯Ø±ÙˆÙ‡ Ù‡Ø§ Ùˆ ÙŠÙˆØ²Ø±Ù†ÙŠÙ… 10 Ú©Ø§Ø±Ø¨Ø± ØªØ§Ø²Ù‡ Ø¹Ø¶Ùˆ Ø´Ø¯Ù‡\n6) Ù‚Ø±Ø§Ø± Ø¯Ø§Ø¯Ù† Ø§ÙØ±Ø§Ø¯ Ø¯Ø± Ù„ÙŠØ³Øª Ø³ÙŠØ§Ù‡ Ùˆ Ø¨Ù† Ú©Ø±Ø¯Ù† Ø¢Ù†Ù‡Ø§\n7) Ù‚Ø§Ø¨Ù„ÙŠØª Ø´ÙŠØ± Ú©Ø±Ø¯Ù† Ø´Ù…Ø§Ø±Ù‡ Ø´Ù…Ø§ Ø¨Ù‡ ØµÙˆØ±Øª Ø³Ø±ÙŠØ¹\nÙˆ Ú†Ù†Ø¯ÙŠÙ† ÙˆÙŠÚ˜Ú¯ÙŠ Ø¯ÙŠÚ¯Ø±...");
 }
-elseif($textmessage == 'â„¹ï¸ help') {
-SendMessage($chat_id, "What PvResan do?ðŸ¤”\n\nðŸ”¶ With this Service you can Provide Support  your Robot Mmbers , Channel , Groups and  Websites\n\nSome of this Service Features :\n\nðŸš€ Fast Server\n\n1âƒ£ Send Mesage To Members Or Groups Or Both\n2âƒ£ Lock Sending Photos , Videos , Stickers , Documents , Voices and Audios Separately\n3âƒ£ Lock Forward To your Robot\n4âƒ£ Lock Adding Your Robots To Groups\n5âƒ£ Check Robot Membes And Groups\n6âƒ£ Check Your Black List\n7âƒ£ Put Members To Black List\n8âƒ£ Fast Share Your Contact\nAnd several other features ...\n\nðŸ”´ For information about how to get a token from @botFather use");
+elseif($textmessage == 'help') {
+SendMessage($chat_id, "What PvResan do?\n\nWith this Service you can Provide Support  your Robot Mmbers , Channel , Groups and  Websites\n\nSome of this Service Features :\n\nFast Server\n\n1) Send Mesage To Members Or Groups Or Both\n2) Lock Sending Photos , Videos , Stickers , Documents , Voices and Audios Separately\n3) Lock Forward To your Robot\n4) Lock Adding Your Robots To Groups\n5) Check Robot Membes And Groups\n6) Check Your Black List\n7) Put Members To Black List\n8) Fast Share Your Contact\nAnd several other features ...\n\nFor information about how to get a token from @botFather use");
 }
-elseif($textmessage == 'ÇÑÓÇá äÙÑ' ) {
-SendMessage($chat_id, "äÙÑÇÊ ÔãÇ Èå íÔÑÝÊ æ ÇÑÇÆå ÎÏãÇÊ ÈåÊÑ ˜ã˜ ãí˜äÏ.\n\nÈÑÇí ÇÑÓÇá äÙÑÇÊ ÎæÏ ÇÒ ÏÓÊæÑ ÒíÑ ÇÓÊãÇÏå ˜äíÏ.\n\n/feedback (íÇã ÎæÏ ÑÇ ÈäæíÓíÏ)");
+elseif($textmessage == 'Ø§Ø±Ø³Ø§Ù„ Ù†Ø¸Ø±' ) {
+SendMessage($chat_id, "Ù†Ø¸Ø±Ø§Øª Ø´Ù…Ø§ Ø¨Ù‡ Ù¾ÙŠØ´Ø±ÙØª Ùˆ Ø§Ø±Ø§Ø¦Ù‡ Ø®Ø¯Ù…Ø§Øª Ø¨Ù‡ØªØ± Ú©Ù…Ú© Ù…ÙŠÚ©Ù†Ø¯.\n\nØ¨Ø±Ø§ÙŠ Ø§Ø±Ø³Ø§Ù„ Ù†Ø¸Ø±Ø§Øª Ø®ÙˆØ¯ Ø§Ø² Ø¯Ø³ØªÙˆØ± Ø²ÙŠØ± Ø§Ø³ØªÙ…Ø§Ø¯Ù‡ Ú©Ù†ÙŠØ¯.\n\n/feedback (Ù¾ÙŠØ§Ù… Ø®ÙˆØ¯ Ø±Ø§ Ø¨Ù†ÙˆÙŠØ³ÙŠØ¯)");
 }
-	elseif($textmessage == 'âš ï¸ Ú¯Ø²Ø§Ø±Ø´ ØªØ®Ù„Ù' ) {
-SendMessage($chat_id, "ÇÑ ÑÈÇÊí ÈÑ ÎáÇÝ ÞæÇäíä ãÇ Úãá ãí˜äÏ ÈÇ ÏÓÊæÑ ÒíÑ Èå ãÇ ÎÈÑ ÏåíÏ\n\n/report (usernamebot)");
+	elseif($textmessage == 'Ú¯Ø²Ø§Ø±Ø´ ØªØ®Ù„Ù' ) {
+SendMessage($chat_id, "Ø§Ú¯Ø± Ø±Ø¨Ø§ØªÙŠ Ø¨Ø± Ø®Ù„Ø§Ù Ù‚ÙˆØ§Ù†ÙŠÙ† Ù…Ø§ Ø¹Ù…Ù„ Ù…ÙŠÚ©Ù†Ø¯ Ø¨Ø§ Ø¯Ø³ØªÙˆØ± Ø²ÙŠØ± Ø¨Ù‡ Ù…Ø§ Ø®Ø¨Ø± Ø¯Ù‡ÙŠØ¯\n\n/report (usernamebot)");
 }
-elseif($textmessage == 'âœ… Send Comment') {
-SendMessage($chat_id, "ðŸ–Š Your Comments Help Us To Be Better.\n\nðŸ“ To Send Comment Use this Command Below.\n\n/feedback (Your Message)");
+elseif($textmessage == 'Send Comment') {
+SendMessage($chat_id, "Úºâ€“Ù¹ Your Comments Help Us To Be Better.\n\nÙ‹Úºâ€œâ€Œ To Send Comment Use this Command Below.\n\n/feedback (Your Message)");
 }
-	elseif($textmessage ==  'âš ï¸ Robot Report') {
+	elseif($textmessage ==  'Robot Report') {
 SendMessage($chat_id, "If the robot to act contrary to our laws let us know using the following command\n/report (usernamebot)");
 }
-elseif ($textmessage == 'ÍÐÝ ÑÈÇÊ' ) {
+elseif ($textmessage == 'Ø­Ø°Ù Ø±Ø¨Ø§Øª' ) {
 if (file_exists("data/$from_id/step.txt")) {
 
 }
 $botname = file_get_contents("data/$from_id/bots.txt");
 if ($botname == "") {
-SendMessage($chat_id,"ÔãÇ åäæÒ åí ÑÈÇÊí äÓÇÎÊå ÇíÏ!!!");
+SendMessage($chat_id,"Ø´Ù…Ø§ Ù‡Ù†ÙˆØ² Ù‡ÙŠÚ† Ø±Ø¨Ø§ØªÙŠ Ù†Ø³Ø§Ø®ØªÙ‡ Ø§ÙŠØ¯!!!");
 
 }
 else {
@@ -583,12 +577,12 @@ else {
 
  	var_dump(makereq('sendMessage',[
 	'chat_id'=>$update->message->chat->id,
-	'text'=>"í˜í ÇÒ ÑÈÇÊåÇí ÎæÏ ÑÇ ÇäÊÎÇÈ ˜äíÏ: ",
+	'text'=>"ÙŠÚ©ÙŠ Ø§Ø² Ø±Ø¨Ø§ØªÙ‡Ø§ÙŠ Ø®ÙˆØ¯ Ø±Ø§ Ø§Ù†ØªØ®Ø§Ø¨ Ú©Ù†ÙŠØ¯: ",
 	'parse_mode'=>'MarkDown',
 	'reply_markup'=>json_encode([
 	'inline_keyboard'=>[
 	[
-	['text'=>"ðŸ‘‰ @".$botname,'callback_data'=>"del ".$botname]
+	['text'=>"@".$botname,'callback_data'=>"del ".$botname]
 	]
 	]
 	])
@@ -597,7 +591,7 @@ else {
 /*
 var_dump(makereq('sendMessage',[
         	'chat_id'=>$update->message->chat->id,
-        	'text'=>"í˜í ÇÒ ÑÈÇÊåÇí ÎæÏ ÑÇ ÌåÊ Ç˜ ˜ÑÏä ÇäÊÎÇÈ ˜äíÏ: ",
+        	'text'=>"ÙŠÚ©ÙŠ Ø§Ø² Ø±Ø¨Ø§ØªÙ‡Ø§ÙŠ Ø®ÙˆØ¯ Ø±Ø§ Ø¬Ù‡Øª Ù¾Ø§Ú© Ú©Ø±Ø¯Ù† Ø§Ù†ØªØ®Ø§Ø¨ Ú©Ù†ÙŠØ¯: ",
 		'parse_mode'=>'MarkDown',
         	'reply_markup'=>json_encode([
             	'keyboard'=>[
@@ -605,7 +599,7 @@ var_dump(makereq('sendMessage',[
             	['text'=>$botname]
             	],
                 [
-                   ['text'=>"ÈÑÔÊ"]
+                   ['text'=>"Ø¨Ø±Ú¯Ø´Øª"]
                 ]
                 
             	],
@@ -614,53 +608,7 @@ var_dump(makereq('sendMessage',[
     		])); */
 }
 }
-elseif ($textmessage == 'â˜¢ Delete a Robot' ) {
-if (file_exists("data/$from_id/step.txt")) {
-
-}
-$botname = file_get_contents("data/$from_id/bots.txt");
-if ($botname == "") {
-SendMessage($chat_id,"Do robots have not");
-
-}
-else {
-//save("data/$from_id/step.txt","delete");
-
-
- 	var_dump(makereq('sendMessage',[
-	'chat_id'=>$update->message->chat->id,
-	'text'=>"Select one of your robots:",
-	'parse_mode'=>'MarkDown',
-	'reply_markup'=>json_encode([
-	'inline_keyboard'=>[
-	[
-	['text'=>"ðŸ‘‰ @".$botname,'callback_data'=>"del ".$botname]
-	]
-	]
-	])
-	]));
-
-/*
-var_dump(makereq('sendMessage',[
-        	'chat_id'=>$update->message->chat->id,
-        	'text'=>"í˜í ÇÒ ÑÈÇÊåÇí ÎæÏ ÑÇ ÌåÊ Ç˜ ˜ÑÏä ÇäÊÎÇÈ ˜äíÏ: ",
-		'parse_mode'=>'MarkDown',
-        	'reply_markup'=>json_encode([
-            	'keyboard'=>[
-            	[
-            	['text'=>$botname]
-            	],
-                [
-                   ['text'=>"ÈÑÔÊ"]
-                ]
-                
-            	],
-            	'resize_keyboard'=>true
-       		])
-    		])); */
-}
-}
-elseif ($textmessage == 'â˜¢ Delete a Robot' ) {
+elseif ($textmessage == 'Delete a Robot' ) {
 if (file_exists("data/$from_id/step.txt")) {
 
 }
@@ -680,7 +628,7 @@ else {
 	'reply_markup'=>json_encode([
 	'inline_keyboard'=>[
 	[
-	['text'=>"ðŸ‘‰ @".$botname,'callback_data'=>"del ".$botname]
+	['text'=>"@".$botname,'callback_data'=>"del ".$botname]
 	]
 	]
 	])
@@ -689,7 +637,7 @@ else {
 /*
 var_dump(makereq('sendMessage',[
         	'chat_id'=>$update->message->chat->id,
-        	'text'=>"í˜í ÇÒ ÑÈÇÊåÇí ÎæÏ ÑÇ ÌåÊ Ç˜ ˜ÑÏä ÇäÊÎÇÈ ˜äíÏ: ",
+        	'text'=>"ÙŠÚ©ÙŠ Ø§Ø² Ø±Ø¨Ø§ØªÙ‡Ø§ÙŠ Ø®ÙˆØ¯ Ø±Ø§ Ø¬Ù‡Øª Ù¾Ø§Ú© Ú©Ø±Ø¯Ù† Ø§Ù†ØªØ®Ø§Ø¨ Ú©Ù†ÙŠØ¯: ",
 		'parse_mode'=>'MarkDown',
         	'reply_markup'=>json_encode([
             	'keyboard'=>[
@@ -697,7 +645,7 @@ var_dump(makereq('sendMessage',[
             	['text'=>$botname]
             	],
                 [
-                   ['text'=>"ÈÑÔÊ"]
+                   ['text'=>"Ø¨Ø±Ú¯Ø´Øª"]
                 ]
                 
             	],
@@ -706,22 +654,68 @@ var_dump(makereq('sendMessage',[
     		])); */
 }
 }
-elseif ($textmessage == 'ÓÇÎÊ ÑÈÇÊ' ) {
+elseif ($textmessage == 'Delete a Robot' ) {
+if (file_exists("data/$from_id/step.txt")) {
+
+}
+$botname = file_get_contents("data/$from_id/bots.txt");
+if ($botname == "") {
+SendMessage($chat_id,"Do robots have not");
+
+}
+else {
+//save("data/$from_id/step.txt","delete");
+
+
+ 	var_dump(makereq('sendMessage',[
+	'chat_id'=>$update->message->chat->id,
+	'text'=>"Select one of your robots:",
+	'parse_mode'=>'MarkDown',
+	'reply_markup'=>json_encode([
+	'inline_keyboard'=>[
+	[
+	['text'=>"@".$botname,'callback_data'=>"del ".$botname]
+	]
+	]
+	])
+	]));
+
+/*
+var_dump(makereq('sendMessage',[
+        	'chat_id'=>$update->message->chat->id,
+        	'text'=>"ÙŠÚ©ÙŠ Ø§Ø² Ø±Ø¨Ø§ØªÙ‡Ø§ÙŠ Ø®ÙˆØ¯ Ø±Ø§ Ø¬Ù‡Øª Ù¾Ø§Ú© Ú©Ø±Ø¯Ù† Ø§Ù†ØªØ®Ø§Ø¨ Ú©Ù†ÙŠØ¯: ",
+		'parse_mode'=>'MarkDown',
+        	'reply_markup'=>json_encode([
+            	'keyboard'=>[
+            	[
+            	['text'=>$botname]
+            	],
+                [
+                   ['text'=>"Ø¨Ø±Ú¯Ø´Øª"]
+                ]
+                
+            	],
+            	'resize_keyboard'=>true
+       		])
+    		])); */
+}
+}
+elseif ($textmessage == 'Ø³Ø§Ø®Øª Ø±Ø¨Ø§Øª' ) {
 
 $tedad = file_get_contents("data/$from_id/tedad.txt");
 if ($tedad >= 1) {
-SendMessage($chat_id,"ÊÚÏÇÏ ÑÈÇÊ åÇí ÓÇÎÊå ÔÏå ÔãÇ ÒíÇÏ ÇÓÊ \nÇæá í˜í ÑÇ Ç˜ ˜äíÏ $tedad");
+SendMessage($chat_id,"ØªØ¹Ø¯Ø§Ø¯ Ø±Ø¨Ø§Øª Ù‡Ø§ÙŠ Ø³Ø§Ø®ØªÙ‡ Ø´Ø¯Ù‡ Ø´Ù…Ø§ Ø²ÙŠØ§Ø¯ Ø§Ø³Øª \nØ§ÙˆÙ„ ÙŠÚ©ÙŠ Ø±Ø§ Ù¾Ø§Ú© Ú©Ù†ÙŠØ¯ $tedad");
 return;
 }
 save("data/$from_id/step.txt","create bot");
 var_dump(makereq('sendMessage',[
         	'chat_id'=>$update->message->chat->id,
-        	'text'=>"Êæ˜ä ÑÈÇÊ ÑÇ æÇÑÏ ˜äíÏ: ",
+        	'text'=>"ØªÙˆÚ©Ù† Ø±Ø¨Ø§Øª Ø±Ø§ ÙˆØ§Ø±Ø¯ Ú©Ù†ÙŠØ¯: ",
 		'parse_mode'=>'MarkDown',
         	'reply_markup'=>json_encode([
             	'keyboard'=>[
                 [
-                   ['text'=>"ÈÑÔÊ - Back"]
+                   ['text'=>"Ø¨Ø±Ú¯Ø´Øª - Back"]
                 ]
                 
             	],
@@ -729,7 +723,7 @@ var_dump(makereq('sendMessage',[
        		])
     		]));
 }
-elseif ($textmessage == 'ðŸ”„ Create a Robot') {
+elseif ($textmessage == 'Ù‹Create a Robot') {
 
 $tedad = file_get_contents("data/$from_id/tedad.txt");
 if ($tedad >= 1) {
@@ -745,7 +739,7 @@ var_dump(makereq('sendMessage',[
         	'reply_markup'=>json_encode([
             	'keyboard'=>[
                 [
-                   ['text'=>"ÈÑÔÊ - Back"]
+                   ['text'=>"Ø¨Ø±Ú¯Ø´Øª - Back"]
                 ]
                 
             	],
@@ -759,10 +753,10 @@ $text = str_replace("/ban","",$textmessage);
 $myfile2 = fopen("data/banlist.txt", 'a') or die("Unable to open file!");	
 fwrite($myfile2, "$text\n");
 fclose($myfile2);
-SendMessage($admin,"ÔãÇ ˜ÇÑÈÑ $text ÑÇ ÏÑ áíÓÊ Èä ÞÑÇÑ ÏÇÏíÏ\n\nÈÑÇí ÏÑ ÇæÑÏä Çíä ˜ÇÑÈÑ ÇÒ áíÓÊ Èä ÇÒ ÏÓÊæÑ ÒíÑ ÇÓÊÝÇÏå ˜äíÏ\n/unban $text");
+SendMessage($admin,"Ø´Ù…Ø§ Ú©Ø§Ø±Ø¨Ø± $text Ø±Ø§ Ø¯Ø± Ù„ÙŠØ³Øª Ø¨Ù† Ù‚Ø±Ø§Ø± Ø¯Ø§Ø¯ÙŠØ¯\n\nØ¨Ø±Ø§ÙŠ Ø¯Ø± Ø§ÙˆØ±Ø¯Ù† Ø§ÙŠÙ† Ú©Ø§Ø±Ø¨Ø± Ø§Ø² Ù„ÙŠØ³Øª Ø¨Ù† Ø§Ø² Ø¯Ø³ØªÙˆØ± Ø²ÙŠØ± Ø§Ø³ØªÙØ§Ø¯Ù‡ Ú©Ù†ÙŠØ¯\n/unban $text");
 }
 else {
-SendMessage($chat_id,"ÔãÇ ÇÏãíä äíÓÊíÏ");
+SendMessage($chat_id,"Ø´Ù…Ø§ Ø§Ø¯Ù…ÙŠÙ† Ù†ÙŠØ³ØªÙŠØ¯");
 }
 }
 
@@ -771,15 +765,15 @@ if ($from_id == $admin) {
 $text = str_replace("/unban","",$textmessage);
 			$newlist = str_replace($text,"",$ban);
 			save("data/banlist.txt",$newlist);
-SendMessage($admin,"ÔãÇ ˜ÇÑÈÑ $text ÑÇ ÇÒ áíÓÊ Èä ÏÑÇæÑÏíÏ");
+SendMessage($admin,"Ø´Ù…Ø§ Ú©Ø§Ø±Ø¨Ø± $text Ø±Ø§ Ø§Ø² Ù„ÙŠØ³Øª Ø¨Ù† Ø¯Ø±Ø§ÙˆØ±Ø¯ÙŠØ¯");
 }
 else {
-SendMessage($chat_id,"ÔãÇ ÇÏãíä äíÓÊíÏ");
+SendMessage($chat_id,"Ø´Ù…Ø§ Ø§Ø¯Ù…ÙŠÙ† Ù†ÙŠØ³ØªÙŠØ¯");
 }
 }
 	
 else
 {
-SendMessage($chat_id,"íÇã ÔãÇ íÏÇ äÔÏ\n------------------------------------------\n Your command could not be foundâŒ");
+SendMessage($chat_id,"Ù¾ÙŠØ§Ù… Ø´Ù…Ø§ Ù¾ÙŠØ¯Ø§ Ù†Ø´Ø¯\n------------------------------------------\n Your command could not be found");
 }
 ?>
