@@ -203,7 +203,7 @@ return {
 	pre_process = pre_process
 }
 
---bot.lua
+--[[bot.lua
 function is_silent_user(user_id, chat_id)
 	local var = false
 	local group = load_data(_config.group.data)
@@ -219,5 +219,5 @@ function is_silent_user(user_id, chat_id)
 		end
 	end
 	return var
-end
+end]]
 --bot.lua
