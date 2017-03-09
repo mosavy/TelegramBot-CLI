@@ -50,8 +50,8 @@ function filter_list(msg)
     end
 	if next(group[tostring(msg.chat_id_)]['filterlist']) == nil then
 		tg.sendMessage(msg.chat_id_, 0, 1, '*Filtered words list is empty*\n\n`Channel:` @LeaderCh', 1, 'md')
-	end
-	if not group[tostring(msg.chat_id_)]['filterlist'] then
+	--end
+        elseif not group[tostring(msg.chat_id_)]['filterlist'] then
 		group[tostring(msg.chat_id_)]['filterlist'] = {}
 		save_data(_config.group.data, group)
     end
