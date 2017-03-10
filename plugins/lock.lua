@@ -718,16 +718,16 @@ tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'md')
   end
 end
 
---[[local group = load_data('bot/group.json')
---local addgroup = group[tostring(msg.chat_id)]
-if group[tostring(target)] then 	
+local group = load_data('bot/group.json')
+--local target = msg.chat_id_
+--if group[tostring(msg.chat_id)] then 	
 	if group[tostring(target)]['settings']['num_msg_max'] then 	
-		NUM_MSG_MAX = tonumber(group[tostring(msg.chat_id_)]['settings']['num_msg_max'])
+		NUM_MSG_MAX = tonumber(data[tostring(target)]['settings']['num_msg_max'])
 		print('custom'..NUM_MSG_MAX) 	
 	else 	
 		NUM_MSG_MAX = 5
 	end
-end]]
+--end
 
 local function group_settings(msg, target)
 local group = load_data('bot/group.json')
@@ -737,7 +737,7 @@ pm = pm..'\n2- <code>Lock Username</code> : '..group[tostring(target)]['settings
 pm = pm..'\n3- <code>Lock Tag</code> : '..group[tostring(target)]['settings']['lock_tag']..''
 pm = pm..'\n4- <code>Lock Edit</code> : '..group[tostring(target)]['settings']['lock_edit']..''
 pm = pm..'\n5- <code>Lock Fwd</code> : '..group[tostring(target)]['settings']['lock_fwd']..''
---pm = pm..'\n5- <code>Lock Flood</code> : '..group[tostring(target)]['settings']['lock_flood']..''
+pm = pm..'\n- <code>Lock Flood</code> : '..group[tostring(target)]['settings']['lock_flood']..''
 pm = pm..'\n6- <code>Lock Fosh</code> : '..group[tostring(target)]['settings']['lock_fosh']..''
 pm = pm..'\n7- <code>Lock Tgservice</code> : '..group[tostring(target)]['settings']['lock_tgservice']..''
 pm = pm..'\n8- <code>Lock Sticker</code> : '..group[tostring(target)]['settings']['lock_sticker']..''
@@ -774,18 +774,17 @@ local function run(msg, matches)
 		pm = '*SuperGroup ID:* [_'..msg.chat_id_..'_]\n*User ID:* [_'..msg.sender_user_id_..'_]\n\n*Channel:* @LeaderCH'			
 		tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'md') 
 	end	]] 
-	--[[local chat = msg.chat_id_
-        if matches[1] == 'setflood' then
-	if tonumber(matches[2]) < 1 or tonumber(matches[2]) > 20 then
-		tg.sendMessage(msg.chat_id_, 0, 1, '*Wrong number, range is [*`1-20`*]*\n\n`Channel:` @LeaderCh', 1, 'md')
-        --end
-	else			
-	local flood_max = matches[2]
-	group[tostring(chat)]['settings']['num_msg_max'] = flood_max
-	save_data(_config.group.data, group)
-	tg.sendMessage(msg.chat_id_, 0, 1, '*SuperGroup flood sensitivity has been set to: [* `'..matches[2]..'` *]*\n\n`Channel:` @LeaderCh', 1, 'md')
-        end
-	end]]		
+	
+	if matches[1] == 'setflood' then
+		if tonumber(matches[2]) < 3 or tonumber(matches[2]) > 20 then
+			tg.sendMessage(msg.chat_id_, msg.id_, 1, '*More than* `3` *and less than* `20`\n\n`Channel:` @LeaderCh', 1, 'md')
+		end
+		local flood_max = matches[2]
+		group[tostring(msg.chat_id)]['settings']['num_msg_max'] = flood_max
+		save_data(_config.group.data, group)
+		textpm = '*SuperGroup flood sensitivity has been set:* `'..matches[2]..'`'
+		tg.sendMessage(msg.chat_id_, msg.id_, 1, textpm, 1, 'md')
+        end		
 		
 	if matches[1] == 'mute' and matches[2] == 'all' then
 		mute_all_group(msg, msg.chat_id)
@@ -816,8 +815,8 @@ local function run(msg, matches)
 			lock_group_persian(msg, msg.chat_id)
 		elseif matches[2] == 'bot' then
 			lock_group_bot(msg, msg.chat_id)
-		--[[elseif matches[2] == 'flood' then
-			lock_group_flood(msg, msg.chat_id)]]		
+		elseif matches[2] == 'flood' then
+			lock_group_flood(msg, msg.chat_id)		
                     elseif matches[2] == 'fosh' then
 			lock_group_fosh(msg, msg.chat_id)
 		elseif matches[2] == 'inline' then
@@ -873,9 +872,9 @@ local function run(msg, matches)
 			unlock_group_persian(msg, msg.chat_id)
 		elseif matches[2] == 'bot' then
 			unlock_group_bot(msg, msg.chat_id)
-		--[[elseif matches[2] == 'flood' then
-			unlock_group_flood(msg, msg.chat_id)]		
-]elseif matches[2] == 'fosh' then
+		elseif matches[2] == 'flood' then
+			unlock_group_flood(msg, msg.chat_id)		
+                elseif matches[2] == 'fosh' then
 			unlock_group_fosh(msg, msg.chat_id)
 		elseif matches[2] == 'inline' then
 			unlock_group_inline(msg, msg.chat_id)
@@ -920,7 +919,7 @@ return {
 	"^[/#!](unmute) (.*)$",
 	--"^[/#!](id)$",
 	"^[/#!](settings)$",
-	--"^[/#!](setflood) (%d+)$",
+	"^[/#!](setflood) (%d+)$",
 	
     "^!!!edit:[/#!](lock) (.*)$",
 	"^!!!edit:[/#!](unlock) (.*)$",
