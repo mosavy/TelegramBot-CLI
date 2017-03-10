@@ -722,8 +722,7 @@ local group = load_data('bot/group.json')
 --local target = msg.chat_id_
 --if group[tostring(msg.chat_id)] then 	
 	if group[tostring(target)]['settings']['num_msg_max'] then 	
-		--NUM_MSG_MAX = tonumber(group[tostring(msg.chat_id)]['settings']['num_msg_max'])
-		NUM_MSG_MAX = group[tostring(msg.chat_id)]['settings']['num_msg_max']	
+		NUM_MSG_MAX = tonumber(group[tostring(target)]['settings']['num_msg_max'])	
                 print('custom'..NUM_MSG_MAX) 	
 	else 	
 		NUM_MSG_MAX = 5
