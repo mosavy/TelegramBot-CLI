@@ -772,7 +772,7 @@ local function run(msg, matches)
 	if addgroup and is_momod(msg) or is_owner(msg) then
 	
 	if matches[1] == 'id' and is_pv then 
-		pm = '*User ID:* [`'..msg.sender_user_id_..'`]\n\n*Channel:* @LeaderCH'			
+		pm = '*User ID:* [`'..msg.sender_user_id_..'`]\n\n`Channel:` @LeaderCH'			
 		tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'md') 
 	end	 
 	
