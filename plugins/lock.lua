@@ -768,12 +768,11 @@ local function run(msg, matches)
 	local is_pv = gp_type(chat) == "pv"
 	local group = load_data('bot/group.json')
 	local addgroup = group[tostring(msg.chat_id)]
-	if addgroup and is_momod(msg) or is_owner(msg) then
-	
-	if matches[1] == 'id' and is_pv then 
+		if matches[1] == 'id' and is_pv and is_momod(msg) or is_owner(msg) then 
 		pm = '*User ID:* [`'..msg.sender_user_id_..'`]\n\n`Channel:` @LeaderCH'			
 		tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'md') 
-	end	 
+	end
+	if addgroup and is_momod(msg) or is_owner(msg) then
 	
 	if matches[1] == 'setflood' then
 		if tonumber(matches[2]) < 3 or tonumber(matches[2]) > 20 then
