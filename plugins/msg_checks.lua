@@ -1,4 +1,5 @@
 local function run(msg, matches)
+local group = load_data('bot/group.json')	
 local chat = msg.chat_id_
 local user = msg.sender_user_id_
 local TIME_CHECK = 2    
@@ -43,15 +44,7 @@ local group_lock_inline = group[tostring(msg.chat_id)]['settings']['lock_inline'
 if group_lock_inline == 'yes'  and  msg.via_bot_user_id_ ~= 0 then
 tg.deleteMessages(msg.chat_id_, {[0] = msg.id_ })
 end
---[[local group_lock_tgservice = group[tostring(msg.chat_id)]['settings']['lock_tgservice']
-local is_tgservice_msg = msg.text:match("!!!tgservice:")
-if group_lock_tgservice == 'yes' and is_tgservice_msg then
-    if is_persian_msg or is_english_msg then
-        tg.deleteMessages(msg.chat_id_, {[0] = msg.id_ })
-    else
-        tg.deleteMessages(msg.chat_id_, {[0] = msg.id_ }) 
-    end 
-end]]
+
 local group_lock_tgservice = group[tostring(msg.chat_id)]['settings']['lock_tgservice']
 local is_tgservice_msg = msg.text:match("!!!tgservice:")
 if group_lock_tgservice == 'yes' and is_tgservice_msg then
@@ -149,37 +142,40 @@ local is_lock_text = msg.content_.text_
 if lock_group_text == 'yes' and is_lock_text then
 tg.deleteMessages(msg.chat_id_, {[0] = msg.id_ })
 end        
-	--if msg.content_.caption_ then
-		local lock_flood = group[tostring(msg.chat_id)]['settings']['lock_flood']	
-		if lock_flood == "yes" then
-			local hash = 'user:'..user..':msgs'
-			local msgs = tonumber(redis:get(hash) or 0)
-			local NUM_MSG_MAX = 5
-			if addgroup then
-				if group[tostring(chat)]['settings']['num_msg_max'] then
-					NUM_MSG_MAX = tonumber(group[tostring(chat)]['settings']['num_msg_max'])
-				end
+	
+if gp_type(chat) ~= 'pv' then
+	local group_lock_flood = group[tostring(msg.chat_id)]['settings']['lock_flood']
+	if group_lock_flood == 'yes' then
+		local hash = 'user:'..user..':msgs'
+		local msgs = tonumber(redis:get(hash) or 0)
+        local NUM_MSG_MAX = 5
+		if group[tostring(msg.chat_id)] then
+			if group[tostring(msg.chat_id)]['settings']['num_msg_max'] then
+				NUM_MSG_MAX = tonumber(group[tostring(msg.chat_id)]['settings']['num_msg_max'])
 			end
-			if msgs > NUM_MSG_MAX then
-				if is_momod(msg) or is_owner(msg) or is_robot(msg) then
-					return
-				end
-				local is_adduser = msg.text:match("!!!tgservice:")
-				if is_adduser then
-					return
-				end
-				if redis:get('sender:'..user..':flood') then
-					return
-				else
-					tg.deleteMessages(msg.chat_id_, msg.id_)
-					kick_user(chat, user)
-					tg.sendMessage(msg.chat_id_, msg.id_, 0, '*[* `'..user..'` *] has been kicked because of spam flooding*\n\n`Channel:` @LeaderCh', 0, 'md')
-					redis:setex('sender:'..user..':flood', 30, true)
-				end
+        end
+		if msgs > NUM_MSG_MAX then
+			if is_momod(msg) or is_owner(msg) then
+				return
 			end
-			redis:setex(hash, TIME_CHECK, msgs+1)
+			local adduser = msg.text:match("!!!tgservice:adduser")
+			if adduser then
+				return
+			end
+			if redis:get('sender:'..user..':lock_flood') then
+				return
+			else
+				--tg.deleteMessages(msg.chat_id_, {[0] = msg.id_ })
+				tg.deleteMessages(msg.chat_id_, msg.id_)
+				kick_user(chat, user)
+				tg.sendMessage(msg.chat_id_, msg.id_, 0, '*[*` '..user..' `*] has been kicked because of spam flooding*\n\n`Channel:` @LeaderCh', 0, "md")
+				redis:setex('sender:'..user..':lock_flood', 30, true)
+			end
 		end
-	--end            
+		redis:setex(hash, TIME_CHECK, msgs+1)
+    end
+end			
+			
 --[[local group_reply_lock = group[tostring(msg.chat_id)]['settings']['lock_fosh']
 if group_reply_lock == 'yes' and msg.reply_to_message_id_~=0 then
 tg.deleteMessages(msg.chat_id_, {[0] = msg.id_ })
