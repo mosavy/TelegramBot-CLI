@@ -17,8 +17,6 @@ return {
   patterns = {
 		"^[/#!](git pull)$",
 		"^[/#!](echo) (.*)$",
-		
-		"^[/#!](ids)$",
   },
   run = run
 }
