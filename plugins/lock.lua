@@ -718,16 +718,63 @@ tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'md')
   end
 end
 
-local group = load_data('bot/group.json')
---[[local target = msg.chat_id_
---if group[tostring(msg.chat_id)] then 	
-	if group[tostring(target)]['settings']['num_msg_max'] then 	
-		NUM_MSG_MAX = tonumber(group[tostring(target)]['settings']['num_msg_max'])	
-                print('custom'..NUM_MSG_MAX) 	
-	else 	
-		NUM_MSG_MAX = 5
+local function lock_group_webpage(msg, target)
+	local group = load_data('bot/group.json')
+	local group_webpage_lock = group[tostring(target)]['settings']['lock_webpage']
+	if group_webpage_lock == 'yes' then
+		pm = '*Send webpage is already locked*\n\n`Channel:` @LeaderCh'
+		tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'md')
+	else
+		group[tostring(target)]['settings']['lock_webpage'] = 'yes'
+		save_data(_config.group.data, group)
+		pm= '*Send webpage has been locked*\n\n`Channel:` @LeaderCh'
+		tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'md')
 	end
---end]]
+end
+
+local function unlock_group_webpage(msg, target)
+	local group = load_data('bot/group.json')
+	local group_webpage_lock = group[tostring(target)]['settings']['lock_webpage']
+	if group_webpage_lock == 'no' then
+		pm = '*Send webpage is not locked*\n\n`Channel:` @LeaderCh'
+		tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'md')
+	else
+		group[tostring(target)]['settings']['lock_webpage'] = 'no'
+		save_data(_config.group.data, group)
+		pm= '*Send webpage has been unlocked*\n\n`Channel:` @LeaderCh'
+		tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'md')
+	end
+end
+
+
+local function lock_group_markdown(msg, target)
+	local group = load_data('bot/group.json')
+	local group_markdown_lock = group[tostring(target)]['settings']['lock_markdown']
+	if group_markdown_lock == 'yes' then
+		pm = '*Send markdown is already locked*\n\n`Channel:` @LeaderCh'
+		tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'md')
+	else
+		group[tostring(target)]['settings']['lock_markdown'] = 'yes'
+		save_data(_config.group.data, group)
+		pm= '*Send markdown has been locked*\n\n`Channel:` @LeaderCh'
+		tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'md')
+	end
+end
+
+local function unlock_group_markdown(msg, target)
+	local group = load_data('bot/group.json')
+	local group_markdown_lock = group[tostring(target)]['settings']['lock_markdown']
+	if group_markdown_lock == 'no' then
+		pm = '*Send markdown is not locked*\n\n`Channel:` @LeaderCh'
+		tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'md')
+	else
+		group[tostring(target)]['settings']['lock_markdown'] = 'no'
+		save_data(_config.group.data, group)
+		pm= '*Send markdown has been unlocked*\n\n`Channel:` @LeaderCh'
+		tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'md')
+	end
+end
+
 local function group_settings(msg, target)
 local group = load_data('bot/group.json')
 pm = '<b>SuperGroup settings</b>\n-------------------------------------------'
@@ -756,8 +803,10 @@ pm = pm..'\n19- <code>Lock Voice</code> : '..group[tostring(target)]['settings']
 pm = pm..'\n20- <code>Lock Document</code> : '..group[tostring(target)]['settings']['mute_document']..''
 pm = pm..'\n21- <code>Lock Number</code> : '..group[tostring(target)]['settings']['lock_number']..''
 pm = pm..'\n22- <code>Lock Text</code> : '..group[tostring(target)]['settings']['lock_text']..''	
-pm = pm..'\n23- <code>Lock Audio</code> : '..group[tostring(target)]['settings']['mute_audio']..'\n-------------------------------------------'
-pm = pm..'\n24- <code>Mute All</code> : '..group[tostring(target)]['settings']['mute_all']..''
+pm = pm..'\n23- <code>Lock Webpage</code> : '..group[tostring(target)]['settings']['lock_webpage']..''
+pm = pm..'\n24- <code>Lock Markdown</code> : '..group[tostring(target)]['settings']['lock_markdown']..''
+pm = pm..'\n25- <code>Lock Audio</code> : '..group[tostring(target)]['settings']['mute_audio']..'\n-------------------------------------------'
+pm = pm..'\n26- <code>Mute All</code> : '..group[tostring(target)]['settings']['mute_all']..''
 --pm = pm..'\n25- <code>Welcome</code> : '..group[tostring(target)]['settings']['welcome']..''	
 --pm = pm..'\n25- <code>Flood Sensitivity</code> : '..NUM_MSG_MAX..''	
 pm = pm..'\n-------------------------------------------\n<b>Channel: </b>@LeaderCh'
@@ -822,7 +871,11 @@ local function run(msg, matches)
 			lock_group_inline(msg, msg.chat_id)
 		elseif matches[2] == 'sticker' then
 			lock_group_sticker(msg, msg.chat_id)
-					
+		elseif matches[2] == 'webpage' then
+			lock_group_webpage(msg, msg.chat_id)
+		elseif matches[2] == 'markdown' then
+			lock_group_markdown(msg, msg.chat_id)
+				
 		elseif matches[2] == 'contact' then
 			lock_group_contact(msg, msg.chat_id)
 		elseif matches[2] == 'text' then
@@ -879,7 +932,11 @@ local function run(msg, matches)
 			unlock_group_inline(msg, msg.chat_id)
 		elseif matches[2] == 'sticker' then
 			unlock_group_sticker(msg, msg.chat_id)
-
+		elseif matches[2] == 'webpage' then
+			unlock_group_webpage(msg, msg.chat_id)
+		elseif matches[2] == 'markdown' then
+			unlock_group_markdown(msg, msg.chat_id)
+				
 		elseif matches[2] == 'contact' then
 			unlock_group_contact(msg, msg.chat_id)
 		elseif matches[2] == 'text' then
