@@ -1,28 +1,28 @@
-local function cleanmsg (arg,data)
-     for k,v in pairs(data.messages_) do
-         tg.deleteMessages(v.chat_id_,{[0] = v.id_})
-     end
+local function rem (i,m)
+    msgs = i.msgs 
+    for k,v in pairs(m.messages_) do
+        msgs = msgs - 1
+        tg.deleteMessages(v.chat_id_,{[0] = v.id_}, dl_cb, cmd)
+        if msgs == 1 then
+            tg.deleteMessages(m.messages_[0].chat_id_,{[0] = m.messages_[0].id_}, dl_cb, cmd)
+            return false
+        end
+    end
+    tg.getChatHistory(m.messages_[0].chat_id_, m.messages_[0].id_,0 , 100, rem, {msgs=msgs})
 end
 local function run(msg, matches)
+    local chat = msg.chat_id_
     if matches[1] == 'rmsg' and is_owner(msg) or is_momod(msg) then
-         if msg.chat_id_:match("^-100") then
-        --    if is_owner(msg) then
-              if tonumber(matches[2]) > 40 or tonumber(matches[2]) < 1 then
-                  pm = '*More than* `1` *and less than* `40`'
-                  tg.sendMessage(msg.chat_id_, data.msg.id_, 1, pm, 1, 'md')
-              else
-                  tdcli_function ({
-                 ID = "GetChatHistory",
-                 chat_id_ = msg.chat_id_,
-                 from_message_id_ = 0,
-                 offset_ = 0,
-                 limit_ = tonumber(matches[2])
-                 }, cleanmsg, nil)
-                 tg.sendMessage(msg.chat_id_, msg.id_, 1, '`'..matches[2]..'` *Message Has Been Removed*', 1, 'md')
-             end
-           --end
+        if tostring(chat):match("^-100") then 
+            if tonumber(matches[2]) > 40 or tonumber(matches[2]) < 1 then
+                pm = '*More than* `1` *and less than* `40`'
+                tg.sendMessage(msg.chat_id_, data.msg.id_, 1, pm, 1, 'md')
+            else
+				tdcli.getChatHistory(msg.to.id, msg.id,0 , 100, rem, {msgs=matches[2]})
+				tg.sendMessage(msg.chat_id_, msg.id_, 1, '`'..matches[2]..'` *Message Has Been Removed*', 1, 'md')
+            end
         end
-     end
+    end
 end
 return {
     patterns = {
