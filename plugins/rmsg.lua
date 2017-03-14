@@ -20,7 +20,7 @@ local function run(msg, matches)
                 tg.sendMessage(msg.chat_id_, msg.id_, 1, pm, 1, 'md')
             else
 				--  tg.getChatHistory(msg.chat_id_, msg_id,0 , 100, delmsg, {msgs=matches[2]})
-				tg.getChatHistory(msg.chat_id_, 0, 0, tonumber(matches[2]), delmsg, nil)
+				tg.getChatHistory(msg.chat_id_, 0, tonumber(matches[2]), delmsg, nil)
 				tg.sendMessage(msg.chat_id_, msg.id_, 1, '`'..matches[2]..'` *Message Has Been Removed*', 1, 'md')
             end
         end
