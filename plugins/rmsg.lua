@@ -2,9 +2,9 @@ local function rem (i,m)
     msgs = i.msgs 
     for k,v in pairs(m.messages_) do
         msgs = msgs - 1
-        tg.deleteMessages(v.chat_id_,{[0] = v.id_}, dl_cb, cmd)
+        tg.deleteMessages(v.chat_id_,{[0] = v.id_})
         if msgs == 1 then
-            tg.deleteMessages(m.messages_[0].chat_id_,{[0] = m.messages_[0].id_}, dl_cb, cmd)
+            tg.deleteMessages(m.messages_[0].chat_id_,{[0] = m.messages_[0].id_})
             return false
         end
     end
