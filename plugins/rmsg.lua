@@ -11,6 +11,7 @@ local function delmsg (arg,data)
     --tg.getChatHistory(naji.messages_[0].chat_id_, naji.messages_[0].id_,0 , 100, delmsg, nil)
 end
 local function run(msg, matches)
+    local msg_id = msg.id_
     local group = load_data('bot/group.json')
     local addgroup = group[tostring(msg.chat_id)]
     if matches[1] == 'rmsg' and is_owner(msg) or is_momod(msg)  then
@@ -20,7 +21,7 @@ local function run(msg, matches)
                 tg.sendMessage(msg.chat_id_, msg.id_, 1, pm, 1, 'md')
             else
 				--  tg.getChatHistory(msg.chat_id_, msg_id,0 , 100, delmsg, {msgs=matches[2]})
-				tg.getChatHistory(msg.chat_id_, 0, tonumber(matches[2]), delmsg, nil)
+				tg.getChatHistory(msg.chat_id_, msg_id, 0, tonumber(matches[2]), delmsg, nil)
 				tg.sendMessage(msg.chat_id_, msg.id_, 1, '`'..matches[2]..'` *Message Has Been Removed*', 1, 'md')
             end
         end
