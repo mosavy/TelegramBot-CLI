@@ -8,7 +8,7 @@ local function delmsg (i,naji)
             return false
         end
     end
-    tg.getChatHistory(naji.messages_[0].chat_id_, naji.messages_[0].id_,0 , 100, delmsg, nil)
+    --tg.getChatHistory(naji.messages_[0].chat_id_, naji.messages_[0].id_,0 , 100, delmsg, nil)
 end
 local function run(msg, matches)
     local group = load_data('bot/group.json')
