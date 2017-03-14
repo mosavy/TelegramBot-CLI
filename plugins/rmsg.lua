@@ -13,7 +13,7 @@ end
 local function run(msg, matches)
     local chat = msg.chat_id_
     if matches[1] == 'rmsg' and is_owner(msg) or is_momod(msg) then
-        if tostring(chat):match("^-100") then 
+        if msg.chat_id_:match("^-100") then 
             if tonumber(matches[2]) > 40 or tonumber(matches[2]) < 1 then
                 pm = '*More than* `1` *and less than* `40`'
                 tg.sendMessage(msg.chat_id_, data.msg.id_, 1, pm, 1, 'md')
