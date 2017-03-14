@@ -12,6 +12,7 @@ local function delmsg (i,naji)
 end
 local function run(msg, matches)
     local group = load_data('bot/group.json')
+    local msg_id = msg.id_
     local addgroup = group[tostring(msg.chat_id)]
     if matches[1] == 'rmsg' and is_owner(msg) or is_momod(msg)  then
         if addgroup then 
