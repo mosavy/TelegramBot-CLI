@@ -8,7 +8,7 @@ local function delmsg (arg,data)
         return false
     end
     end    
-    tg.getChatHistory(data.messages_[0].chat_id_, data.messages_[0].id_,0 , 100, delmsg, {msgs=msgs})
+    --tg.getChatHistory(data.messages_[0].chat_id_, data.messages_[0].id_,0 , 100, delmsg, {msgs=msgs})
 end
 local function run(msg, matches)
     local chat_id = msg.chat_id_
@@ -21,8 +21,8 @@ local function run(msg, matches)
                     pm = '*More than* 1 *and less than* 40'
                     tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'md') 
                 else
-                   -- tg.getChatHistory(chat_id, msg_id, 0, tonumber(matches[2]), delmsg, nil)
-                    tg.getChatHistory(chat_id, msg_id,0 , 100, delmsg, {msgs=matches[2]})
+                    tg.getChatHistory(chat_id, msg_id, 0, tonumber(matches[2]), delmsg, nil)
+                    --tg.getChatHistory(chat_id, msg_id,0 , 100, delmsg, {msgs=matches[2]})
                     pm = '*Message Has Been Removed*'
                     tg.sendMessage(msg.chat_id_, 0, 1, pm, 1, 'md')
                 end
