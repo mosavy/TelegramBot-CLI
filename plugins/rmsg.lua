@@ -1,6 +1,6 @@
-local function delmsg (i,naji)
+local function delmsg (arg,data)
     --msgs = i.msgs 
-    for k,v in pairs(naji.messages_) do
+    for k,v in pairs(data.messages_) do
        -- msgs = msgs - 1
         tg.deleteMessages(v.chat_id_,{[0] = v.id_})
        --[[ if msgs == 1 then
