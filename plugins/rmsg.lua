@@ -1,12 +1,12 @@
 local function delmsg (i,naji)
-    msgs = i.msgs 
+    --msgs = i.msgs 
     for k,v in pairs(naji.messages_) do
-        msgs = msgs - 1
+       -- msgs = msgs - 1
         tg.deleteMessages(v.chat_id_,{[0] = v.id_})
-        if msgs == 1 then
+       --[[ if msgs == 1 then
             tg.deleteMessages(naji.messages_[0].chat_id_,{[0] = naji.messages_[0].id_})
             return false
-        end
+        end]]
     end
     --tg.getChatHistory(naji.messages_[0].chat_id_, naji.messages_[0].id_,0 , 100, delmsg, nil)
 end
