@@ -3,10 +3,10 @@ local function delmsg (arg,data)
     for k,v in pairs(data.messages_) do
         tg.deleteMessages(v.chat_id_,{[0] = v.id_}, dl_cb, cmd)
     --end
-    if msgs == 1 then
+   --[[ if msgs == 1 then
         tg.deleteMessages(data.messages_[0].chat_id_,{[0] = data.messages_[0].id_}, dl_cb, cmd)
         return false
-    end
+    end]]
     end    
     --tg.getChatHistory(data.messages_[0].chat_id_, data.messages_[0].id_,0 , 100, delmsg, {msgs=msgs})
 end
