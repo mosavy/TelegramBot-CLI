@@ -16,7 +16,7 @@ local function run(msg, matches)
         if msg.chat_id_:match("^-100") then 
             if tonumber(matches[2]) > 40 or tonumber(matches[2]) < 1 then
                 pm = '*More than* `1` *and less than* `40`'
-                tg.sendMessage(msg.chat_id_, data.msg.id_, 1, pm, 1, 'md')
+                tg.sendMessage(msg.chat_id_, msg.msg.id_, 1, pm, 1, 'md')
             else
 				tg.getChatHistory(msg.to.id, msg.id,0 , 100, rem, {msgs=matches[2]})
 				tg.sendMessage(msg.chat_id_, msg.id_, 1, '`'..matches[2]..'` *Message Has Been Removed*', 1, 'md')
