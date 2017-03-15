@@ -34,8 +34,8 @@ mute_gif = "no",
 mute_audio = "no",
 lock_number = "no",	
 lock_text = "no",	
---lock_webpage = "no",
---lock_markdown = "no",				
+lock_webpage = "no",
+lock_markdown = "no",				
                   }
       }
       save_data(_config.group.data, group)
