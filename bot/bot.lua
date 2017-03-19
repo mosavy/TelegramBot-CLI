@@ -43,10 +43,10 @@ function load_config()
   return config
 end
 
-function gp_type(chat_id)
+--[[function gp_type(chat_id)
 	local gp_type = "pv"
 	return gp_type
-end
+end]]
 
 function is_filter(msg, text)
 local var = false
