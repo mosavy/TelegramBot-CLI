@@ -124,18 +124,3 @@ return {
 	run=run,
 	pre_process = pre_process
 }
-
---bot.lua
-function is_filter(msg, text)
-local var = false
-local group = load_data('bot/group.json')
-  if group[tostring(msg.chat_id_)]['filterlist'] then
-for k,v in pairs(group[tostring(msg.chat_id_)]['filterlist']) do 
-    if string.find(string.lower(text), string.lower(k)) then
-       var = true
-        end
-     end
-  end
- return var
-end
---bot.lua
