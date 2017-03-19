@@ -5,6 +5,7 @@ local function run(msg, matches)
     local addgroup = group[tostring(msg.chat_id)]
     if matches[1] == 'rmsg' and is_owner(msg) or is_momod(msg)  then
         if addgroup then 
+		local num = matches[2]	
             if 40 < tonumber(num) then
                 pm = '*More than* `1` *and less than* `40`'
                 tg.sendMessage(msg.chat_id_, msg.id_, 1, pm, 1, 'md')
