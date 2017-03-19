@@ -61,23 +61,17 @@ for k,v in pairs(group[tostring(msg.chat_id_)]['filterlist']) do
  return var
 end
 
-local function silent_users_list(chat_id)
-    local group = load_data('bot/group.json')
-    local i = 1
-	local addgroup = group[tostring(msg.chat_id)]
-	if addgroup then
-		if next(group[tostring(chat_id)]['is_silent_users']) == nil then  
-			tg.sendMessage(msg.chat_id_, msg.id_, 1, '*No mute users in this group*\n\n`Channel:` @LeaderCh', 1, 'md')
-		--end
-		else
-			message = '*List of mute users:*\n-------------------------------------------\n'
-			for k,v in pairs(group[tostring(chat_id)]['is_silent_users']) do
-				message = message.. '*' ..i.. '-* '..v..' [' ..k.. ']\n-------------------------------------------\n`Channel:` @LeaderCh'
-				i = i + 1
+function is_silent_user(user_id, chat_id)
+	local var = false
+	local group = load_data(_config.group.data)
+	if group[tostring(chat_id)] then
+		if group[tostring(chat_id)]['is_silent_users'] then
+			if group[tostring(chat_id)]['is_silent_users'][tostring(user_id)] then
+				var = true
 			end
-			tg.sendMessage(msg.chat_id_, msg.id_, 1, message, 1, 'md')
 		end
-	end	
+	end
+	return var
 end
 
 
