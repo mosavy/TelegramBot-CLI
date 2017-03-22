@@ -1,4 +1,4 @@
---Start 
+ 
 local function run (msg,matches)
 local group = load_data('bot/group.json')
 local addgroup = group[tostring(msg.chat_id)]
