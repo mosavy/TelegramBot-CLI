@@ -6,7 +6,7 @@ local function run(msg, matches)
 			--if matches[2] == 'bot' then	
 				function clbot(arg, data)
 					for k, v in pairs(data.members_) do
-						kick_user(v.user_id_, msg.chat_id_)
+						kick_user(msg.chat_id_, v.user_id_)
 					end
 					tg.sendMessage(msg.chat_id_, msg.id_, 1, '*All Bots was cleared*\n\n`Channel:` @LeaderCh', 1, 'md')
 				end
