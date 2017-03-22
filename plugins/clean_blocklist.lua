@@ -24,7 +24,7 @@ end
 
 return {
   patterns ={
-    "^([Cc]lean) ([Bb]locklist)$",
+    "^[/#!]([Cc]lean) ([Bb]locklist)$",
   },
   run = run,
 }
