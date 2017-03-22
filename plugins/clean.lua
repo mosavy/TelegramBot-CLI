@@ -6,11 +6,11 @@ local function run(msg, matches)
 			--if matches[2] == 'bot' then	
 				function clbot(arg, data)
 					for k, v in pairs(data.members_) do
-						kick_user(v.user_id_, msg.to.id)
+						kick_user(v.user_id_, msg.chat_id_)
 					end
-					tg.sendMessage(msg.to.id, msg.id, 1, '*All Bots was cleared*\n\n`Channel:` @LeaderCh', 1, 'md')
+					tg.sendMessage(msg.chat_id_, msg.id_, 1, '*All Bots was cleared*\n\n`Channel:` @LeaderCh', 1, 'md')
 				end
-				tg.getChannelMembers(msg.to.id, 0, 'Bots', 200, clbot, nil)
+				tg.getChannelMembers(msg.chat_id_, 0, 'Bots', 200, clbot, nil)
 				
 			--[[elseif matches[2] == 'modlist' then
 				if next(group[tostring(msg.chat_id_)]['moderators']) == nil then
@@ -39,7 +39,7 @@ end
 return { 
 	patterns ={ 
 		'^[/!#]([Cc]lean) (bot)$'
-		'^[/!#]([Cc]lean) (.*)$',
+		--'^[/!#]([Cc]lean) (.*)$',
 	},
 	run = run
 }
