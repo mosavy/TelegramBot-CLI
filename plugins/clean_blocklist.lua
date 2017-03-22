@@ -12,7 +12,7 @@ if addgroup and is_owner(msg) or is_momod(msg) then
       local x = 0
       for x,y in pairs(res.members_) do
         x = x + 1
-        tg.changeChatMemberStatus(ext.chat_id, y.user_id_, 'Left', dl_cb, nil)
+        tg.changeChatMemberStatus(ext.chat_id, y.user_id_, 'Left')
       end
       return tg.sendMessage(ext.chat_id, ext.msg_id, 0, '*Remove users from blocklist*\n\n`Channel:` @LeaderCh', 1, 'md')
    end
