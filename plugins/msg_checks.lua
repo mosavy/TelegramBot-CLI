@@ -29,7 +29,7 @@ local is_persian_msg = msg.text:match("[\216-\219][\128-\191]")
 if group_lock_persian == 'yes' and is_persian_msg then
 tg.deleteMessages(msg.chat_id_, {[0] = msg.id_ })
 end
-local function isABotBadWay (user)
+--[[local function isABotBadWay (user)
 local username = user.username or ''
 return username:match("[Bb]ot$")
 end
@@ -38,7 +38,7 @@ local is_bot_msg = msg.text:match("^!!tgservice (chat_add_user)$") or msg.text:m
 if group_lock_bot == 'yes' and is_bot_msg and isABotBadWay(user) then
 tg.deleteMessages(msg.chat_id_, {[0] = msg.id_ })
 
-end
+end]]
 local group_lock_inline = group[tostring(msg.chat_id)]['settings']['lock_inline']
 --local is_inline_msg =  msg.text == "[unsupported]"
 if group_lock_inline == 'yes'  and  msg.via_bot_user_id_ ~= 0 then
