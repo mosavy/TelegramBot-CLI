@@ -5,8 +5,8 @@ local function pre_process(msg)
 		if is_momod(msg) or is_robot(msg) then
 			return false
 		else
-			if msg.text then
-				if is_filter(msg, msg.text) then
+			if msg.content_.text_ then
+				if is_filter(msg, msg.content_.text_) then
 					--tg.deleteMessages(msg.chat_id_, msg.id_)
 					tg.deleteMessages(msg.chat_id_, tonumber(msg.id_))
 					--tg.deleteMessages(msg.chat_id_, {[0] = msg.id_ })
