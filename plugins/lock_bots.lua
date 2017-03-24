@@ -14,7 +14,7 @@ if group_lock_bot == 'yes' then
 --tg.changeChatMemberStatus(gid, aid, 'Kicked')
 --tg.changeChatMemberStatus(gid, uid, 'Kicked')
 kick_user(gid, aid)
---kick_user(gid, uid)          
+kick_user(gid, uid)          
 end
 end
 end
