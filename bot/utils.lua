@@ -285,8 +285,8 @@ function is_owner(msg)
   local data = load_data(_config.moderation.data)
   local user = msg.from.id
   if data[tostring(msg.to.id)] then
-    if data[tostring(msg.to.id)]['owners'] then
-      if data[tostring(msg.to.id)]['owners'][tostring(msg.from.id)] then
+    if data[tostring(msg.to.id)]['set_owner'] then
+      if data[tostring(msg.to.id)]['set_owner'][tostring(msg.from.id)] then
         var = true
       end
     end
@@ -337,8 +337,8 @@ function is_mod(msg)
   end
 
   if data[tostring(msg.to.id)] then
-    if data[tostring(msg.to.id)]['owners'] then
-      if data[tostring(msg.to.id)]['owners'][tostring(msg.from.id)] then
+    if data[tostring(msg.to.id)]['set_owner'] then
+      if data[tostring(msg.to.id)]['set_owner'][tostring(msg.from.id)] then
         var = true
       end
     end
@@ -374,8 +374,8 @@ function is_owner1(chat_id, user_id)
   local data = load_data(_config.moderation.data)
   local user = user_id
   if data[tostring(chat_id)] then
-    if data[tostring(chat_id)]['owners'] then
-      if data[tostring(chat_id)]['owners'][tostring(user)] then
+    if data[tostring(chat_id)]['set_owner'] then
+      if data[tostring(chat_id)]['set_owner'][tostring(user)] then
         var = true
       end
     end
@@ -426,8 +426,8 @@ function is_mod1(chat_id, user_id)
   end
 
   if data[tostring(chat_id)] then
-    if data[tostring(chat_id)]['owners'] then
-      if data[tostring(chat_id)]['owners'][tostring(usert)] then
+    if data[tostring(chat_id)]['set_owner'] then
+      if data[tostring(chat_id)]['set_owner'][tostring(usert)] then
         var = true
       end
     end
