@@ -198,7 +198,7 @@ return "گروه به لیست گروه های مدیریتی ربات اضاف�
   end
 end
   -- determine if table is empty
-  if next(data[tostring(msg.to.id)]['owners']) == nil then --fix way
+  if next(data[tostring(msg.to.id)]['set_owner']) == nil then --fix way
  if not lang then
     return "_No_ *owner* _in this group_"
 else
@@ -210,7 +210,7 @@ if not lang then
 else
    message = '*لیست مالکین گروه :*\n'
 end
-  for k,v in pairs(data[tostring(msg.to.id)]['owners']) do
+  for k,v in pairs(data[tostring(msg.to.id)]['set_owner']) do
     message = message ..i.. '- '..v..' [' ..k.. '] \n'
    i = i + 1
 end
@@ -241,14 +241,14 @@ user_name = '@'..check_markdown(data.username_)
 else
 user_name = check_markdown(data.first_name_)
 end
-if administration[tostring(arg.chat_id)]['owners'][tostring(data.id_)] then
+if administration[tostring(arg.chat_id)]['set_owner'][tostring(data.id_)] then
     if not lang then
     return tdcli.sendMessage(arg.chat_id, "", 0, "_User_ "..user_name.." *"..data.id_.."* _is already a_ *group owner*", 0, "md")
    else
     return tdcli.sendMessage(arg.chat_id, "", 0, "_کاربر_ "..user_name.." *"..data.id_.."* *از قبل صاحب گروه بود*", 0, "md")
       end
    end
-administration[tostring(arg.chat_id)]['owners'][tostring(data.id_)] = user_name
+administration[tostring(arg.chat_id)]['set_owner'][tostring(data.id_)] = user_name
     save_data(_config.moderation.data, administration)
    if not lang then
   return tdcli.sendMessage(arg.chat_id, "", 0, "_User_ "..user_name.." *"..data.id_.."* _is now the_ *group owner*", 0, "md")
@@ -301,14 +301,14 @@ user_name = '@'..check_markdown(data.username_)
 else
 user_name = check_markdown(data.first_name_)
 end
-if not administration[tostring(arg.chat_id)]['owners'][tostring(data.id_)] then
+if not administration[tostring(arg.chat_id)]['set_owner'][tostring(data.id_)] then
    if not lang then
 return tdcli.sendMessage(arg.chat_id, "", 0, "_User_ "..user_name.." *"..data.id_.."* _is not a_ *group owner*", 0, "md")
    else
 return tdcli.sendMessage(arg.chat_id, "", 0, "_User_ "..user_name.." *"..data.id_.."* *از قبل صاحب گروه نبود*", 0, "md")
       end
    end
-administration[tostring(arg.chat_id)]['owners'][tostring(data.id_)] = nil
+administration[tostring(arg.chat_id)]['set_owner'][tostring(data.id_)] = nil
     save_data(_config.moderation.data, administration)
    if not lang then
 return tdcli.sendMessage(arg.chat_id, "", 0, "_User_ "..user_name.." *"..data.id_.."* _is no longer a_ *group owner*", 0, "md")
@@ -387,14 +387,14 @@ else
 user_name = check_markdown(data.title_)
 end
 if cmd == "setowner" then
-if administration[tostring(arg.chat_id)]['owners'][tostring(data.id_)] then
+if administration[tostring(arg.chat_id)]['set_owner'][tostring(data.id_)] then
     if not lang then
     return tdcli.sendMessage(arg.chat_id, "", 0, "_User_ "..user_name.." *"..data.id_.."* _is already a_ *group owner*", 0, "md")
    else
     return tdcli.sendMessage(arg.chat_id, "", 0, "_کاربر_ "..user_name.." *"..data.id_.."* *از قبل صاحب گروه بود*", 0, "md")
       end
    end
-administration[tostring(arg.chat_id)]['owners'][tostring(data.id_)] = user_name
+administration[tostring(arg.chat_id)]['set_owner'][tostring(data.id_)] = user_name
     save_data(_config.moderation.data, administration)
    if not lang then
   return tdcli.sendMessage(arg.chat_id, "", 0, "_User_ "..user_name.." *"..data.id_.."* _is now the_ *group owner*", 0, "md")
@@ -419,14 +419,14 @@ administration[tostring(arg.chat_id)]['moderators'][tostring(data.id_)] = user_n
    end
 end
    if cmd == "remowner" then
-if not administration[tostring(arg.chat_id)]['owners'][tostring(data.id_)] then
+if not administration[tostring(arg.chat_id)]['set_owner'][tostring(data.id_)] then
    if not lang then
 return tdcli.sendMessage(arg.chat_id, "", 0, "_User_ "..user_name.." *"..data.id_.."* _is not a_ *group owner*", 0, "md")
    else
 return tdcli.sendMessage(arg.chat_id, "", 0, "_User_ "..user_name.." *"..data.id_.."* *از قبل صاحب گروه نبود*", 0, "md")
       end
    end
-administration[tostring(arg.chat_id)]['owners'][tostring(data.id_)] = nil
+administration[tostring(arg.chat_id)]['set_owner'][tostring(data.id_)] = nil
     save_data(_config.moderation.data, administration)
    if not lang then
 return tdcli.sendMessage(arg.chat_id, "", 0, "_User_ "..user_name.." *"..data.id_.."* _is no longer a_ *group owner*", 0, "md")
@@ -495,14 +495,14 @@ else
 user_name = check_markdown(data.first_name_)
 end
   if cmd == "setowner" then
-  if administration[tostring(arg.chat_id)]['owners'][tostring(data.id_)] then
+  if administration[tostring(arg.chat_id)]['set_owner'][tostring(data.id_)] then
     if not lang then
     return tdcli.sendMessage(arg.chat_id, "", 0, "_User_ "..user_name.." *"..data.id_.."* _is already a_ *group owner*", 0, "md")
    else
     return tdcli.sendMessage(arg.chat_id, "", 0, "_کاربر_ "..user_name.." *"..data.id_.."* *از قبل صاحب گروه بود*", 0, "md")
       end
    end
-administration[tostring(arg.chat_id)]['owners'][tostring(data.id_)] = user_name
+administration[tostring(arg.chat_id)]['set_owner'][tostring(data.id_)] = user_name
     save_data(_config.moderation.data, administration)
    if not lang then
   return tdcli.sendMessage(arg.chat_id, "", 0, "_User_ "..user_name.." *"..data.id_.."* _is now the_ *group owner*", 0, "md")
@@ -527,14 +527,14 @@ administration[tostring(arg.chat_id)]['moderators'][tostring(data.id_)] = user_n
    end
 end
    if cmd == "remowner" then
-if not administration[tostring(arg.chat_id)]['owners'][tostring(data.id_)] then
+if not administration[tostring(arg.chat_id)]['set_owner'][tostring(data.id_)] then
    if not lang then
 return tdcli.sendMessage(arg.chat_id, "", 0, "_User_ "..user_name.." *"..data.id_.."* _is not a_ *group owner*", 0, "md")
    else
 return tdcli.sendMessage(arg.chat_id, "", 0, "_User_ "..user_name.." *"..data.id_.."* *از قبل صاحب گروه نبود*", 0, "md")
       end
    end
-administration[tostring(arg.chat_id)]['owners'][tostring(data.id_)] = nil
+administration[tostring(arg.chat_id)]['set_owner'][tostring(data.id_)] = nil
     save_data(_config.moderation.data, administration)
    if not lang then
 return tdcli.sendMessage(arg.chat_id, "", 0, "_User_ "..user_name.." *"..data.id_.."* _is no longer a_ *group owner*", 0, "md")
