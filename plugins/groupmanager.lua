@@ -165,7 +165,7 @@ local lang = redis:get(hash)
   end
  end
   -- determine if table is empty
-  if next(data[tostring(msg.to.id)]['mods']) == nil then --fix way
+  if next(data[tostring(msg.to.id)]['moderators']) == nil then --fix way
   if not lang then
     return "_No_ *moderator* _in this group_"
 else
@@ -177,7 +177,7 @@ if not lang then
 else
    message = '*لیست مدیران گروه :*\n'
 end
-  for k,v in pairs(data[tostring(msg.to.id)]['mods'])
+  for k,v in pairs(data[tostring(msg.to.id)]['moderators'])
 do
     message = message ..i.. '- '..v..' [' ..k.. '] \n'
    i = i + 1
@@ -271,14 +271,14 @@ user_name = '@'..check_markdown(data.username_)
 else
 user_name = check_markdown(data.first_name_)
 end
-if administration[tostring(arg.chat_id)]['mods'][tostring(data.id_)] then
+if administration[tostring(arg.chat_id)]['moderators'][tostring(data.id_)] then
    if not lang then
     return tdcli.sendMessage(arg.chat_id, "", 0, "_User_ "..user_name.." *"..data.id_.."* _is already a_ *moderator*", 0, "md")
 else
     return tdcli.sendMessage(arg.chat_id, "", 0, "_کاربر_ "..user_name.." *"..data.id_.."* *از قبل مدیر گروه بود*", 0, "md")
       end
    end
-administration[tostring(arg.chat_id)]['mods'][tostring(data.id_)] = user_name
+administration[tostring(arg.chat_id)]['moderators'][tostring(data.id_)] = user_name
     save_data(_config.moderation.data, administration)
    if not lang then
     return tdcli.sendMessage(arg.chat_id, "", 0, "_User_ "..user_name.." *"..data.id_.."* _has been_ *promoted*", 0, "md")
@@ -329,14 +329,14 @@ user_name = '@'..check_markdown(data.username_)
 else
 user_name = check_markdown(data.first_name_)
 end
-if not administration[tostring(arg.chat_id)]['mods'][tostring(data.id_)] then
+if not administration[tostring(arg.chat_id)]['moderators'][tostring(data.id_)] then
     if not lang then
     return tdcli.sendMessage(arg.chat_id, "", 0, "_User_ "..user_name.." *"..data.id_.."* _is not a_ *moderator*", 0, "md")
     else
     return tdcli.sendMessage(arg.chat_id, "", 0, "_کاربر_ "..user_name.." *"..data.id_.."* *از قبل مدیر گروه نبود*", 0, "md")
    end
   end
-administration[tostring(arg.chat_id)]['mods'][tostring(data.id_)] = nil
+administration[tostring(arg.chat_id)]['moderators'][tostring(data.id_)] = nil
     save_data(_config.moderation.data, administration)
    if not lang then
     return tdcli.sendMessage(arg.chat_id, "", 0, "_User_ "..user_name.." *"..data.id_.."* _has been_ *demoted*", 0, "md")
@@ -403,14 +403,14 @@ administration[tostring(arg.chat_id)]['owners'][tostring(data.id_)] = user_name
    end
 end
   if cmd == "promote" then
-if administration[tostring(arg.chat_id)]['mods'][tostring(data.id_)] then
+if administration[tostring(arg.chat_id)]['moderators'][tostring(data.id_)] then
    if not lang then
     return tdcli.sendMessage(arg.chat_id, "", 0, "_User_ "..user_name.." *"..data.id_.."* _is already a_ *moderator*", 0, "md")
 else
     return tdcli.sendMessage(arg.chat_id, "", 0, "_کاربر_ "..user_name.." *"..data.id_.."* *از قبل مدیر گروه بود*", 0, "md")
       end
    end
-administration[tostring(arg.chat_id)]['mods'][tostring(data.id_)] = user_name
+administration[tostring(arg.chat_id)]['moderators'][tostring(data.id_)] = user_name
     save_data(_config.moderation.data, administration)
    if not lang then
     return tdcli.sendMessage(arg.chat_id, "", 0, "_User_ "..user_name.." *"..data.id_.."* _has been_ *promoted*", 0, "md")
@@ -435,14 +435,14 @@ return tdcli.sendMessage(arg.chat_id, "", 0, "_کاربر_ "..user_name.." *"..d
    end
 end
    if cmd == "demote" then
-if not administration[tostring(arg.chat_id)]['mods'][tostring(data.id_)] then
+if not administration[tostring(arg.chat_id)]['moderators'][tostring(data.id_)] then
     if not lang then
     return tdcli.sendMessage(arg.chat_id, "", 0, "_User_ "..user_name.." *"..data.id_.."* _is not a_ *moderator*", 0, "md")
     else
     return tdcli.sendMessage(arg.chat_id, "", 0, "_کاربر_ "..user_name.." *"..data.id_.."* *از قبل مدیر گروه نبود*", 0, "md")
    end
   end
-administration[tostring(arg.chat_id)]['mods'][tostring(data.id_)] = nil
+administration[tostring(arg.chat_id)]['moderators'][tostring(data.id_)] = nil
     save_data(_config.moderation.data, administration)
    if not lang then
     return tdcli.sendMessage(arg.chat_id, "", 0, "_User_ "..user_name.." *"..data.id_.."* _has been_ *demoted*", 0, "md")
@@ -511,14 +511,14 @@ administration[tostring(arg.chat_id)]['owners'][tostring(data.id_)] = user_name
    end
 end
   if cmd == "promote" then
-if administration[tostring(arg.chat_id)]['mods'][tostring(data.id_)] then
+if administration[tostring(arg.chat_id)]['moderators'][tostring(data.id_)] then
    if not lang then
     return tdcli.sendMessage(arg.chat_id, "", 0, "_User_ "..user_name.." *"..data.id_.."* _is already a_ *moderator*", 0, "md")
 else
     return tdcli.sendMessage(arg.chat_id, "", 0, "_کاربر_ "..user_name.." *"..data.id_.."* *از قبل مدیر گروه بود*", 0, "md")
       end
    end
-administration[tostring(arg.chat_id)]['mods'][tostring(data.id_)] = user_name
+administration[tostring(arg.chat_id)]['moderators'][tostring(data.id_)] = user_name
     save_data(_config.moderation.data, administration)
    if not lang then
     return tdcli.sendMessage(arg.chat_id, "", 0, "_User_ "..user_name.." *"..data.id_.."* _has been_ *promoted*", 0, "md")
@@ -543,14 +543,14 @@ return tdcli.sendMessage(arg.chat_id, "", 0, "_کاربر_ "..user_name.." *"..d
    end
 end
    if cmd == "demote" then
-if not administration[tostring(arg.chat_id)]['mods'][tostring(data.id_)] then
+if not administration[tostring(arg.chat_id)]['moderators'][tostring(data.id_)] then
     if not lang then
     return tdcli.sendMessage(arg.chat_id, "", 0, "_User_ "..user_name.." *"..data.id_.."* _is not a_ *moderator*", 0, "md")
     else
     return tdcli.sendMessage(arg.chat_id, "", 0, "_کاربر_ "..user_name.." *"..data.id_.."* *از قبل مدیر گروه نبود*", 0, "md")
    end
   end
-administration[tostring(arg.chat_id)]['mods'][tostring(data.id_)] = nil
+administration[tostring(arg.chat_id)]['moderators'][tostring(data.id_)] = nil
     save_data(_config.moderation.data, administration)
    if not lang then
     return tdcli.sendMessage(arg.chat_id, "", 0, "_User_ "..user_name.." *"..data.id_.."* _has been_ *demoted*", 0, "md")
