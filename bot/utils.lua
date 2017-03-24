@@ -329,8 +329,8 @@ function is_mod(msg)
   local data = load_data(_config.moderation.data)
   local usert = msg.from.id
   if data[tostring(msg.to.id)] then
-    if data[tostring(msg.to.id)]['mods'] then
-      if data[tostring(msg.to.id)]['mods'][tostring(msg.from.id)] then
+    if data[tostring(msg.to.id)]['moderators'] then
+      if data[tostring(msg.to.id)]['moderators'][tostring(msg.from.id)] then
         var = true
       end
     end
@@ -418,8 +418,8 @@ function is_mod1(chat_id, user_id)
   local data = load_data(_config.moderation.data)
   local usert = user_id
   if data[tostring(chat_id)] then
-    if data[tostring(chat_id)]['mods'] then
-      if data[tostring(chat_id)]['mods'][tostring(usert)] then
+    if data[tostring(chat_id)]['moderators'] then
+      if data[tostring(chat_id)]['moderators'][tostring(usert)] then
         var = true
       end
     end
