@@ -7,9 +7,9 @@ if matches[1] == 'clean' and matches[2] == 'bot' then
     for k, v in pairs(data.members_) do
       kick_user(msg.chat_id,v.user_id_)
  end
-    tdcli.sendMessage(msg.chat_id, msg.id_, 1, '*All bots has been cleaned*Channel: @LeaderCh', 1, 'md')
+    tg.sendMessage(msg.chat_id, msg.id_, 1, '*All bots has been cleaned*Channel: @LeaderCh', 1, 'md')
   end
-  tdcli.getChannelMembers( msg.chat_id, 0, 'Bots', 200, cleanbot, nil)
+  tg.getChannelMembers( msg.chat_id, 0, 'Bots', 200, cleanbot, nil)
   end
  end
 end
