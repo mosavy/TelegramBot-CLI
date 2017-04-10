@@ -13,12 +13,12 @@
     end
     local admins = result.members_
     for i=0 , #admins do
-      tdcli.getUser(admins[i].user_id_,set)
+      tg.getUser(admins[i].user_id_,set)
     end
       message = "*All moderators group has been added to Modlist*\n\nChannel: @LeaderCh"
-    tdcli.sendMessage(msg.chat_id,msg.id_, 1,message, 1, "md")
+    tg.sendMessage(msg.chat_id,msg.id_, 1,message, 1, "md")
   end
-  tdcli.getChannelMembers(msg.chat_id,0,'Administrators',200,padmin)
+  tg.getChannelMembers(msg.chat_id,0,'Administrators',200,padmin)
 end
 
 local function run(msg, matches)
