@@ -104,11 +104,11 @@ tg.deleteMessages(msg.chat_id_, {[0] = msg.id_ })
 end
 local group_link_lock = group[tostring(msg.chat_id)]['settings']['lock_link']
 local is_link_msg = msg.text:match("[Tt][Ee][Ll][Ee][Gg][Rr][Aa][Mm].[Mm][Ee]/") or msg.text:match("[Tt][Ll][Gg][Rr][Mm].[Mm][Ee]/") or msg.text:match("[Tt][Ee][Ll][Ee][Gg][Rr][Aa][Mm].[Dd][Oo][Gg]/") or msg.text:match("[Hh][Tt][Tt][Pp][Ss]:") or msg.text:match("[Hh][Tt][Tt][Pp]:") or msg.text:match("[Tt].[Mm][Ee]/")
-if msg.content_.entities_[0].ID == "MessageEntityUrl" or msg.content_.entities_[0].ID == "MessageEntityTextUrl" then
-if is_link_msg and group_link_lock == 'yes'then
+--if msg.content_.entities_[0].ID == "MessageEntityUrl" or msg.content_.entities_[0].ID == "MessageEntityTextUrl" then
+if is_link_msg or msg.content_.entities_[0].ID == "MessageEntityUrl" or msg.content_.entities_[0].ID == "MessageEntityTextUrl" and group_link_lock == 'yes'then
 tg.deleteMessages(msg.chat_id_, {[0] = msg.id_ })
 end
-end				
+--end				
 local group_edit_lock = group[tostring(msg.chat_id)]['settings']['lock_edit']
 local is_edit_msg = msg.text:match("!!!edit:")
 if group_edit_lock == 'yes' and is_edit_msg then
