@@ -78,7 +78,7 @@ local function run(msg, matches)
 		if matches[1] == 'setwelcome' and matches[2] then
 			group[tostring(chat)]['setwelcome'] = matches[2]
 			save_data(_config.group.data, group)
-			tg.sendMessage(msg.chat_id_, msg.id_, 1, '*Welcome message has been set to:*\n'..matches[2]..'\n-------------------------------------------\n*You can use:*\n`{name}` ➣ New Member First Name\n`{username}` ➣ New Member Username\n-------------------------------------------\n`Channel:` @LeaderCh', 1, 'md')
+			tg.sendMessage(msg.chat_id_, msg.id_, 1, '*Welcome message has been set to:*\n'..matches[2]..'\n-------------------------------------------\n*You can use:*\n`{name}` ➣ New Member First Name\n`{username}` ➣ New Member Username\n-------------------------------------------\n*Channel:* @LeaderCh', 1, 'md')
 		end
 	end	
 end
