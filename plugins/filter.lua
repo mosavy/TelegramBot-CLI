@@ -11,14 +11,14 @@ local function pre_process(msg)
 					tg.deleteMessages(msg.chat_id_, tonumber(msg.id_))
 					--tg.deleteMessages(msg.chat_id_, {[0] = msg.id_ })
 				end
-			--end
-			elseif msg.content_.caption_ then
+			end
+			--[[elseif msg.content_.caption_ then
 				if is_filter(msg, msg.content_.caption_) then
 					--tg.deleteMessages(msg.chat_id_, msg.id_)
 					tg.deleteMessages(msg.chat_id_, tonumber(msg.id_))
 					--tg.deleteMessages(msg.chat_id_, {[0] = msg.id_ })
 				end	
-			end	
+			end]]	
 		end
 
 	end	
