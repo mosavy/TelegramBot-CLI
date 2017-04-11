@@ -22,7 +22,7 @@ local function run(msg, matches)
 					save_data(_config.group.data, group)
 				end
 				tg.sendMessage(msg.chat_id_, 0, 1, '*Filter list has been cleaned*\n\n`Channel:` @LeaderCh', 1, 'md')
-			end]]
+			end
 			if matches[2] == 'rules' then
 				if redis:scard('rules'..msg.chat_id_) == 0 then
 					tg.sendMessage(msg.chat_id_, 0, 1, '*Rules not been saved*\n\n`Channel:` @LeaderCh', 1, 'md')
@@ -31,7 +31,7 @@ local function run(msg, matches)
 				--save_data(_config.group.data, group)
 				tg.sendMessage(msg.chat_id_, 0, 1, '*Rules has been cleaned*\n\n`Channel:` @LeaderCh', 1, 'md')
 			end
-			--[[if matches[2] == 'welcome' then
+			if matches[2] == 'welcome' then
 				if not group[tostring(chat)]['setwelcome'] then
 					tg.sendMessage(msg.chat_id_, 0, 1, '*Welcome message not been saved*\n\n`Channel:` @LeaderCh', 1, 'md')
 				end
@@ -45,7 +45,7 @@ local function run(msg, matches)
  
 return {
 	patterns ={
-		"^[!/#]([Cc]lean) (.*)$",
+		"^[!/#]([Cc]lean) (modlist)$",
 	},
 	run=run,
 }
