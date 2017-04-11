@@ -59,10 +59,12 @@ local function filter_word(msg, word)
 	end
 	if group[tostring(msg.chat_id)]['filterlist'][(word)] then
 		tg.sendMessage(msg.chat_id_, msg.id_, 1, '*[* '..word..' *] is already filtered*\n\n`Channel:` @LeaderCh', 1, 'md')
-	end
-	group[tostring(msg.chat_id)]['filterlist'][(word)] = true
-    save_data(_config.group.data, group)
-    tg.sendMessage(msg.chat_id_, msg.id_, 1, '*[* '..word..' *] added to filtered words list*\n\n`Channel:` @LeaderCh', 1, 'md')
+	--end
+	else	
+	        group[tostring(msg.chat_id)]['filterlist'][(word)] = true
+                save_data(_config.group.data, group)
+                tg.sendMessage(msg.chat_id_, msg.id_, 1, '*[* '..word..' *] added to filtered words list*\n\n`Channel:` @LeaderCh', 1, 'md')
+        end
 end
 
 local function unfilter_word(msg, word)
