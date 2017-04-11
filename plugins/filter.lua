@@ -24,6 +24,30 @@ local function pre_process(msg)
 	end	
 end
 
+function filter_list(msg)
+    local group = load_data('bot/group.json')
+    if not group[tostring(msg.chat_id_)]['filterlist'] then
+       group[tostring(msg.chat_id_)]['filterlist'] = {}
+       save_data(_config.group.data, group)
+    end
+    -- determine if table is empty
+    if next(group[tostring(msg.chat_id_)]['filterlist']) == nil then --fix way
+       pm1 = "*Filtered words list is empty*\n\nChannel: @LeaderCh"
+       tg.sendMessage(msg.chat_id_, msg.id_, 1, pm1, 1, "md")
+    end
+    if not group[tostring(msg.chat_id_)]['filterlist'] then
+       group[tostring(msg.chat_id_)]['filterlist'] = {}
+       save_data(_config.group.data, group)
+    end
+    filterlist = '*List of filtered words:*\n-------------------------------------------\n'
+    local i = 1
+    for k,v in pairs(group[tostring(msg.chat_id_)]['filterlist']) do
+        filterlist = filterlist..'*'..i..'-* '..check_markdown(k)..'\n'
+        i = i + 1
+    end
+    pm = filterlist..'-------------------------------------------\nChannel: @LeaderCh'
+    tg.sendMessage(msg.chat_id_, msg.id_, 1, pm, 1, 'md')
+end
 
 local function filter_word(msg, word)
 	local group = load_data('bot/group.json')
