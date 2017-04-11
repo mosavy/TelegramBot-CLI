@@ -1,3 +1,30 @@
+local function pre_process(msg)
+	local group = load_data('bot/group.json')
+	local addgroup = group[tostring(msg.chat_id)]
+	if addgroup and not is_owner(msg) or not is_momod(msg) then
+		if is_momod(msg) or is_robot(msg) then
+			return false
+		else
+			if msg.content_.text_ then
+				if is_filter(msg, msg.content_.text_) then
+					--tg.deleteMessages(msg.chat_id_, msg.id_)
+					tg.deleteMessages(msg.chat_id_, tonumber(msg.id_))
+					--tg.deleteMessages(msg.chat_id_, {[0] = msg.id_ })
+				end
+			--end
+			elseif msg.content_.caption_ then
+				if is_filter(msg, msg.content_.caption_) then
+					--tg.deleteMessages(msg.chat_id_, msg.id_)
+					tg.deleteMessages(msg.chat_id_, tonumber(msg.id_))
+					--tg.deleteMessages(msg.chat_id_, {[0] = msg.id_ })
+				end	
+			end	
+		end
+
+	end	
+end
+
+
 local function filter_word(msg, word)
 	local group = load_data('bot/group.json')
 	if not group[tostring(msg.chat_id)]['filterlist'] then
@@ -50,4 +77,5 @@ return {
 		"^[#!/]([Ff]ilterlist)$"
 	},
 	run=run,
+	pre_process=pre_process
 }
