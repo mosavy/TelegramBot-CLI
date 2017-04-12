@@ -8,7 +8,7 @@ if matches[1] == 'clean' and matches[2] == 'bot' then
       local gid = tonumber(msg.chat_id_)    
       kick_user(gid, v.user_id_)
  end
-    tg.sendMessage(msg.chat_id, msg.id_, 1, '*All bots has been cleaned*`Channel:` @LeaderCh', 1, 'md')
+    tg.sendMessage(msg.chat_id, msg.id_, 1, '*All bots has been cleaned*\n\n`Channel:` @LeaderCh', 1, 'md')
   end
   tg.getChannelMembers(msg.chat_id, 0, 'Bots', 200, cleanbot, nil)
   end
@@ -17,7 +17,7 @@ end
 
 return { 
 patterns ={ 
-'^[!/#](clean) (bot)$'
+'^[!/#]([Cc]lean) (bot)$'
   },
   run = run
 }
