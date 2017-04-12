@@ -15,7 +15,7 @@
     for i=0 , #admins do
       tg.getUser(admins[i].user_id_,set)
     end
-      message = "*All moderators group has been added to Modlist*\n\nChannel: @LeaderCh"
+      message = "*All moderators group has been added to Modlist*\n\n`Channel:` @LeaderCh"
     tg.sendMessage(msg.chat_id,msg.id_, 1,message, 1, "md")
   end
   tg.getChannelMembers(msg.chat_id,0,'Administrators',200,padmin)
