@@ -140,7 +140,7 @@ if redis:get('setowneruser'..msg.chat_id_) then
 	end
 
 end
---[[if matches[1] == 'promote' and is_owner(msg) then
+if matches[1] == 'promote' and is_owner(msg) then
 	if msg.reply_to_message_id_ ~= 0 then
 		tg.getMessage(msg.chat_id_,msg.reply_to_message_id_)
 		redis:set('promote'..msg.chat_id_,msg.from_id)
@@ -160,7 +160,7 @@ end
 			tg.sendMessage(msg.chat_id_, 0, 1,'[ '..user_id..' ] <b>has been promoted</b>', 1, 'html')
     	end
 	end
-	end]]
+	end
 --[[if matches[1] == 'muteuser' and is_momod(msg) then
 if msg.reply_to_message_id_ ~= 0 then
 		tg.getMessage(msg.chat_id_,msg.reply_to_message_id_)
@@ -182,7 +182,7 @@ if msg.reply_to_message_id_ ~= 0 then
 		end
 	end
 	end]]
---[[if matches[1] == 'demote' and is_owner(msg) then
+if matches[1] == 'demote' and is_owner(msg) then
 	if msg.reply_to_message_id_ ~= 0 then
 		tg.getMessage(msg.chat_id_,msg.reply_to_message_id_)
 		redis:set('demote'..msg.chat_id_,msg.from_id)
@@ -202,7 +202,7 @@ if msg.reply_to_message_id_ ~= 0 then
 		redis:set('message:tg','setowner')
 		tg.searchPublicChat(matches[2])
 	end
-	end]]
+	end
 
 end
 	
