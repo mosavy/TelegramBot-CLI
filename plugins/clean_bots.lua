@@ -17,7 +17,7 @@ end
 
 return { 
 patterns ={ 
-'^[!/#]([Cc]lean) (bot)$'
+'^[!/#]([Cc]lean) ([Bb]ot)$'
   },
   run = run
 }
