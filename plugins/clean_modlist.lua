@@ -14,7 +14,7 @@ local function run(msg, matches)
          end
 end
 end
-end
+
 return {
  patterns ={
   "^[!/#]([Cc]lean) ([Mm]odlist)$"
