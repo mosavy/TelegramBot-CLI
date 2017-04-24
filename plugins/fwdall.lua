@@ -1,7 +1,7 @@
 local function run(msg, matches)
 if is_sudo(msg)then
 if matches[1] == 'fwdall' and msg.reply_to_message_id_ then
-    local all = load_data('bot/group.json')
+    local all = load_data(_config.group.data)
     local id = msg.reply_to_message_id_
     for i = 1, #all do
       tdcli_function({
