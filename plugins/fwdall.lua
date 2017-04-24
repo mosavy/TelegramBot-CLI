@@ -18,6 +18,7 @@ if matches[1] == 'fwdall' and msg.reply_to_message_id_ then
     return "Sent!"
   end
 end
+end
 
 return { 
 patterns ={ 
