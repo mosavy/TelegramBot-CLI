@@ -110,7 +110,7 @@ tg.deleteMessages(msg.chat_id_, {[0] = msg.id_ })
 end
 --end				
 local group_edit_lock = group[tostring(msg.chat_id)]['settings']['lock_edit']
-local is_edit_msg = msg.text:match("!!!edit:")
+local is_edit_msg = msg.text:match("!!!edit:" .. msg.text_)
 if group_edit_lock == 'yes' and is_edit_msg then
 tg.deleteMessages(msg.chat_id_, {[0] = msg.id_ })
 end
