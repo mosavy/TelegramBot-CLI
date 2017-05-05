@@ -1,4 +1,4 @@
-local function pre_process(msg)
+local function run(msg)
 	local group = load_data('bot/group.json')
 	local addgroup = group[tostring(msg.chat_id)]
 	local chat = msg.chat_id_
@@ -36,6 +36,8 @@ local function pre_process(msg)
 	end	
 end
 return {
-	patterns = {},
-	pre_process = pre_process
+  patterns = {
+    "^(.*)$",
+  },
+  run = run
 }
