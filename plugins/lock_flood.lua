@@ -8,7 +8,7 @@ local function pre_process(msg)
 		local flood = group[tostring(chat)]['settings']['lock_flood']
 		if flood == 'yes' then
 			local hash = 'user:'..user..':msgs'
-			local hash = 'user:'..user..':'..chat..':msgs'
+			--local hash = 'user:'..user..':'..chat..':msgs'
 			local msgs = tonumber(redis:get(hash) or 0)
 			local NUM_MSG_MAX = 5
 			--[[if addgroup then
@@ -20,16 +20,16 @@ local function pre_process(msg)
 				if is_momod(msg) or is_owner(msg) then
 					return
 				end
-				if redis:get('sender:'..user..':lock_floods') then
+				--[[if redis:get('sender:'..user..':lock_floods') then
 					return
-				else
+				else]]
 					--tg.deleteMessages(msg.chat_id_, {[0] = msg.id_ })
 					tg.deleteMessages(msg.chat_id_, msg.id_ )
 					--kick_user(msg.chat_id_,msg.sender_user_id_)
 					--tg.sendMessage(msg.chat_id_, msg.id_, 0, '[`'..user..'`] *has been kicked because of spam flooding*\n\n`Channel:` @LeaderCh', 0, 'md')
 					tg.sendMessage(msg.chat_id_, msg.id_, 0, '[`'..user..'`] *has been all deleted messages of spam flooding*\n\n`Channel:` @LeaderCh', 0, 'md')
 					redis:setex('sender:'..user..':lock_flood', 30, true)
-				end
+				--end
 			end
 			redis:setex(hash, TIME_CHECK, msgs+1)
 		end
