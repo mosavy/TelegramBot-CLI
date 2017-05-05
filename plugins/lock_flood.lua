@@ -43,7 +43,7 @@ return {
 	pre_process = pre_process
 }
 
---bot.lua
+--[[bot.lua
     elseif msg.content_.ID == "MessageChatAddMembers" then
         msg.text = "!!!tgservice:add"
---bot.lua
+--bot.lua]]
