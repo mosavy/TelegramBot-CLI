@@ -4,7 +4,7 @@ if addgroup and not is_owner(msg) or not is_momod(msg) then
 if is_momod(msg) or is_robot(msg) then
 return false
 else
-if msg.content_.members_ or msg.content_.members_[0].type_.ID == 'UserTypeBot' then
+if msg.content_.members_ and msg.content_.members_[0].type_.ID == 'UserTypeBot' then
 local gid = tonumber(msg.chat_id_)
 local uid = msg.sender_user_id_
 local aid = msg.content_.members_[0].id_
