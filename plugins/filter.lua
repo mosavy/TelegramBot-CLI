@@ -1,7 +1,7 @@
 local function addword(msg, name)
     local hash = 'chat:'..msg.chat_id_..':badword'
     redis:hset(hash, name, 'newword')
-    return "کلمه جدید به فیلتر کلمات اضافه شد\n🔹➕ "..name
+    tg.sendMessage(msg.chat_id_, msg.id_, 1, '*[* '..name..' *] added to filtered words list*\n\n`Channel:` @LeaderCh', 1, 'md')
 end
 
 local function get_badword_hash(msg)
@@ -15,11 +15,13 @@ local function list_badwords(msg)
 		local names = redis:hkeys(hash)
 		filterlist = '*List of filtered words:*\n-------------------------------------------\n'
 		for i=1, #names do
-			
-			result = result..'🔹 '..names[i]..'\n'
+			local a = 1
+			filterlist = filterlist .. a ..'-' ..names[i]..'\n'
+			a = a + 1
 		end
 		if #result>0 then
-			return text..result
+			pm = filterlist..'-------------------------------------------\n`Channel:` @LeaderCh'
+                        tg.sendMessage(msg.chat_id_, msg.id_, 1, pm, 1, 'md')
 		else
 			       pm1 = "*Filtered words list is empty*\n\nChannel: @LeaderCh"
                                tg.sendMessage(msg.chat_id_, msg.id_, 1, pm1, 1, "md")
@@ -52,7 +54,7 @@ end
 local function clear_badword(msg, cmd_name)  
 	local hash = get_badword_hash(msg)
 	redis:hdel(hash, cmd_name)
-	return '❌کلمه غیرمجاز '..cmd_name..' حذف شد.'
+	tg.sendMessage(msg.chat_id_, msg.id_, 1, '*[* '..cmd_name..' *] removed from filtered words list*\n\n`Channel:` @LeaderCh', 1, 'md')
 end
 
 local function pre_process(msg)
@@ -80,28 +82,28 @@ local function run(msg, matches)
 local group = load_data('bot/group.json')
 local addgroup = group[tostring(msg.chat_id)]
 	if addgroup and is_momod(msg) or is_owner(msg) then
-		if matches[1]:lower() == 'filter' then
-			local name = string.sub(matches[3], 1, 50)
+		if matches[1] == 'filter' then
+			local name = string.sub(matches[2], 1, 50)
 			local text = addword(msg, name)
 			return text
 		end
-		if matches[1]:lower() == 'filterlist' then
+		if matches[1] == 'filterlist' then
 			return list_badwords(msg)
-		elseif matches[1]:lower() == 'clean' then
+		elseif matches[1] == 'clean' then
 			local number = '1'
 			return clear_badwords(msg, number)
-		elseif matches[1]:lower() == 'unfilter' then
-			return clear_badword(msg, matches[3])
+		elseif matches[1] == 'unfilter' then
+			return clear_badword(msg, matches[2])
 		end
 	end
 end
 
 return {
   patterns = {
-	"^[!/#]([Ff]ilter) (.*)$",
-	"^[!/#]([Uu]nfilter) (.*)$",
-    "^[!/#]([Ff]ilterlist)$",
-    "^[!/#]([Cc]lean) ([Ff]ilterlist)$",
+		"^[#!/]([Ff]ilter) (.*)$",
+		"^[#!/]([Uu]nfilter) (.*)$",
+		"^[#!/]([Ff]ilterlist)$",
+                "^[!/#]([Cc]lean) ([Ff]ilterlist)$"
   },
   run = run, 
   pre_process = pre_process
