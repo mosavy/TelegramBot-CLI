@@ -482,7 +482,15 @@ function tdcli_update_callback(data)
   else
     if data.ID == "UpdateNewMessage" then
       msg = data.message_
-      if msg.content_.photo_ then
+			
+	if msg.content_.ID == "MessageText" then
+      if msg_valid(msg) then
+        msg.edited = false
+        --msg.pinned = false
+        match_plugins(msg)
+      end		
+			
+      elseif msg.content_.photo_ then
         msg.text = "!!!photo:"
         if msg.content_.caption_ then
           msg.text = msg.text .. msg.content_.caption_
@@ -539,7 +547,7 @@ function tdcli_update_callback(data)
         msg.text = "!!!audio:"
         if msg.content_.caption_ then
           msg.text = msg.text .. msg.content_.caption_
-        end
+        end	
       else
         msg.text = msg.content_.text_
       end
@@ -563,7 +571,19 @@ function tdcli_update_callback(data)
     elseif data.ID == "UpdateChatReadOutbox" then
       local test = "s"
     elseif data.ID == "UpdateMessageEdited" then
-      local test = "s"
+     -- local test = "s"
+	local function edited_cb(arg, data)
+        msg = data
+        msg.edited = true
+        match_plugins(msg)
+      
+    end
+     tdcli_function ({
+      ID = "GetMessage",
+      chat_id_ = data.chat_id_,
+      message_id_ = data.message_id_
+    }, edited_cb, nil)	
+			
     elseif data.ID == "UpdateNewMessage" then
       local test = "s"
     elseif data.ID == "UpdateMessageContent" then
