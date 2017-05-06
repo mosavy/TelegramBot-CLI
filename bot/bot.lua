@@ -145,6 +145,15 @@ function is_robot(msg)
   end
   return var
 end
+
+function msg_valid(msg)
+  if msg.date_ < os.time() - 60 then
+    print('\27[36mOld msg\27[39m')
+    return false
+  end
+  return true
+end
+
 function string.random(length)
   local str = ""
   for i = 1, length do
