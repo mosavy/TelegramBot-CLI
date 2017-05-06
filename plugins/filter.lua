@@ -78,17 +78,17 @@ local function run(msg, matches)
 local group = load_data('bot/group.json')
 local addgroup = group[tostring(msg.chat_id)]
 	if addgroup and is_momod(msg) or is_owner(msg) then
-		if matches[2]:lower() == 'filter' then
+		if matches[1]:lower() == 'filter' then
 			local name = string.sub(matches[3], 1, 50)
 			local text = addword(msg, name)
 			return text
 		end
-		if matches[2]:lower() == 'filterlist' then
+		if matches[1]:lower() == 'filterlist' then
 			return list_badwords(msg)
-		elseif matches[2]:lower() == 'clean' then
+		elseif matches[1]:lower() == 'clean' then
 			local number = '1'
 			return clear_badwords(msg, number)
-		elseif matches[2]:lower() == 'unfilter' then
+		elseif matches[1]:lower() == 'unfilter' then
 			return clear_badword(msg, matches[3])
 		end
 	end
