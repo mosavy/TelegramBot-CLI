@@ -13,14 +13,16 @@ local function list_badwords(msg)
 	local result=''
 	if hash then
 		local names = redis:hkeys(hash)
-		local text = '📋لیست کلمات غیرمجاز :\n\n'
+		filterlist = '*List of filtered words:*\n-------------------------------------------\n'
 		for i=1, #names do
+			
 			result = result..'🔹 '..names[i]..'\n'
 		end
 		if #result>0 then
 			return text..result
 		else
-			return'⭕️لیست کلمات غیرمجاز خالی میباشد.⭕️'
+			       pm1 = "*Filtered words list is empty*\n\nChannel: @LeaderCh"
+                               tg.sendMessage(msg.chat_id_, msg.id_, 1, pm1, 1, "md")
 		end
 	end
 end
