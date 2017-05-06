@@ -19,7 +19,7 @@ local function list_badwords(msg)
 			filter_list = filterlist .. a ..'-' ..names[i]..'\n'
 			a = a + 1
 		end
-		if #result>0 then
+		if #filter_list>0 then
 			pm = filter_list..'-------------------------------------------\n`Channel:` @LeaderCh'
                         tg.sendMessage(msg.chat_id_, msg.id_, 1, pm, 1, 'md')
 		else
