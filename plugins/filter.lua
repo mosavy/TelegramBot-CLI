@@ -16,11 +16,11 @@ local function list_badwords(msg)
 		filterlist = '*List of filtered words:*\n-------------------------------------------\n'
 		for i=1, #names do
 			local a = 1
-			filterlist = filterlist .. a ..'-' ..names[i]..'\n'
+			filter_list = filterlist .. a ..'-' ..names[i]..'\n'
 			a = a + 1
 		end
 		if #result>0 then
-			pm = filterlist..'-------------------------------------------\n`Channel:` @LeaderCh'
+			pm = filter_list..'-------------------------------------------\n`Channel:` @LeaderCh'
                         tg.sendMessage(msg.chat_id_, msg.id_, 1, pm, 1, 'md')
 		else
 			       pm1 = "*Filtered words list is empty*\n\nChannel: @LeaderCh"
@@ -43,7 +43,7 @@ local function list_badword2(msg, arg)
 		local text = ''
 		for i=1, #names do
 			if string.match(arg, names[i]) and not is_momod(msg) or not is_owner(msg) then
-				tdcli.deleteMessages(msg.chat_id_, {[0] = msg.id_}, dl_cb, nil)
+				tg.deleteMessages(msg.chat_id_, {[0] = msg.id_}, dl_cb, nil)
 				return 
 			end
 		end
@@ -66,11 +66,11 @@ local function pre_process(msg)
 		local text = ''
 		for i=1, #names do
 			if string.match(tostring(msg.content_.text_), tostring(names[i])) and not is_momod(msg) or not is_owner(msg) then
-					tdcli.deleteMessages(msg.chat_id_, {[0] = msg.id_}, dl_cb, nil)
+					tg.deleteMessages(msg.chat_id_, {[0] = msg.id_}, dl_cb, nil)
 				return 
 			end
 			if string.match(tostring(msg.content_.caption_), tostring(names[i])) and not is_momod(msg) or not is_owner(msg) then
-					tdcli.deleteMessages(msg.chat_id_, {[0] = msg.id_}, dl_cb, nil)
+					tg.deleteMessages(msg.chat_id_, {[0] = msg.id_}, dl_cb, nil)
 				return 
 			end
 		end
