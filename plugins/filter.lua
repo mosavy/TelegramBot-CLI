@@ -18,6 +18,7 @@ local function list_badwords(msg)
 			local a = 1
 			filter_list = filterlist .. a ..'-' ..names[i]..'\n'
 			a = a + 1
+			 = i + 1
 		end
 		if #filter_list>0 then
 			pm = filter_list..'-------------------------------------------\n`Channel:` @LeaderCh'
