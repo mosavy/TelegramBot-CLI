@@ -492,7 +492,7 @@ function tdcli_update_callback(data)
     if data.ID == "UpdateNewMessage" then
       msg = data.message_
 			
-	if msg.content_.ID == "MessageText" then
+	if msg.content_.ID == "Message" then
       if msg_valid(msg) then
         msg.edited = false
         --msg.pinned = false
