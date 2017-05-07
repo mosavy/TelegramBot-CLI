@@ -492,14 +492,8 @@ function tdcli_update_callback(data)
     if data.ID == "UpdateNewMessage" then
       msg = data.message_
 			
-	if msg.content_.ID == "Message" then
-      if msg_valid(msg) then
-        msg.edited = false
-        --msg.pinned = false
-        --match_plugins(msg)
-      end		
-			
-      elseif msg.content_.photo_ then
+	
+      if msg.content_.photo_ then
         msg.text = "!!!photo:"
         if msg.content_.caption_ then
           msg.text = msg.text .. msg.content_.caption_
@@ -580,44 +574,19 @@ function tdcli_update_callback(data)
     elseif data.ID == "UpdateChatReadOutbox" then
       local test = "s"
     elseif data.ID == "UpdateMessageEdited" then
-     --[[ local test = "s"
-	local function edited_cb(arg, data)
-        msg = data
-	msg.media = {}			
-       -- msg.edited = true
-        --match_plugins(msg)
-       if cmsg.new_content_.text then
-              msg.text = cmsg.new_content_.text
-       end
-       if cmsg.new_content_.caption_ then
-              msg.media.caption = cmsg.new_content_.caption_
-       end
-       msg.edited = true
-    end
-     tdcli_function ({
-      ID = "GetMessage",
-      chat_id_ = data.chat_id_,
-      message_id_ = data.message_id_
-    }, edited_cb, nil)]]	
-			
+     -- local test = "s"
+	local group = load_data('bot/group.json')
+	local addgroup = group[tostring(msg.chat_id)]		
+	local group_edit_lock = group[tostring(msg.chat_id)]['settings']['lock_edit']	
+	if addgroup and group_edit_lock == 'yes' then	
+		tg.deleteMessages(msg.chat_id_, {[0] = msg.id_ })
+	end			
     elseif data.ID == "UpdateNewMessage" then
       local test = "s"
     elseif data.ID == "UpdateMessageContent" then
       --redis:set("message:tg", "edit")
       --tg.getMessage(data.chat_id_, data.message_id_)
-	local function edited_cb(arg, data)
-        msg = data
-	msg.media = {}			
-       -- msg.edited = true
-        --match_plugins(msg)
-       if cmsg.new_content_.text then
-              msg.text = cmsg.new_content_.text
-       end
-       if cmsg.new_content_.caption_ then
-              msg.media.caption = cmsg.new_content_.caption_
-       end
-       msg.edited = true
-    end
+	
      tdcli_function ({
       ID = "GetMessage",
       chat_id_ = data.chat_id_,
