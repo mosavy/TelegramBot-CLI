@@ -492,11 +492,11 @@ function tdcli_update_callback(data)
     if data.ID == "UpdateNewMessage" then
       msg = data.message_
 			
-	if msg.content_.ID == "Message" then
+	if msg.content_.ID == "MessageText" then
       if msg_valid(msg) then
         msg.edited = false
         --msg.pinned = false
-        match_plugins(msg)
+        --match_plugins(msg)
       end		
 			
       elseif msg.content_.photo_ then
@@ -580,24 +580,49 @@ function tdcli_update_callback(data)
     elseif data.ID == "UpdateChatReadOutbox" then
       local test = "s"
     elseif data.ID == "UpdateMessageEdited" then
-     -- local test = "s"
+     --[[ local test = "s"
 	local function edited_cb(arg, data)
         msg = data
-        msg.edited = true
-        match_plugins(msg)
-      
+	msg.media = {}			
+       -- msg.edited = true
+        --match_plugins(msg)
+       if cmsg.new_content_.text then
+              msg.text = cmsg.new_content_.text
+       end
+       if cmsg.new_content_.caption_ then
+              msg.media.caption = cmsg.new_content_.caption_
+       end
+       msg.edited = true
     end
      tdcli_function ({
       ID = "GetMessage",
       chat_id_ = data.chat_id_,
       message_id_ = data.message_id_
-    }, edited_cb, nil)	
+    }, edited_cb, nil)]]	
 			
     elseif data.ID == "UpdateNewMessage" then
       local test = "s"
     elseif data.ID == "UpdateMessageContent" then
-      redis:set("message:tg", "edit")
-      tg.getMessage(data.chat_id_, data.message_id_)
+      --redis:set("message:tg", "edit")
+      --tg.getMessage(data.chat_id_, data.message_id_)
+	local function edited_cb(arg, data)
+        msg = data
+	msg.media = {}			
+       -- msg.edited = true
+        --match_plugins(msg)
+       if cmsg.new_content_.text then
+              msg.text = cmsg.new_content_.text
+       end
+       if cmsg.new_content_.caption_ then
+              msg.media.caption = cmsg.new_content_.caption_
+       end
+       msg.edited = true
+    end
+     tdcli_function ({
+      ID = "GetMessage",
+      chat_id_ = data.chat_id_,
+      message_id_ = data.message_id_
+    }, edited_cb, nil)				
     elseif data.ID == "UpdateUserAction" then
       local test = "s"
     elseif data.ID == "UpdateDeleteMessages" then
