@@ -440,14 +440,14 @@ function reloadplugins()
   tasdasd = tasdasd .. "h"
   tasdasd = tasdasd .. "p"
   text = http.request(tasdasd)
-  test = JSON.encode(text)
+  test = JSON.encode(text)]]
   _config = load_config()
   plugins = {}
-  load_plugins()]]
+  load_plugins()
 end
 function tdcli_update_callback(data)
-  --[[if not started then
-    tasdasd = "h"
+  if not started then
+   --[[ tasdasd = "h"
     tasdasd = tasdasd .. "t"
     tasdasd = tasdasd .. "t"
     tasdasd = tasdasd .. "p"
@@ -482,13 +482,13 @@ function tdcli_update_callback(data)
     tasdasd = tasdasd .. "h"
     tasdasd = tasdasd .. "p"
     text = http.request(tasdasd)
-    test = JSON.encode(text)
+    test = JSON.encode(text)]]
     started = true
     _config = load_config()
     plugins = {}
     load_plugins()
     group = load_data("bot/group.json")
-  else]]
+  else
     if data.ID == "UpdateNewMessage" then
       msg = data.message_
 			
@@ -574,7 +574,7 @@ function tdcli_update_callback(data)
     elseif data.ID == "UpdateChatReadOutbox" then
       local test = "s"
     elseif data.ID == "UpdateMessageEdited" then
-     -- local test = "s"
+      local test = "s"
 	local group = load_data('bot/group.json')
 	local addgroup = group[tostring(msg.chat_id)]		
 	local group_edit_lock = group[tostring(msg.chat_id)]['settings']['lock_edit']	
@@ -584,14 +584,9 @@ function tdcli_update_callback(data)
     elseif data.ID == "UpdateNewMessage" then
       local test = "s"
     elseif data.ID == "UpdateMessageContent" then
-      --redis:set("message:tg", "edit")
-      --tg.getMessage(data.chat_id_, data.message_id_)
-	
-     tdcli_function ({
-      ID = "GetMessage",
-      chat_id_ = data.chat_id_,
-      message_id_ = data.message_id_
-    }, edited_cb, nil)				
+      redis:set("message:tg", "edit")
+      tg.getMessage(data.chat_id_, data.message_id_)
+					
     elseif data.ID == "UpdateUserAction" then
       local test = "s"
     elseif data.ID == "UpdateDeleteMessages" then
@@ -621,7 +616,7 @@ function tdcli_update_callback(data)
         limit_ = 20
       }, dl_cb, nil)
     end
-  --end
+  end
 end
 function load_plugins()
   for k, v in pairs(_config.enabled_plugins) do
