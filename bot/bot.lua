@@ -603,6 +603,19 @@ function tdcli_update_callback(data)
       local test = "s"
     elseif data.ID == "UpdateChatTopMessage" then
       local test = "s"
+	if msg and msg.content_.members_ and msg.content_.members_[0].type_.ID == 'UserTypeBot' then
+		local gid = tonumber(msg.chat_id_)
+		local uid = msg.sender_user_id_
+		local aid = msg.content_.members_[0].id_
+		local id = msg.id_
+		local group_lock_bot = group[tostring(msg.chat_id)]['settings']['lock_bot']
+		if group_lock_bot == 'yes' then	
+			--tg.changeChatMemberStatus(gid, aid, 'Kicked')
+			tg.changeChatMemberStatus(gid, uid, 'Kicked')
+			--kick_user(gid, aid)
+			--kick_user(gid, uid)          
+		end		
+	end			
     elseif data.ID == "UpdateOption" then
       local test = "s"
     else
