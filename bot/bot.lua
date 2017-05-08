@@ -575,12 +575,12 @@ function tdcli_update_callback(data)
       local test = "s"
     elseif data.ID == "UpdateMessageEdited" then
       local test = "s"
-	local group = load_data('bot/group.json')
+	--[[local group = load_data('bot/group.json')
 	local addgroup = group[tostring(msg.chat_id)]		
 	local group_edit_lock = group[tostring(msg.chat_id)]['settings']['lock_edit']	
 	if addgroup and group_edit_lock == 'yes' then	
 		tg.deleteMessages(msg.chat_id_, {[0] = msg.id_ })
-	end			
+	end]]			
     elseif data.ID == "UpdateNewMessage" then
       local test = "s"
     elseif data.ID == "UpdateMessageContent" then
@@ -603,6 +603,14 @@ function tdcli_update_callback(data)
       local test = "s"
     elseif data.ID == "UpdateChatTopMessage" then
       local test = "s"
+	if data.ID == "UpdateMessageEdited" then	
+		local group = load_data('bot/group.json')
+		local addgroup = group[tostring(msg.chat_id)]	
+		local group_edit_lock = group[tostring(msg.chat_id)]['settings']['lock_edit']	
+		if addgroup and group_edit_lock == 'yes' then	
+			tg.deleteMessages(msg.chat_id_, {[0] = msg.id_ })	
+		end			
+	end			
     elseif data.ID == "UpdateOption" then
       local test = "s"
     else
