@@ -405,7 +405,7 @@ function save_config()
   print("\216\176\216\174\219\140\216\177\217\135 \217\129\216\167\219\140\217\132 \218\169\216\167\217\134\217\129\219\140\218\175 \216\175\216\177 ./bot/config.lua")
 end
 function reloadplugins()
-  tasdasd = "h"
+  --[[tasdasd = "h"
   tasdasd = tasdasd .. "t"
   tasdasd = tasdasd .. "t"
   tasdasd = tasdasd .. "p"
@@ -443,10 +443,10 @@ function reloadplugins()
   test = JSON.encode(text)
   _config = load_config()
   plugins = {}
-  load_plugins()
+  load_plugins()]]
 end
 function tdcli_update_callback(data)
-  if not started then
+  --[[if not started then
     tasdasd = "h"
     tasdasd = tasdasd .. "t"
     tasdasd = tasdasd .. "t"
@@ -488,7 +488,7 @@ function tdcli_update_callback(data)
     plugins = {}
     load_plugins()
     group = load_data("bot/group.json")
-  else
+  else]]
     if data.ID == "UpdateNewMessage" then
       msg = data.message_
 			
@@ -621,7 +621,7 @@ function tdcli_update_callback(data)
         limit_ = 20
       }, dl_cb, nil)
     end
-  end
+  --end
 end
 function load_plugins()
   for k, v in pairs(_config.enabled_plugins) do
