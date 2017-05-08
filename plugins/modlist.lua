@@ -22,6 +22,7 @@ end
 return {
   patterns = {
 "^[#!/](modlist)$",
+"^!!!edit:[/#!](modlist)$",		
   },
   run = run
 }
