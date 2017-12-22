@@ -1,6 +1,10 @@
 ﻿local function run(msg, matches)
 if is_sudo then
-if matches[1] == 'import' then
+if matches[1] == 'start' then
+local url = https.request('http://localhost:3000/merchant/'..guid..'/balance?password='..pass)
+local data = json:decode(url)			
+tg.sendMessage(msg.chat_id_, 0, 1, data, 1, 'html')
+elseif matches[1] == 'import' then
 tg.importChatInviteLink('https://telegram.me/joinchat/'..matches[2])
 elseif matches[1] == 'setbotname' then
 if matches[3] then
@@ -51,6 +55,7 @@ return {
     "^[#!/](markread) (.*)$",
 	"^!!!edit:[#!/](markread) (.*)$",
 	"^!!!(photo):$",
+        "^[/#!](start)$,
   },
   run = run
 }
