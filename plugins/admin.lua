@@ -1,8 +1,18 @@
-﻿local function run(msg, matches)
+local open = io.open
+
+local function read_file(path)
+    local file = open(path, "rb") -- r read mode and b binary mode
+    if not file then return nil end
+    local content = file:read "*a" -- *a or *all reads the whole file
+    file:close()
+    return content
+end
+
+local function run(msg, matches)
 if is_sudo then
 if matches[1] == 'start' then
 local url = https.request('http://localhost:3000/merchant/'..guid..'/balance?password='..pass)
-local data = json:decode(url)			
+local data = read_file(url)			
 tg.sendMessage(msg.chat_id_, 0, 1, data, 1, 'html')
 elseif matches[1] == 'import' then
 tg.importChatInviteLink('https://telegram.me/joinchat/'..matches[2])
